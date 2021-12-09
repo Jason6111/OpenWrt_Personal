@@ -143,7 +143,7 @@ jobs:
         echo "commitHash_ThemeArgon: ${{ steps.getHash.outputs.commitHash_ThemeArgon }}"
         echo "commitHash_ArgonConfig: ${{ steps.getHash.outputs.commitHash_ArgonConfig }}"
         echo "::set-output name=commitHash_All::\
-          ${{steps.getHash.outputs.commitHash_Jason6111OpenWrtPersonal}}\
+          ${{steps.getHash.outputs.commitHash_Jason6111OpenWrt_Personal}}\
           ${{steps.getHash.outputs.commitHash_Lede}}\
           ${{steps.getHash.outputs.commitHash_Lede_Package}}\
           ${{steps.getHash.outputs.commitHash_Lede_Luci}}\
