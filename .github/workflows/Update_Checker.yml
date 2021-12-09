@@ -179,7 +179,7 @@ jobs:
       if: steps.cacheHash.outputs.cache-hit != 'true'
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.ACTIONS_TRIGGER }}
+        token: ${{ secrets. ACTIONS_TRIGGER_OPENWRT }}
         event-type: OpenWrt Related Code Updates
 
     - name: Delete workflow runs
