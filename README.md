@@ -10,7 +10,7 @@
 
 ### 下载
 
-- [Releases](https://github.com/Jason6111/OpenWrt-Personal/releases) 或 [Actions](https://github.com/Jason6111/OpenWrt-Personal/actions)
+- [Releases](https://github.com/Jason6111/OpenWrt_Personal/releases) 或 [Actions](https://github.com/Jason6111/OpenWrt_Personal/actions)
 
 
 ### 感谢
