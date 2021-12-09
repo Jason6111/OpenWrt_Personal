@@ -1,0 +1,191 @@
+#
+# Copyright (c) 2019-2021 Jason6111
+#
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+#
+# https://github.com/Jason6111/OpenWrt_Personal
+# File: .github/workflows/Update_Checker.yml
+# Description: Source code update checker
+#
+
+name: Update_Checker
+
+env:
+
+  # Jason6111OpenWrtAction源码
+  REPO_URL_Jason6111OpenWrt_Personal: https://github.com/Jason6111/OpenWrt_Personal
+  REPO_BRANCH_Jason6111OpenWrt_Personal: main
+  REPO_PATH_Jason6111OpenWrt_Personal : "Jason6111OpenWrt_Personal"
+
+  # Lean源码
+  REPO_URL_Lede: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH_Lede: master
+  REPO_PATH_Lede : "lede"
+
+  # Lean Package源码
+  REPO_URL_Lede_Package: https://github.com/coolsnowwolf/packages
+  REPO_BRANCH_Lede_Package: master
+  REPO_PATH_Lede_Package : "ledepackage"
+
+  # Lean luci源码
+  REPO_URL_Lede_Luci: https://github.com/coolsnowwolf/luci
+  REPO_BRANCH_Lede_Luci: master
+  REPO_PATH_Lede_Luci : "luci"
+
+  # Openwrt routing源码
+  REPO_URL_OPENWRT_ROUTING: https://git.openwrt.org/feed/routing.git
+  REPO_BRANCH_OPENWRT_ROUTING: master
+  REPO_PATH_OPENWRT_ROUTING : "routing"
+
+  # Openwrt telephony源码
+  REPO_URL_OPENWRT_TELEPHONY: https://git.openwrt.org/feed/telephony.git
+  REPO_BRANCH_OPENWRT_TELEPHONY: master
+  REPO_PATH_OPENWRT_TELEPHONY : "telephony"
+  
+   # SSRP源码
+  REPO_URL_HelloWorld: https://github.com/fw876/helloworld
+  REPO_BRANCH_HelloWorld: master
+  REPO_PATH_HelloWorld : "helloworld"
+
+  # jerrykuku/luci-theme-argon主题源码
+  REPO_URL_ThemeArgon: -b 18.06 https://github.com/jerrykuku/luci-theme-argon
+  REPO_BRANCH_ThemeArgon: master
+  REPO_PATH_ThemeArgon : "luci-theme-argon"
+
+  # luci-app-argon-config主题配置源码
+  REPO_URL_ArgonConfig: https://github.com/jerrykuku/luci-app-argon-config
+  REPO_BRANCH_ArgonConfig: master
+  REPO_PATH_ArgonConfig : "luci-app-argon-config"
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+#    inputs:
+#      ssh:
+#        description: 'SSH connection to Actions'
+#        required: false
+#        default: 'false'
+  schedule:
+    - cron: 0 */6 * * *
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    
+    steps:
+
+#    - name: SSH connection to Actions
+#      uses: P3TERX/ssh2actions@v1.0.0
+#      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+#      env:
+#        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+#        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+
+    - name: Get Commit Hash
+      id: getHash
+      run: |
+        git clone --depth 1 $REPO_URL_Jason6111OpenWrt_Personal -b $REPO_BRANCH_Jason6111OpenWrt_Personal $REPO_PATH_Jason6111OpenWrt_Personal
+        cd $REPO_PATH_Jason6111OpenWrt_Personal
+        echo "::set-output name=commitHash_Jason6111OpenWrt_Personal::$(git rev-parse HEAD)"
+        cd
+
+        git clone --depth 1 $REPO_URL_Lede -b $REPO_BRANCH_Lede $REPO_PATH_Lede
+        cd $REPO_PATH_Lede
+        echo "::set-output name=commitHash_Lede::$(git rev-parse HEAD)"
+        cd
+
+        git clone --depth 1 $REPO_URL_Lede_Package -b $REPO_BRANCH_Lede_Package $REPO_PATH_Lede_Package
+        cd $REPO_PATH_Lede_Package
+        echo "::set-output name=commitHash_Lede_Package::$(git rev-parse HEAD)"
+        cd
+
+        git clone --depth 1 $REPO_URL_Lede_Luci -b $REPO_BRANCH_Lede_Luci $REPO_PATH_Lede_Luci
+        cd $REPO_PATH_Lede_Luci
+        echo "::set-output name=commitHash_Lede_Luci::$(git rev-parse HEAD)"
+        cd
+
+        git clone --depth 1 $REPO_URL_OPENWRT_ROUTING -b $REPO_BRANCH_OPENWRT_ROUTING $REPO_PATH_OPENWRT_ROUTING
+        cd $REPO_PATH_OPENWRT_ROUTING
+        echo "::set-output name=commitHash_OPENWRT_ROUTING::$(git rev-parse HEAD)"
+        cd
+
+        git clone --depth 1 $REPO_URL_OPENWRT_TELEPHONY -b $REPO_BRANCH_OPENWRT_TELEPHONY $REPO_PATH_OPENWRT_TELEPHONY
+        cd $REPO_PATH_OPENWRT_TELEPHONY
+        echo "::set-output name=commitHash_OPENWRT_TELEPHONY::$(git rev-parse HEAD)"
+        cd
+
+        git clone --depth 1 $REPO_URL_HelloWorld -b $REPO_BRANCH_HelloWorld $REPO_PATH_HelloWorld 
+        cd $REPO_PATH_HelloWorld
+        echo "::set-output name=commitHash_HelloWorld::$(git rev-parse HEAD)"
+        cd
+
+        git clone --depth 1 $REPO_URL_ThemeArgon -b $REPO_BRANCH_ThemeArgon $REPO_PATH_ThemeArgon
+        cd $REPO_PATH_ThemeArgon
+        echo "::set-output name=commitHash_ThemeArgon::$(git rev-parse HEAD)"
+        cd
+
+        git clone --depth 1 $REPO_URL_ArgonConfig -b $REPO_BRANCH_ArgonConfig $REPO_PATH_ArgonConfig 
+        cd $REPO_PATH_ArgonConfig 
+        echo "::set-output name=commitHash_ArgonConfig::$(git rev-parse HEAD)"
+        cd
+
+    - name: Show Commit Head and Combination Heads
+      id: combHeader
+      run: |
+        echo "commitHash_Jason6111OpenWrt_Personal: ${{ steps.getHash.outputs.commitHash_Jason6111OpenWrt_Personal }}"
+        echo "commitHash_Lede: ${{ steps.getHash.outputs.commitHash_Lede }}"
+        echo "commitHash_Lede_Package: ${{ steps.getHash.outputs.commitHash_Lede_Package }}"
+        echo "commitHash_Lede_Luci: ${{ steps.getHash.outputs.commitHash_Lede_Luci }}"
+        echo "commitHash_OPENWRT_ROUTING: ${{ steps.getHash.outputs.commitHash_OPENWRT_ROUTING }}"
+        echo "commitHash_OPENWRT_TELEPHONY: ${{ steps.getHash.outputs.commitHash_OPENWRT_TELEPHONY }}"
+        echo "commitHash_HelloWorld: ${{ steps.getHash.outputs.commitHash_HelloWorld }}"
+        echo "commitHash_ThemeArgon: ${{ steps.getHash.outputs.commitHash_ThemeArgon }}"
+        echo "commitHash_ArgonConfig: ${{ steps.getHash.outputs.commitHash_ArgonConfig }}"
+        echo "::set-output name=commitHash_All::\
+          ${{steps.getHash.outputs.commitHash_Jason6111OpenWrtPersonal}}\
+          ${{steps.getHash.outputs.commitHash_Lede}}\
+          ${{steps.getHash.outputs.commitHash_Lede_Package}}\
+          ${{steps.getHash.outputs.commitHash_Lede_Luci}}\
+          ${{steps.getHash.outputs.commitHash_OPENWRT_ROUTING}}\
+          ${{steps.getHash.outputs.commitHash_OPENWRT_TELEPHONY}}\
+          ${{steps.getHash.outputs.commitHash_HelloWorld}}\
+          ${{steps.getHash.outputs.commitHash_ArgonConfig}}"
+          
+    - name: Compare Commit Hash
+      id: cacheHash
+      uses: actions/cache@v2
+      with:
+        path: .commitHash_All
+        key: HEAD-${{ steps.combHeader.outputs.commitHash_All }}
+   
+
+    - name: Save New Commit Hash
+      if: steps.cacheHash.outputs.cache-hit != 'true'
+      run: |
+        echo ${{ steps.getHash.outputs.commitHash_Jason6111OpenWrtPersonal }} | tee .commitHash_Jason6111OpenWrtPersonal
+        echo ${{ steps.getHash.outputs.commitHash_Lede }} | tee .commitHash_Lede
+        echo ${{ steps.getHash.outputs.commitHash_Lede_Package }} | tee .commitHash_Lede_Package
+        echo ${{ steps.getHash.outputs.commitHash_Lede_Luci }} | tee .commitHash_Lede_Luci
+        echo ${{ steps.getHash.outputs.commitHash_OPENWRT_ROUTING }} | tee .commitHash_OPENWRT_ROUTING
+        echo ${{ steps.getHash.outputs.commitHash_OPENWRT_TELEPHONY }} | tee .commitHash_OPENWRT_TELEPHONY
+        echo ${{ steps.getHash.outputs.commitHash_HelloWorld }} | tee .commitHash_HelloWorld
+        echo ${{ steps.getHash.outputs.commitHash_ThemeArgon }} | tee .commitHash_ThemeArgon
+        echo ${{ steps.getHash.outputs.commitHash_ArgonConfig }} | tee .commitHash_ArgonConfig
+        echo ${{ steps.combHeader.outputs.commitHash_All }} | tee .commitHash_All
+        
+        
+    - name: Trigger build
+      if: steps.cacheHash.outputs.cache-hit != 'true'
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.ACTIONS_TRIGGER_PAT }}
+        event-type: OpenWrt Related Code Updates
+
+    - name: Delete workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: ${{ github.repository }}
+        retain_days: 1
+        keep_minimum_runs: 2
