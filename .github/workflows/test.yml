@@ -16,7 +16,7 @@ on:
     inputs:
       device:
         description: 'select device to build'
-        default: 'r2s'
+        default: 'R4S'
         required: false
         required: false
 #      ssh:
