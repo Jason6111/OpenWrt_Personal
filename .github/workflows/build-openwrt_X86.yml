@@ -29,6 +29,8 @@ env:
   CONFIG_FILE: config/X86.config
   DIY_P1_SH: diy_script/diy-part_X861.sh
   DIY_P2_SH: diy_script/diy-part_X862.sh
+  COMMIT_LOG_NUM: 2
+  RELEASE_TAG: X86
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -167,11 +169,17 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::X86-$(date +"%Y.%m.%d-%H%M")"
+        echo "::set-output name=release_tag::-$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"
+        
+        echo "## Lean Luci Commit Top $COMMIT_LOG_NUM" >> release.txt
+        git -C openwrt/feeds/luci log -n $COMMIT_LOG_NUM >> release.txt
+        
+        echo "## SSRP Commit Top $COMMIT_LOG_NUM" >> release.txt
+        git -C openwrt/feeds/helloworld log -n $COMMIT_LOG_NUM >> release.txt        
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
