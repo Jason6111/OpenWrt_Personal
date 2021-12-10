@@ -3,6 +3,7 @@
 [![Lean](https://img.shields.io/badge/SourceCode-Lean-green?style=flat&logo=GitHub)](https://github.com/coolsnowwolf/lede)
 [![UpdateCheck](https://img.shields.io/badge/Automatic-UpdateCheck-blueviolet?style=flat&logo=apacheflink)](https://github.com/Jason6111/OpenWrt_Personal/actions)
 [![Actions](https://img.shields.io/badge/GithubAction-Actions-important?style=flat&logo=GitHubActions)](https://github.com/Jason6111/OpenWrt_Personal/actions)
+[![download](https://img.shields.io/github/downloads/Jason6111/OpenWrt_Personal/total)](https://github.com/Jason6111/OpenWrt_Personal/releases)
 
 ### 介绍 
 
