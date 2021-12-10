@@ -13,10 +13,11 @@ name: build-openwrt_R4S_X86
 on:
   repository_dispatch:
   workflow_dispatch:
-      inputs:
-        device:
+    inputs:
+      device:
         description: 'select device to build'
-        default: 'R4S'
+        default: 'r2s'
+        required: false
         required: false
 #      ssh:
 #        description: 'SSH connection to Actions'
