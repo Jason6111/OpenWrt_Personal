@@ -32,8 +32,8 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config/${env.strDate}.config
-  DIY_P1_SH: diy_script/diy-part_${{env.strDate}}1.sh
-  DIY_P2_SH: diy_script/diy-part_${{env.strDate}}2.sh
+  DIY_P1_SH: diy_script/diy-part_${env.strDate}1.sh
+  DIY_P2_SH: diy_script/diy-part_${env.strDate}2.sh
   COMMIT_LOG_NUM: 1
   RELEASE_TAG: ${{env.strDate}}
   UPLOAD_BIN_DIR: false
