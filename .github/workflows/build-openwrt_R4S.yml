@@ -59,12 +59,11 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
     
-    - name：TG
+    - name: PUSHPLUS信息通知
+      if: env.SERVERCHAN_SCKEY == 'true'
       run: |
-        curl -k --data chat_id="139000174" --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot987654321:FEDCBA_dfoiuweSWEczgxT7-l4r9Y/sendMessage"
-    
-
-
+        curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="开始编译【${{matrix.target}}】" --data "content=🎉 主人：您正在使用【${{matrix.target}}】文件夹编译固件中(${{env.CangKu}}仓库的#${{env.Run_number}}号),请耐心等待...... 😋💐" "http://www.pushplus.plus/send"
+   
     - name: Clone source code
       working-directory: /workdir
       run: |
