@@ -58,6 +58,11 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
+    
+    - name：TG
+      run: |
+        curl -k --data chat_id="139000174" --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot987654321:FEDCBA_dfoiuweSWEczgxT7-l4r9Y/sendMessage"
+    
 
 
     - name: Clone source code
