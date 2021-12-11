@@ -9,7 +9,7 @@
 # Description: Source code update checker
 #
 
-name: Update_Checker
+name: 更新_检查器
 
 env:
 
@@ -82,7 +82,7 @@ jobs:
 #        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 #        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
-    - name: Get Commit Hash
+    - name: 获取提交散列
       id: getHash
       run: |
         git clone --depth 1 $REPO_URL_Jason6111OpenWrt_Personal -b $REPO_BRANCH_Jason6111OpenWrt_Personal $REPO_PATH_Jason6111OpenWrt_Personal
@@ -130,7 +130,7 @@ jobs:
         echo "::set-output name=commitHash_ArgonConfig::$(git rev-parse HEAD)"
         cd
 
-    - name: Show Commit Head and Combination Heads
+    - name: 显示提交头和组合头
       id: combHeader
       run: |
         echo "commitHash_Jason6111OpenWrt_Personal: ${{ steps.getHash.outputs.commitHash_Jason6111OpenWrt_Personal }}"
@@ -152,7 +152,7 @@ jobs:
           ${{steps.getHash.outputs.commitHash_HelloWorld}}\
           ${{steps.getHash.outputs.commitHash_ArgonConfig}}"
           
-    - name: Compare Commit Hash
+    - name: 比较提交散列
       id: cacheHash
       uses: actions/cache@v2
       with:
@@ -160,7 +160,7 @@ jobs:
         key: HEAD-${{ steps.combHeader.outputs.commitHash_All }}
    
 
-    - name: Save New Commit Hash
+    - name: 保存新提交散列
       if: steps.cacheHash.outputs.cache-hit != 'true'
       run: |
         echo ${{ steps.getHash.outputs.commitHash_Jason6111OpenWrt_Personal }} | tee .commitHash_Jason6111OpenWrtPersonal
@@ -175,14 +175,14 @@ jobs:
         echo ${{ steps.combHeader.outputs.commitHash_All }} | tee .commitHash_All
         
         
-    - name: Trigger build
+    - name: 触发器构建
       if: steps.cacheHash.outputs.cache-hit != 'true'
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets. ACTIONS_TRIGGER_OPENWRT }}
         event-type: OpenWrt Related Code Updates
 
-    - name: Delete workflow runs
+    - name: 删除工作流程运行
       uses: GitRML/delete-workflow-runs@main
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
