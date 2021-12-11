@@ -49,8 +49,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@main
-      with:
-          fetch-depth: 0
 
     - name: Initialization environment
       env:
@@ -64,7 +62,7 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-       if [ ${{matrix.target}} == "x86" ]; then
+        if [ ${{matrix.target}} == "x86" ]; then
             echo "ARCH=linux/amd64" >> $GITHUB_ENV
         elif [[ ${{matrix.target}} ="R4S" ]]; then
             echo "ARCH=linux/arm64" >> $GITHUB_ENV
