@@ -1,4 +1,4 @@
-name: build-openwrt_R4S
+name: test
 
 on:
   repository_dispatch:
