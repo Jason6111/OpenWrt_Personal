@@ -1,4 +1,8 @@
-name: build-openwrt_R4S
+name: build-openwrt
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
 
 on:
   repository_dispatch:
