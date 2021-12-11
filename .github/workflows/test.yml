@@ -1,64 +1,57 @@
-
-#
-#
-# 感谢p3terx大神的一键编译脚本
-# 
-# Copyright (C) 2019 P3TERX <https://p3terx.com>
-# <https://github.com/P3TERX/Actions-OpenWrt.git>
-#
-
-
-name: 编译OpenWrt固件
+name: build-openwrt_R4S
 
 on:
+  repository_dispatch:
   workflow_dispatch:
-    inputs:
-      name:
-        description: 'Person to greet'
-        required: true
-        default: 'build-openwrt'
-
-
-#编辑任意指定文件触发开始编译
-#  push:
-#    branches:
-#      - master
-#    paths:
-#      - '开启编译openwrt'
-
-
-#定时触发开始编译(开启定时编译请先确定SSH处在关闭状态,要不然SSH没人管,会卡SSH编译失败)
+#    inputs:
+#      ssh:
+#        description: 'SSH connection to Actions'
+#        required: false
+#        default: 'false'
+#周日22时 CN周一6时
 #  schedule:
-#    - cron: 0 8 */5 * *
-
-
-#点☆Star触发开始编译
-  watch:
-#    types: started
-
+#    - cron: 0 22 * * 0
 
 env:
-  REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
-  SCKEY: ${{ secrets.SCKEY }}
-  GITHUB_RELEASE: https://github.com/281677160/Actions-OpenWrt/releases
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
+  FEEDS_CONF: feeds.conf.default
+  CONFIG_FILE: config/R4S.config
+  DIY_P1_SH: diy_script/diy-part_R4S1.sh
+  DIY_P2_SH: diy_script/diy-part_R4S2.sh
+  COMMIT_LOG_NUM: 1
+  RELEASE_TAG: R4S
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  UPLOAD_COWTRANSFER: false
+  UPLOAD_WETRANSFER: false
+  UPLOAD_RELEASE: true
+  SERVERCHAN_SCKEY: true 
   TZ: Asia/Shanghai
 
-jobs: 
+jobs:
   build:
-    runs-on: ubuntu-18.04
-    if: github.event.repository.owner.id == github.event.sender.id
-
-    name: 编译 ${{matrix.target}}
-    strategy:
-      fail-fast: false
-      matrix:
-        target: [Lede_x86_64]  #[Lede_x86_64,Lede_redmi_ac2100,Lede_newifi_d2,Lede_phicomm_k2p,Lienol_x86_64,Lienol_phicomm_k2p,Lienol_phicomm_k3,Project_x86_64,Project_newifi_d2,Project_phicomm_k3]
+    runs-on: ubuntu-20.04
 
     steps:
-    - name: 准备结束
-      uses: actions/checkout@v2
- 
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004)
+        sudo -E apt-get -qq autoremove --purge
+        sudo -E apt-get -qq clean
+        sudo timedatectl set-timezone "$TZ"
+        sudo mkdir -p /workdir
+        sudo chown $USER:$GROUPS /workdir
+    
     - name: PUSHPLUS信息通知
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
-        curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="开始编译【${{matrix.target}}】" --data "content=🎉 主人：您正在使用【${{matrix.target}}】文件夹编译固件中(${{env.CangKu}}仓库的#${{env.Run_number}}号),请耐心等待...... 😋💐" "http://www.pushplus.plus/send"
+        curl -k --data chat_id="759232246" --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot1590949971:AAEax8l9p6F7Ba61OOCiDYxDd6H7gBy8QpI/sendMessage"
+        
