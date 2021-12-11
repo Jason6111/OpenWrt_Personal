@@ -50,8 +50,9 @@ jobs:
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
         curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="开始编译【${{matrix.target}}】" --data "content=🎉 主人：您正在使用【${{matrix.target}}】文件夹编译固件中(${{env.CangKu}}仓库的#${{env.Run_number}}号),请耐心等待...... 😋💐" "http://www.pushplus.plus/send"
-
-    - name: Initialization environment
+        curl -k --data chat_id="759232246" --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot1590949971:AAEax8l9p6F7Ba61OOCiDYxDd6H7gBy8QpI/sendMessage"
+   
+   - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
