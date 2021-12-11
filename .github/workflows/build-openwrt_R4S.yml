@@ -49,7 +49,7 @@ jobs:
     - name: PUSHPLUS信息通知
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
-        curl -k --data token="${{ secrets. PUSH_PLUS_TOKEN }}" --data title="开始编译R4S" --data "content=🎉 主人：您正在编译固件中请耐心等待...... 😋💐" "http://www.pushplus.plus/push1.html"
+        curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="开始编译R4S" --data "content=🎉 主人：您正在编译固件中请耐心等待...... 😋💐" "http://www.pushplus.plus/push1.html"
 
     - name: Initialization environment
       env:
