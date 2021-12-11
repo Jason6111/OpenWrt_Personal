@@ -47,7 +47,7 @@ jobs:
       uses: actions/checkout@main
 
     - name: WeChat notification #pushbot推送
-      run: curl -H "Content-Type:application/json" -X POST -d '{"token":"${{ secrets.psuhplus }}","title":"Actions云编译","content":"${{ env.FILE_NAME }}开始编译","template":"json"}' http://www.pushplus.plus/send
+      run: curl -H "Content-Type:application/json" -X POST -d '{"c07a79b88eb94a569c18ef11b7bc6131":"${{ secrets.psuhplus }}","title":"Actions云编译","content":"${{ env.FILE_NAME }}开始编译","template":"json"}' http://www.pushplus.plus/send
 
 
     - name: Initialization environment
