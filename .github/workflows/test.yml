@@ -4,22 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-20.04
 
-on:
-  repository_dispatch:
-  workflow_dispatch:
-  
-  jobs:
-  build:
-    runs-on: ubuntu-20.04
-    
-  steps:
-  - name: s
-  uses: actions/checkout@v2
-  
-  - name: 微信通知
-      if: env.SERVERCHAN_SCKEY == 'true'
-      uses: emon100/Action-Serverchan@master
-      with:
-        SCKEY: ${{ secrets.SCKEY }}
-        text: 开始编译${{matrix.target}}啦
-        desp: 主人您设置要编译的[${{ env.WXFB_MESSAGE }}]固件正在努力耕耘中......
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
