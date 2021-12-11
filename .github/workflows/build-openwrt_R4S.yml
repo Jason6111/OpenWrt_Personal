@@ -58,13 +58,15 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
+        echo "::set-env name=WXFB_MESSAGE::${WXFB_MESSAGE}"
+        echo "::set-env name=SERVERCHAN_SCKEY::${SERVERCHAN_SCKEY}"
 
     - name: 微信通知
       if: env.SERVERCHAN_SCKEY == 'true'
       uses: emon100/Action-Serverchan@master
       with:
-        SCKEY: ${{ secrets.SCKEY }}
-        text: 开始编译${{matrix.target}}啦
+        SCKEY: ${{ secrets.PUSH_PLUS_TOKEN }}
+        text: 开始编译R4S啦
         desp: 主人您设置要编译的[${{ env.WXFB_MESSAGE }}]固件正在努力耕耘中......
 
     - name: 下载固件源码
@@ -203,8 +205,8 @@ jobs:
       if: steps.organizer.outputs.status == 'success' && env.SERVERCHAN_SCKEY == 'true'
       uses: emon100/Action-Serverchan@master
       with:
-        SCKEY: ${{ secrets.SCKEY }}
-        text: 恭喜主人${{matrix.target}}固件编译成功！
+        SCKEY: ${{ secrets.PUSH_PLUS_TOKEN }}
+        text: 恭喜主人R4S固件编译成功！
         desp: 我亲爱的主人您要编译的${{ env.WXFB_MESSAGE }}固件成功完成了！           
 
     - name: 删除工作流
