@@ -180,7 +180,7 @@ jobs:
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets. ACTIONS_TRIGGER_OPENWRT }}
-        event-type: OpenWrt Related Code Updates
+        event-type: OpenWrt相关代码更新
 
     - name: 删除工作流程运行
       uses: GitRML/delete-workflow-runs@main
