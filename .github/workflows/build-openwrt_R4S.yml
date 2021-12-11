@@ -46,12 +46,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: PUSHPLUS信息通知
-      if: env.SERVERCHAN_SCKEY == 'true'
-      run: |
-        curl -k --data chat_id="759232246" --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot1590949971:AAEax8l9p6F7Ba61OOCiDYxDd6H7gBy8QpI/sendMessage"
-   
-   - name: Initialization environment
+    - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -63,6 +58,7 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
+
 
     - name: Clone source code
       working-directory: /workdir
