@@ -45,4 +45,4 @@ jobs:
     - name: PUSHPLUS信息通知
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
-        curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="开始编译R4S" --data "content=🎉 主人：您正在使用R4S文件夹编译固件中号),请耐心等待...... 😋💐" "http://www.pushplus.plus/send"
+        curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="开始编译$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")" --data "content=🎉 主人：您正在使用R4S文件夹编译固件中号),请耐心等待...... 😋💐" "http://www.pushplus.plus/send"
