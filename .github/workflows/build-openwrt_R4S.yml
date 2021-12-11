@@ -59,6 +59,14 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
+    - name: 微信通知
+      if: env.SERVERCHAN_SCKEY == 'true'
+      uses: emon100/Action-Serverchan@master
+      with:
+        SCKEY: ${{ secrets.SCKEY }}
+        text: 开始编译${{matrix.target}}啦
+        desp: 主人您设置要编译的[${{ env.WXFB_MESSAGE }}]固件正在努力耕耘中......
+
     - name: 下载固件源码
       working-directory: /workdir
       run: |
@@ -190,6 +198,14 @@ jobs:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
+
+    - name: 微信通知
+      if: steps.organizer.outputs.status == 'success' && env.SERVERCHAN_SCKEY == 'true'
+      uses: emon100/Action-Serverchan@master
+      with:
+        SCKEY: ${{ secrets.SCKEY }}
+        text: 恭喜主人${{matrix.target}}固件编译成功！
+        desp: 我亲爱的主人您要编译的${{ env.WXFB_MESSAGE }}固件成功完成了！           
 
     - name: 删除工作流
       uses: GitRML/delete-workflow-runs@main
