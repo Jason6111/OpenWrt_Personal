@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: 准备结束
+    - name: 检查准备
       uses: actions/checkout@main
       
     - name: TG信息通知
@@ -92,7 +92,7 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
-    - name: 加载源
+    - name: 更新源
       run: cd openwrt && ./scripts/feeds update -a
 
     - name: 安装源
