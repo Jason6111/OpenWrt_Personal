@@ -58,11 +58,7 @@ jobs:
     - name: 准备结束
       uses: actions/checkout@v2
  
-    
-    - name: 微信通知
+    - name: PUSHPLUS信息通知
       if: env.SERVERCHAN_SCKEY == 'true'
-      uses: emon100/Action-Serverchan@master
-      with:
-        SCKEY: ${{ secrets.SCKEY }}
-        text: 开始编译${{matrix.target}}啦
-        desp: 主人您设置要编译的[${{ env.WXFB_MESSAGE }}]固件正在努力耕耘中......
+      run: |
+        curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="开始编译【${{matrix.target}}】" --data "content=🎉 主人：您正在使用【${{matrix.target}}】文件夹编译固件中(${{env.CangKu}}仓库的#${{env.Run_number}}号),请耐心等待...... 😋💐" "http://www.pushplus.plus/send"
