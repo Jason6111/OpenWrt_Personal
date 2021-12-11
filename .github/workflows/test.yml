@@ -42,6 +42,12 @@ env:
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
+  if [ ${{matrix.target}} == "x86" ]; then
+     echo "ARCH=linux/amd64" >> $GITHUB_ENV
+   elif [[ ${{matrix.target}} ="R4S" ]]; then
+     echo "ARCH=linux/arm64" >> $GITHUB_ENV
+  fi
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -62,11 +68,6 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-        if [ ${{matrix.target}} == "x86" ]; then
-            echo "ARCH=linux/amd64" >> $GITHUB_ENV
-        elif [[ ${{matrix.target}} ="R4S" ]]; then
-            echo "ARCH=linux/arm64" >> $GITHUB_ENV
-        fi
 
     - name: Clone source code
       working-directory: /workdir
