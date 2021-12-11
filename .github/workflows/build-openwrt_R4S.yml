@@ -43,27 +43,10 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: 准备结束
+    - name: Checkout
       uses: actions/checkout@main
 
-    - name: 检测脚本设置
-      run: |
-        source "${GITHUB_WORKSPACE}/build/${{matrix.target}}/settings.ini"
-        echo "::set-env name=REPO_URL::${REPO_URL}"
-        echo "::set-env name=REPO_BRANCH::${REPO_BRANCH}"
-        echo "::set-env name=CONFIG_FILE::${CONFIG_FILE}"
-        echo "::set-env name=WXFB_MESSAGE::${WXFB_MESSAGE}"
-        echo "::set-env name=DIY_P1_SH::${DIY_P1_SH}"
-        echo "::set-env name=DIY_P2_SH::${DIY_P2_SH}"
-        echo "::set-env name=SSH_ACTIONS::${SSH_ACTIONS}"
-        echo "::set-env name=UPLOAD_BIN_DIR::${UPLOAD_BIN_DIR}"
-        echo "::set-env name=UPLOAD_CONFIG::${UPLOAD_CONFIG}"
-        echo "::set-env name=UPLOAD_FIRMWARE::${UPLOAD_FIRMWARE}"
-        echo "::set-env name=UPLOAD_COWTRANSFER::${UPLOAD_COWTRANSFER}"
-        echo "::set-env name=UPLOAD_RELEASE::${UPLOAD_RELEASE}"
-        echo "::set-env name=SERVERCHAN_SCKEY::${SERVERCHAN_SCKEY}"
-
-    - name: 初始化环境
+    - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -75,16 +58,8 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-        
-    - name: 微信通知
-      if: env.SERVERCHAN_SCKEY == 'true'
-      uses: emon100/Action-Serverchan@master
-      with:
-        SCKEY: ${{ secrets.PUSH_PLUS_TOKEN }}
-        text: 开始编译R4S啦
-        desp: 主人您设置要编译的$release_tag固件正在努力耕耘中......
 
-    - name: 下载固件源码
+    - name: Clone source code
       working-directory: /workdir
       run: |
         df -hT $PWD
@@ -97,20 +72,20 @@ jobs:
  #       ccache: 'true'
  #       prefix: ${{ github.workspace }}/openwrt 
 
-    - name: 加载自定义P1
+    - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
-    - name: 更新feeds
+    - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
-    - name: 安装feeds
+    - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
 
-    - name: 加载自定义P2
+    - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
@@ -125,7 +100,7 @@ jobs:
 #        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 #        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
-    - name: 下载程序包
+    - name: Download package
       id: package
       run: |
         cd openwrt
@@ -134,7 +109,7 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: 编译固件ing
+    - name: Compile the firmware
       id: compile
       run: |
         cd openwrt
@@ -145,18 +120,18 @@ jobs:
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
-    - name: 坚持空间使用率
+    - name: Check space usage
       if: (!cancelled())
       run: df -hT
 
-    - name: 上传bin目录
+    - name: Upload bin directory
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
-    - name: 整理文件
+    - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
@@ -165,14 +140,14 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
 
-    - name: 上传固件
+    - name: Upload firmware directory
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
-    - name: 上传估计到牛奶快传
+    - name: Upload firmware to cowtransfer
       id: cowtransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
@@ -181,7 +156,7 @@ jobs:
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
         echo "::set-output name=url::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"
 
-    - name: 上传估计到WeTransfer
+    - name: Upload firmware to WeTransfer
       id: wetransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
       run: |
@@ -190,7 +165,7 @@ jobs:
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
         echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
 
-    - name: 自动发布到tag
+    - name: Generate release tag
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
@@ -206,7 +181,7 @@ jobs:
         echo "## SSRP Commit Top $COMMIT_LOG_NUM" >> release.txt
         git -C openwrt/feeds/helloworld log -n $COMMIT_LOG_NUM >> release.txt
                 
-    - name: 自动发布到release
+    - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
@@ -216,21 +191,13 @@ jobs:
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
 
-    - name: 微信通知
-      if: steps.organizer.outputs.status == 'success' && env.SERVERCHAN_SCKEY == 'true'
-      uses: emon100/Action-Serverchan@master
-      with:
-        SCKEY: ${{ secrets.PUSH_PLUS_TOKEN }}
-        text: 恭喜主人R4S固件编译成功！
-        desp: 我亲爱的主人您要编译的${{ env.WXFB_MESSAGE }}固件成功完成了！           
-
-    - name: 删除工作流
+    - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
         retain_days: 1
         keep_minimum_runs: 3
 
-    - name: 删除过去固件
+    - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
