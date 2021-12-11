@@ -59,11 +59,16 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
     
+    - name: TG信息通知
+      if: env.SERVERCHAN_SCKEY == 'true'
+      run: |
+        curl -k --data chat_id=${{ secrets.TGID }} --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
+        
     - name: PUSHPLUS信息通知
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
-        curl -k --data chat_id="759232246" --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot1590949971:AAEax8l9p6F7Ba61OOCiDYxDd6H7gBy8QpI/sendMessage"
-        
+        curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="开始编译$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")" --data "content=🎉 主人：正在为您编译新的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M"),请耐心等待...... 😋💐" "http://www.pushplus.plus/send"
+
     - name: Clone source code
       working-directory: /workdir
       run: |
