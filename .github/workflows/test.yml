@@ -1,4 +1,4 @@
-name: build-openwrt
+name: btest
 
 jobs:
   build:
@@ -8,7 +8,15 @@ on:
   repository_dispatch:
   workflow_dispatch:
   
-    - name: 微信通知
+  jobs:
+  build:
+    runs-on: ubuntu-20.04
+    
+  steps:
+  - name: s
+  uses: actions/checkout@v2
+  
+  - name: 微信通知
       if: env.SERVERCHAN_SCKEY == 'true'
       uses: emon100/Action-Serverchan@master
       with:
