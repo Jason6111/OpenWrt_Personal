@@ -70,9 +70,6 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        if [ ${{matrix.target}} == "X86｜R4S" ] then
-            echo "ARCH=linux/amd64" >> $GITHUB_ENV
-        fi
 
 #  - name: Cache
 #    uses: klever1988/cachewrtbuild@main
