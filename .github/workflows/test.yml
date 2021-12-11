@@ -40,7 +40,7 @@ jobs:
     - name: PUSHPLUS信息通知
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
-        curl -k --data chat_id="759232246" --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot1590949971:AAEax8l9p6F7Ba61OOCiDYxDd6H7gBy8QpI/sendMessage"
+        curl -k --data chat_id=${{ secrets.TGID }} --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
         
     - name: PUSHPLUS信息通知
       if: env.SERVERCHAN_SCKEY == 'true'
