@@ -12,7 +12,7 @@ on:
 #  schedule:
 #    - cron: 0 22 * * 0
   schedule:
-    - crontab -e 0 5-22 * * * SERVERCHAN_SCKEY == true
+    - cron: 0 5-22 * * * SERVERCHAN_SCKEY == true
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
