@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: Checkout
+    - name: 检查准备
       uses: actions/checkout@main
    
     - name: PUSHPLUS信息通知
