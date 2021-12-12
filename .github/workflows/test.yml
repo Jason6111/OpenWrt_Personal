@@ -26,7 +26,7 @@ env:
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
-  SERVERCHAN_SCKEY: true
+  SERVERCHAN_SCKEY: false
   if: (time<20 == 'true' && time>20  != 'false')
   TZ: Asia/Shanghai
 
