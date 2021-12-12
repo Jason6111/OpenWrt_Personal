@@ -9,7 +9,7 @@ on:
 #        required: false
 #        default: 'false'
 #周日22时 CN周一6时
-    - crontab: 0 22 * * 0 environmentalists .SERVERCHAN_SCKEY == 'false'
+  crontab: 0 22 * * 0 environmentalists .SERVERCHAN_SCKEY == 'false'
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
