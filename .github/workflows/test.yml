@@ -40,16 +40,7 @@ jobs:
     - name: PUSHPLUS信息通知
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
-        curl -k --data chat_id=${{ secrets.TGI }} --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot${{ secrets.TG_TOKE }}/sendMessage"
-       if 
-      schedule:
-        - cron: 0 22 * * *
-       env.SERVERCHAN_SCKEY == 'true'
-       else
-      schedule:
-        - cron: 0 8 * * *
-       env.SERVERCHAN_SCKEY == 'false'
-       fi
+        curl -k --data chat_id=${{ secrets.TGI }} --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot${{ secrets.TG_TOKE }}/sendMessage"      
         
     - name: PUSHPLUS信息通知
       if: env.SERVERCHAN_SCKEY == 'true'
