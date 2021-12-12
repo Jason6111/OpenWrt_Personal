@@ -27,7 +27,6 @@ env:
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
   SERVERCHAN_SCKEY: true
-  if: (time<20 == 'true' && time>20  != 'false')|| env.SERVERCHAN_SCKEY, 'true')
   TZ: Asia/Shanghai
 
 jobs:
