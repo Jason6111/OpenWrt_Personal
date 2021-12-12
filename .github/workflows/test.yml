@@ -27,8 +27,8 @@ env:
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
-  0 8 * * * -l > SERVERCHAN_SCKEY: true
-  0 22 * * * -l > SERVERCHAN_SCKEY: false
+  0 8 * * *  SERVERCHAN_SCKEY: true
+  0 22 * * *  SERVERCHAN_SCKEY: false
   TZ: Asia/Shanghai
   
 
