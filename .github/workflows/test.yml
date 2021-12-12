@@ -41,7 +41,7 @@ jobs:
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
         curl -k --data chat_id=${{ secrets.TGI }} --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot${{ secrets.TG_TOKE }}/sendMessage"      
-      if 
+      if:
       schedule:
         - cron: 0 22 * * *
        env.SERVERCHAN_SCKEY == 'true'
