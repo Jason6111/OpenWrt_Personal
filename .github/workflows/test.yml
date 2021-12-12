@@ -1,4 +1,4 @@
-name: 编译openwrt-R4S
+name: test
 
 on:
   repository_dispatch:
