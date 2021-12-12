@@ -44,9 +44,6 @@ jobs:
       schedule:
         - cron: 0 22 * * *
        env.SERVERCHAN_SCKEY == 'true'
-      schedule:
-        - cron: 0 8 * * *
-       env.SERVERCHAN_SCKEY == 'false'
 
     - name: PUSHPLUS信息通知
       if: env.SERVERCHAN_SCKEY == 'true'
