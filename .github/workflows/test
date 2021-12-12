@@ -1,0 +1,49 @@
+name: test
+
+ on:
+   repository_dispatch:
+   workflow_dispatch:
+ #    inputs:
+ #      ssh:
+ #        description: 'SSH connection to Actions'
+ #        required: false
+ #        default: 'false'
+ #周日22时 CN周一6时
+ #  schedule:
+ #    - cron: 0 22 * * 0
+
+
+ env:
+   REPO_URL: https://github.com/coolsnowwolf/lede
+   REPO_BRANCH: master
+   FEEDS_CONF: feeds.conf.default
+   CONFIG_FILE: config/R4S.config
+   DIY_P1_SH: diy_script/diy-part_R4S1.sh
+   DIY_P2_SH: diy_script/diy-part_R4S2.sh
+   COMMIT_LOG_NUM: 1
+   RELEASE_TAG: R4S
+   UPLOAD_BIN_DIR: false
+   UPLOAD_FIRMWARE: true
+   UPLOAD_COWTRANSFER: false
+   UPLOAD_WETRANSFER: false
+   UPLOAD_RELEASE: true
+   TZ: Asia/Shanghai
+   SERVERCHAN_SCKEY: true
+    if: (time<20 == 'true' && time>20  != 'false')
+
+
+
+
+ jobs:
+   build:
+     runs-on: ubuntu-20.04
+
+     steps:
+     - name: 检查准备
+       uses: actions/checkout@main
+
+     - name: TG信息通知
+       if: env.SERVERCHAN_SCKEY == 'true'           
+       run: |
+         curl -k --data chat_id=${{ secrets.TGID }} --data "text=主..... 😋💐" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
+         
