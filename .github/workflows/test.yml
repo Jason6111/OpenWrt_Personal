@@ -26,7 +26,9 @@ env:
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
-  SERVERCHAN_SCKEY: true 
+  schedule:
+   - crontab -e 0 5-22 * * * SERVERCHAN_SCKEY == true
+
   TZ: Asia/Shanghai
 
 jobs:
@@ -40,6 +42,6 @@ jobs:
     - name: PUSHPLUS信息通知
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
-        curl -k --data chat_id=${{ secrets.TGI }} --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot${{ secrets.TG_TOKE }}/sendMessage"      
-        crontab -e 0 5-22 * * * SERVERCHAN_SCKEY == 'false'
-     
+        curl -k --data chat_id=${{ secrets.TGI }} --data "text=Have a good journey, Mr. Weyland." "https://api.telegram.org/bot${{ secrets.TG_TOKE }}/sendMessage"       
+     schedule:
+       - crontab -e 0 5-22 * * * SERVERCHAN_SCKEY == 'false'
