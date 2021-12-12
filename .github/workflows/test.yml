@@ -31,7 +31,7 @@ env:
   SERVERCHAN_SCKEY: true
    if (time<20)
    {
-    SERVERCHAN_SCKEY="： false";
+    SERVERCHAN_SCKEY:" false";
     
    
   
