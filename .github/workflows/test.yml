@@ -29,7 +29,7 @@ env:
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
   SERVERCHAN_SCKEY: true
-   if (time<20)
+   if (time>20)
    {
     SERVERCHAN_SCKEY:" false";
     
