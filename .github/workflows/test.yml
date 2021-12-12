@@ -31,11 +31,11 @@ env:
   SERVERCHAN_SCKEY: true
    if (time<20)
    {
-    x="true";
+    x="false";
    }
    else
    {
-    x="false";
+    x="true";
    }
     
    
