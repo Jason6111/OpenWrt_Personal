@@ -45,7 +45,6 @@ jobs:
       schedule:
         - cron: 0 22 * * *
        env.SERVERCHAN_SCKEY == 'true'
-       else
       schedule:
         - cron: 0 8 * * *
        env.SERVERCHAN_SCKEY == 'false'
