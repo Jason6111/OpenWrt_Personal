@@ -203,7 +203,7 @@ jobs:
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
 
-    - name: D删除工作流程运行
+    - name: 删除工作流程运行
       uses: GitRML/delete-workflow-runs@main
       with:
         retain_days: 1
