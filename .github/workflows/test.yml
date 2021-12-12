@@ -28,15 +28,10 @@ env:
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
-  SERVERCHAN_SCKEY
+  SERVERCHAN_SCKEY: true
    if (time<20)
    {
     SERVERCHAN_SCKEY="： false";
-   }
-   else
-   {
-    SERVERCHAN_SCKEY="： true";
-   }
     
    
   
