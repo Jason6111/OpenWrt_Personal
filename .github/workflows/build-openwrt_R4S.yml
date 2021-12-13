@@ -152,7 +152,7 @@ jobs:
         rm -rf packages
         rm -rf feeds.buildinfo config.buildinfo openwrt-rockchip-armv8-friendlyarm_nanopi-r4s-ext4-sysupgrade.img.gz openwrt-rockchip-armv8-friendlyarm_nanopi-r4s.manifest sha256sums version.buildinfo 
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        echo "::set-output name=status::success"
+#        echo "::set-output name=status::success"
 
     - name: 上传固件目录
       uses: actions/upload-artifact@main
