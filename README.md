@@ -8,10 +8,9 @@
 ### 介绍 
 
 - 借助 GitHub Actions 的 OpenWrt 在线集成自动编译.
-![image](other/function.png)
-
 - IP:192.168.1.1
-  密码无
+- 密码无
+![image](other/function.png)
   
 ### 下载
 - [Releases](https://github.com/Jason6111/OpenWrt_Personal/releases) 或 [Actions](https://github.com/Jason6111/OpenWrt_Personal/actions)
