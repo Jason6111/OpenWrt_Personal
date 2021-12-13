@@ -226,7 +226,7 @@ jobs:
         
         
     - name: PUSHPLUS信息通知
-      if: env.SERVERCHAN_SCKEY == 'true'
+      if: env.SERVERCHAN_SCKEY == 'false'
       run: |
         curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="恭喜主人$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件编译成功！" --data "content=我亲爱的主人您要编译的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件成功完成了！" "http://www.pushplus.plus/send"
 
