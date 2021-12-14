@@ -9,7 +9,7 @@ on:
 #        required: false
 #        default: 'false'
 #周日22时 CN周一6时
-  SERVERCHAN_SCKEY:
+  SERVERCHAN_SCKEY: 
     - cron: 0 5-22 * * 0
 
 env:
@@ -26,6 +26,7 @@ env:
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
+  SERVERCHAN_SCKEY: false
   TZ: Asia/Shanghai
 
 jobs:
