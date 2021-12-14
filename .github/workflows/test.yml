@@ -26,8 +26,9 @@ env:
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
-  0 5-22 * * *
-    SERVERCHAN_SCKEY: true
+  SERVERCHAN_SCKEY:
+   0 5-22 * * *
+   true
  
 
 jobs:
