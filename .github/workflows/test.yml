@@ -39,7 +39,7 @@ jobs:
       
     - name: TG信息通知
        env.SERVERCHAN_SCKEY == 'true'
-       if (( $time 0 5-22 * * * )) 
+       if (( $time 0 22-5 * * * )) 
        then
           echo "true"
        else
