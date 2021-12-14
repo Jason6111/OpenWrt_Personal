@@ -27,7 +27,7 @@ env:
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
   SERVERCHAN_SCKEY: true
-     0 22-5 * * *
+     0 5-22 * * *
 
 jobs:
   build:
