@@ -27,6 +27,12 @@ env:
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
   SERVERCHAN_SCKEY: true
+   if (( 8>time<20 ))
+   then
+     echo "true"
+   else
+     echo "false"
+   fi
   TZ: Asia/Shanghai
 
 jobs:
@@ -38,13 +44,7 @@ jobs:
       uses: actions/checkout@main
       
     - name: TG信息通知
-       env.SERVERCHAN_SCKEY == 'true'
-       if (( $time 0 22-5 * * * )) 
-       then
-          echo "true"
-       else
-          echo "false"
-       fi     
+      if: env.SERVERCHAN_SCKEY == 'true'
       run: |
         curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人：正在为您编译新的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M"),请耐心等待...... 😋💐" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
         
