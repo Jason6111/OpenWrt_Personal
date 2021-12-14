@@ -1,4 +1,4 @@
-name: 编译openwrt-X86
+name: 编
 
 on:
   repository_dispatch:
