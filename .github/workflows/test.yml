@@ -10,7 +10,7 @@ on:
 #        default: 'false'
 #周日22时 CN周一6时
   SERVERCHAN_SCKEY: true
-    - cron: 0 5-22 * * 0
+     0 5-22 * * 0
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
