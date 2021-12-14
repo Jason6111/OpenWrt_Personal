@@ -37,8 +37,8 @@ jobs:
     - name: 检查准备
       uses: actions/checkout@main
       
-      0 5-22 * * *
     - name: TG信息通知
+       0 5-22 * * * 
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
         curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人：正在为您编译新的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M"),请耐心等待...... 😋💐" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
