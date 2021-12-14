@@ -27,7 +27,7 @@ env:
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
   SERVERCHAN_SCKEY: true
-   if (( 8>time<20 ))
+   if (( 8 > time < 20 ))
    then
      echo "true"
    else
