@@ -9,8 +9,8 @@ on:
 #        required: false
 #        default: 'false'
 #周日22时 CN周一6时
-#  schedule:
-#    - cron: 0 22 * * 0
+  schedule:
+    - cron: 0 22 * * *
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -38,8 +38,8 @@ jobs:
       uses: actions/checkout@main
    
     - name: TG信息通知
-      if:
-          '0 5-22 * * *'
-      run: |
-         curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人：正在为您编译新的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M"),请耐心等待...... 😋💐" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
+      schedule:
+      - cron: 0 22 * * *
+         run: | 
+          curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人：正在为您编译新的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M"),请耐心等待...... 😋💐" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
          
