@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: 检查准备
+    - name: 检查准备 #Checkout
       uses: actions/checkout@main
    
     - name: TG信息通知
@@ -58,7 +58,7 @@ jobs:
         curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="开始编译$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")" --data "content=🎉 主人：正在为您编译新的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M"),请耐心等待...... 😋💐" "http://www.pushplus.plus/send"
 
 
-    - name: 开始安装编译所需系统
+    - name: 开始安装编译所需系统 #Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -71,7 +71,7 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
-    - name: 下载固件源码
+    - name: 下载固件源码 #Clone source code
       working-directory: /workdir
       run: |
         df -hT $PWD
@@ -84,20 +84,20 @@ jobs:
 #       ccache: 'true'
 #       prefix: ${{ github.workspace }}/openwrt 
 
-    - name: patch1补丁和自定义设置
+    - name: patch1补丁和自定义设置 #Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
-    - name: 更新源
+    - name: 更新源 #Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
-    - name: 安装源
+    - name: 安装源 #Install feeds
       run: cd openwrt && ./scripts/feeds install -a
 
-    - name: patch2补丁和自定义设置
+    - name: patch2补丁和自定义设置 #Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
@@ -112,7 +112,7 @@ jobs:
 #        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 #        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
-    - name: 下载软件包
+    - name: 下载软件包 #Download package
       id: package
       run: |
         cd openwrt
@@ -121,7 +121,7 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: 开始编译固件
+    - name: 开始编译固件 #Compile the firmware
       id: compile
       run: |
         cd openwrt
@@ -132,7 +132,7 @@ jobs:
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
-    - name: 检查空间使用情况
+    - name: 检查空间使用情况 #Check space usage
       if: (!cancelled())
       run: df -hT
 
@@ -143,7 +143,7 @@ jobs:
 #        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
 #        path: openwrt/bin
 
-    - name: 整理固件文件夹
+    - name: 整理固件文件夹 #Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
@@ -153,7 +153,7 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
 
-    - name: 上传固件目录
+    - name: 上传固件目录 #Upload firmware directory
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
@@ -178,7 +178,7 @@ jobs:
 #        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
 #        echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
 
-    - name: 生成发布标签
+    - name: 生成发布标签 #Generate release tag
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
@@ -194,7 +194,7 @@ jobs:
         echo "## SSRP Commit Top $COMMIT_LOG_NUM" >> release.txt
         git -C openwrt/feeds/helloworld log -n $COMMIT_LOG_NUM >> release.txt        
 
-    - name: 上传固件以及发布
+    - name: 上传固件以及发布 #Upload firmware to release
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
@@ -204,13 +204,13 @@ jobs:
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
 
-    - name: 删除工作流程运行
+    - name: 删除工作流程运行 #Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
         retain_days: 1
         keep_minimum_runs: 3
 
-    - name: 删除旧版本
+    - name: 删除旧版本 #Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
