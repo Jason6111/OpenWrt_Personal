@@ -1,8 +1,0 @@
-name: 推送定时
-
-on:
- schedule:
-   - cron: 0 22 * * 0
-   
-jobs:
-   sed -i 's/env.SERVERCHAN_SCKEY == 'true'/env.SERVERCHAN_SCKEY == 'false'/g' Jason6111\OpenWrt_Personal\blob\main\.github\workflows\build-openwrt_X86.yml
