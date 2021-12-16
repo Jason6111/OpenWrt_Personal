@@ -9,7 +9,7 @@
 # Description: Source code update checker
 #
 
-name: 更新_检查器
+name: 更新_检查器 #Update_Checker
 
 env:
 
@@ -82,7 +82,7 @@ jobs:
 #        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 #        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
-    - name: 获取提交散列
+    - name: 获取提交散列 #Get Commit Hash
       id: getHash
       run: |
         git clone --depth 1 $REPO_URL_Jason6111OpenWrt_Personal -b $REPO_BRANCH_Jason6111OpenWrt_Personal $REPO_PATH_Jason6111OpenWrt_Personal
@@ -130,7 +130,7 @@ jobs:
         echo "::set-output name=commitHash_ArgonConfig::$(git rev-parse HEAD)"
         cd
 
-    - name: 显示提交头和组合头
+    - name: 显示提交头和组合头 #Show Commit Head and Combination Heads
       id: combHeader
       run: |
         echo "commitHash_Jason6111OpenWrt_Personal: ${{ steps.getHash.outputs.commitHash_Jason6111OpenWrt_Personal }}"
@@ -152,7 +152,7 @@ jobs:
           ${{steps.getHash.outputs.commitHash_HelloWorld}}\
           ${{steps.getHash.outputs.commitHash_ArgonConfig}}"
           
-    - name: 比较提交散列
+    - name: 比较提交散列 #Compare Commit Hash
       id: cacheHash
       uses: actions/cache@v2
       with:
@@ -160,7 +160,7 @@ jobs:
         key: HEAD-${{ steps.combHeader.outputs.commitHash_All }}
    
 
-    - name: 保存新提交散列
+    - name: 保存新提交散列 #Save New Commit Hash
       if: steps.cacheHash.outputs.cache-hit != 'true'
       run: |
         echo ${{ steps.getHash.outputs.commitHash_Jason6111OpenWrt_Personal }} | tee .commitHash_Jason6111OpenWrt_Personal
@@ -175,14 +175,14 @@ jobs:
         echo ${{ steps.combHeader.outputs.commitHash_All }} | tee .commitHash_All
         
         
-    - name: 触发器构建
+    - name: 触发器构建 #Trigger build
       if: steps.cacheHash.outputs.cache-hit != 'true'
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets. ACTIONS_TRIGGER_OPENWRT }}
-        event-type: OpenWrt相关代码更新
+        event-type: OpenWrt相关代码更新 #OpenWrt Related Code Updates
 
-    - name: 删除工作流程运行
+    - name: 删除工作流程运行 #Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
