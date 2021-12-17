@@ -20,3 +20,6 @@ sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/fi
 rm -rf package/lean/luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./package/lean/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config
+
+# r8152
+rm -rf package/lean/r8152/patches/010-compat-skb_mark_not_on_list-was-backported-since-ker.patch
