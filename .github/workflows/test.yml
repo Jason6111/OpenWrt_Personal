@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: 编译openwrt-X86
+name: 编译openwrt-test
 
 on:
   repository_dispatch:
