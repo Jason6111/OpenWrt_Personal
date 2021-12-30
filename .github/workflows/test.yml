@@ -30,7 +30,7 @@ env:
   DIY_P1_SH: diy_script/diy-part_test1.sh
   DIY_P2_SH: diy_script/diy-part_test2.sh
   COMMIT_LOG_NUM: 1
-  RELEASE_TAG: X86
+  RELEASE_TAG: test
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
