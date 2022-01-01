@@ -8,7 +8,7 @@
 ### 介绍 
 
 - 借助 GitHub Actions 的 OpenWrt 在线集成自动编译.
-- 新增X86 5.15内核
+- 新增X86 5.15内核跟Dockerman
 - IP和密码:192.168.1.1 无
 ![image](other/function.png)
   
