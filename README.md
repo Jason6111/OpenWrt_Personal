@@ -5,6 +5,8 @@
 [![Actions](https://img.shields.io/badge/GithubAction-Actions-important?style=flat&logo=GitHubActions)](https://github.com/Jason6111/OpenWrt_Personal/actions)
 [![download](https://img.shields.io/github/downloads/Jason6111/OpenWrt_Personal/total)](https://github.com/Jason6111/OpenWrt_Personal/releases)
 
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=shufflewzc&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)](https://github.com/Jason6111/github-readme-stats)
+
 ### 介绍 
 
 - 借助 GitHub Actions 的 OpenWrt 在线集成自动编译.
