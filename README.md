@@ -9,7 +9,7 @@
 [![Build-openwrt-R4S](https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Build-openwrt-R4S.yml/badge.svg)](https://github.com/Jason6111/OpenWrt_Personal/tags)
 [![download](https://img.shields.io/github/downloads/Jason6111/OpenWrt_Personal/total)](https://github.com/Jason6111/OpenWrt_Personal/releases)
 
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Jason6111&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)](https://github.com/anuraghazra/github-readme-stats)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Jason6111&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 ### 介绍 
 
