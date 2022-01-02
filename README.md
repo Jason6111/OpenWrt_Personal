@@ -16,7 +16,8 @@
 3. 登录密码：`无`
 ![image](other/function.png)
   
-### 下载
+### 编译状态和下载
+![更新]（https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Update_Checker.yml/badge.svg）
 ![Build-openwrt-X86-515](https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Build-openwrt-X86-515.yml/badge.svg)
 ![Build-openwrt-X86](https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Build-openwrt-X86.yml/badge.svg)
 ![Build-openwrt-R4S](https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Build-openwrt-R4S.yml/badge.svg)
