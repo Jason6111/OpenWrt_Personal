@@ -17,6 +17,9 @@
 ![image](other/function.png)
   
 ### 下载
+![Build-openwrt-X86-515](https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Build-openwrt-X86-515.yml/badge.svg)
+![Build-openwrt-X86](https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Build-openwrt-X86.yml/badge.svg)
+![Build-openwrt-R4S](https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Build-openwrt-R4S.yml/badge.svg)
 - [Releases](https://github.com/Jason6111/OpenWrt_Personal/releases)
 - [Tag](https://github.com/Jason6111/OpenWrt_Personal/tags)
 
