@@ -11,12 +11,14 @@
 
 - 借助 GitHub Actions 的 OpenWrt 在线集成自动编译.
 - 新增X86 5.15内核跟Dockerman
-- IP和密码:192.168.1.1 无
+1. 登录地址：`192.168.1.1`
+2. 登录帐号：`root`
+3. 登录密码：`无`
 ![image](other/function.png)
   
 ### 下载
-- [Releases](https://github.com/Jason6111/OpenWrt_Personal/releases) 或 [Actions](https://github.com/Jason6111/OpenWrt_Personal/actions)
-
+- [Releases](https://github.com/Jason6111/OpenWrt_Personal/releases)
+- [Tag](https://github.com/Jason6111/OpenWrt_Personal/tags)
 
 ### 感谢
 
