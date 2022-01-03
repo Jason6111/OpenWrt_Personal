@@ -4,9 +4,6 @@
 [![UpdateCheck](https://img.shields.io/badge/Automatic-UpdateCheck-blueviolet?style=flat&logo=apacheflink)](https://github.com/Jason6111/OpenWrt_Personal/actions)
 [![Actions](https://img.shields.io/badge/GithubAction-Actions-important?style=flat&logo=GitHubActions)](https://github.com/Jason6111/OpenWrt_Personal/actions)
 [![Update_Checker](https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Update_Checker.yml/badge.svg)](https://github.com/Jason6111/OpenWrt_Personal/tags)
-[![Build-openwrt-X86-515](https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Build-openwrt-X86-515.yml/badge.svg)](https://github.com/Jason6111/OpenWrt_Personal/tags)
-[![Build-openwrt-X86](https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Build-openwrt-X86.yml/badge.svg)](https://github.com/Jason6111/OpenWrt_Personal/tags)
-[![Build-openwrt-R4S](https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Build-openwrt-R4S.yml/badge.svg)](https://github.com/Jason6111/OpenWrt_Personal/tags)
 [![download](https://img.shields.io/github/downloads/Jason6111/OpenWrt_Personal/total)](https://github.com/Jason6111/OpenWrt_Personal/releases)
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Jason6111&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
