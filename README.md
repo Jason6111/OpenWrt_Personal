@@ -22,7 +22,7 @@
 - [Tags](https://github.com/Jason6111/OpenWrt_Personal/tags)
 
 ### 感谢
-
+- 有什么好想法或需要帮助可以[TG联系](https://t.me/jason61)我
 - 感谢[P3TERX](https://github.com/P3TERX/Actions-OpenWrt) 脚本。  
 - 感谢[Lean](https://github.com/coolsnowwolf/lede) 源码。  
 - 感谢[jerrykuku](https://github.com/jerrykuku) argon主题。 
