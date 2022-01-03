@@ -9,7 +9,7 @@
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Jason6111&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 ### 介绍 
-
+- [新增TG跟Wechat推送说明](other/bot.md)
 - 借助 GitHub Actions 的 OpenWrt 在线集成自动编译.
 - 新增X86 5.15内核跟Dockerman
 1. 登录地址：`192.168.1.1`
