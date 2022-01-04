@@ -148,7 +148,6 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
-        mv openwrt-x86-64-generic-squashfs-combined-efi.img.gz openwrt-x86-64-515-squashfs-combined-efi.img.gz
         rm -rf packages
         rm -rf rm -rf feeds.buildinfo config.buildinfo openwrt-x86-64-generic-kernel.bin openwrt-x86-64-generic-squashfs-rootfs.img.gz openwrt-x86-64-generic.manifest sha256sums version.buildinfo
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
