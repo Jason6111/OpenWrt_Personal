@@ -19,6 +19,3 @@ sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(LINUX_VERSION)-/g' include/image.mk
 echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
-#temporary
-rm -rf target/linux/generic/hack-5.15/670-fixup-fw3.patch
-sed -i 's/ntfs3-oot-mount/antfs-mount/g' package/lean/automount/Makefile
