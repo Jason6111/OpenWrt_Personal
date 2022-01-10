@@ -64,6 +64,16 @@
 !||https://youtube.com/csi_204?
 !x  --------------------------------------------- Strengthen html rules -------------------------------------------------------
 !x  --------------------------------------------- html rules -------------------------------------------------------
+||https://youtube.com/api/stats/ads
+||https://youtube.com/error_204
+|https://s.youtube.com/api/stats/watchtime?adformat
+||https://ads.youtube.com
+||http://ads.youtube.com
+||ads.youtube.com
+||http://fcmatch.youtube.com
+||http://youtubecenter.net
+||https://fcmatch.youtube.com
+||https://youtubecenter.net
 |http://apis.google.com^*/widget/render/comments?$subdocument,domain=youtube.com
 ||https://youtube.com##.watch-sidebar-body > #watch-related > .related-list-item > .related-video
 ||https://youtube.com##.watch-sidebar-body > #watch-related > .related-list-item
