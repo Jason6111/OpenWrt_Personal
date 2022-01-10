@@ -1,0 +1,47 @@
+!@@@@|https://s.youtube.com/api/
+!@@@@|https://youtubei.googleapis.com
+|https://ads.youtube.com
+|https://ads.youtube.com
+|https://content.googleapis.com/youtubei/*/log_interaction?
+|https://ehg-youtube.hitbox.com
+|https://m.youtube.com/_get_ads
+|https://ssl-youtube.2cnt.net
+|https://www.youtube-nocookie.com/gen_204?$image,script
+|https://www.youtube.com/api/stats/ads?
+|https://www.youtube.com/api/stats/qoe?
+|https://www.youtube.com/csi_204?
+|https://www.youtube.com/generate_204?
+|https://www.youtube.com/ptracking?
+!|https://www.youtube.com/csi_204?
+|https://www.youtube.com/get_midroll_
+|https://www.youtube.com/player_204?^
+|https://www.youtube.com/ptracking?
+|https://youtubei.youtube.com/
+|https://youtube.112.2o7.net
+|https://youtube.2cnt.net
+||https://ehg-youtube.hitbox.com
+||https://ssl-youtube.2cnt.net
+||https://youtube.com/pagead/
+||https://youtube.com/get_midroll_
+!||https://youtube.com/*/log_interaction?
+!||https://youtube.com/api/stats/
+||https://youtube.112.2o7.net
+||https://youtube.2cnt.net
+||https://youtube.com/annotations_invideo?$object-subrequest
+||https://youtube.com/live_chat_fragments_ajax?$xmlhttprequest
+||https://youtube.com/share_ajax?action_get_share_box=1&video_id=$xmlhttprequest
+!||https://youtube.com/csi_204?
+|http://apis.google.com^*/widget/render/comments?$subdocument,domain=youtube.com
+||https://youtube.com##.watch-sidebar-body > #watch-related > .related-list-item > .related-video
+||https://youtube.com##.watch-sidebar-body > #watch-related > .related-list-item
+||https://youtube.com##.home .branded-page-v2-secondary-col
+||https://youtube.com##.feed .branded-page-v2-secondary-col
+||https://youtube.com##.guide-builder-v2 .branded-page-v2-secondary-col
+||https://youtube.com##.branded-page-v2-col-container > .branded-page-v2-col-container-inner > .branded-page-v2-secondary-col:last-child > .branded-page-box:first-child:last-child
+||https://youtube.com##.html5-endscreen-content
+||https://youtube.com##.html5-endscreen,#masthead-ad
+||https://youtube.com##.branded-page-v2-secondary-col > .branded-page-related-channels > .yt-uix-tooltip
+||https://youtube.com##.branded-page-v2-secondary-col > .branded-page-related-channels > .yt-uix-tooltip + .branded-page-related-channels-list
+||https://youtube.com##.branded-page-v2-col-container > .branded-page-v2-col-container-inner > .branded-page-v2-secondary-col:last-child > .branded-page-related-channels:first-child + .branded-page-box:last-child
+||https://youtube.com###offer-module,#pla-shelf,#player-ads,.ytp-ad-progress,.ytp-ad-progress-list,.video-ads,#channel-subscription-promo-in-feed
+|https://m.youtube.com##a[onclick*="\"ping_url\":\"http://www.google.com/aclk?"]
