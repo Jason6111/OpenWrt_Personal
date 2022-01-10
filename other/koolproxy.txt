@@ -28,11 +28,12 @@
 !//                         美女保佑
 !x------------------------------------------------------------------------------------------------------------------>
 !x  -----------------------------------------------------------------------------------------------------------------
+!x  --------------------------------------------- white rules -------------------------------------------------------
+
 !x  --------------------------------------------- white rules <https> -------------------------------------------------------
 !@@@@|https://s.youtube.com/api/
 !@@@@|https://youtubei.googleapis.com
 !x  --------------------------------------------- url rules -------------------------------------------------------
-|https://ads.youtube.com
 |https://ads.youtube.com
 |https://content.googleapis.com/youtubei/*/log_interaction?
 |https://ehg-youtube.hitbox.com
@@ -63,6 +64,8 @@
 ||https://youtube.com/live_chat_fragments_ajax?$xmlhttprequest
 ||https://youtube.com/share_ajax?action_get_share_box=1&video_id=$xmlhttprequest
 !||https://youtube.com/csi_204?
+!x  --------------------------------------------- Strengthen html rules -------------------------------------------------------
+!x  --------------------------------------------- html rules -------------------------------------------------------
 |http://apis.google.com^*/widget/render/comments?$subdocument,domain=youtube.com
 ||https://youtube.com##.watch-sidebar-body > #watch-related > .related-list-item > .related-video
 ||https://youtube.com##.watch-sidebar-body > #watch-related > .related-list-item
@@ -76,4 +79,12 @@
 ||https://youtube.com##.branded-page-v2-secondary-col > .branded-page-related-channels > .yt-uix-tooltip + .branded-page-related-channels-list
 ||https://youtube.com##.branded-page-v2-col-container > .branded-page-v2-col-container-inner > .branded-page-v2-secondary-col:last-child > .branded-page-related-channels:first-child + .branded-page-box:last-child
 ||https://youtube.com###offer-module,#pla-shelf,#player-ads,.ytp-ad-progress,.ytp-ad-progress-list,.video-ads,#channel-subscription-promo-in-feed
+||https://youku.com##.outsitepanel
+||https://youku.com##div#ykBottomBanner,div#lotteryLeft,div#youku_ad_crazy,div#ad_crazy_youku_taobao,div[id^="ab_v_"],DIV[class^="yk-AD-"],div#lotteryPic,#lotteryToolbar,#yk-player-curtain,#lotteryToolbarBig,#playlistIkuAD,#dressadd,[_to="dressadd"],.mplay-iku,#_xbox_ad,#module_basic_double11,.Banner,.tbg11,.outsitepanel
 |https://m.youtube.com##a[onclick*="\"ping_url\":\"http://www.google.com/aclk?"]
+!x  --------------------------------------------- redirect rules -------------------------------------------------------
+|https://91mjw.com/$r@/https:\/\/91mjw\.com.*?\?ad.*/@https://127.0.0.1@
+|https://91mjw.com/$r@/https:\/\/91mjw\.com.*?\.php.*/@https://127.0.0.1@
+!|https://api.rr.tv$r@https://api.rr.tv/user/privilege/list@https://cdn.jsdelivr.net/gh/houzi-/CDN/5.0/renren.js@
+!|https://api.rr.tv$r@https://api.rr.tv/ad/getAll@https://cdn.jsdelivr.net/gh/houzi-/CDN/5.0/renren.js@
+!|https://api.rr.tv$r@https://api.rr.tv/rrtv-video/v4plus/season/detail@https://cdn.jsdelivr.net/gh/houzi-/CDN/5.0/renren.js@
