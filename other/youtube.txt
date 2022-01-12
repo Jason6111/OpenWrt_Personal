@@ -1,3 +1,33 @@
+!x  -----------------------------------------------------------------------------------------------------------------
+!x  -----[KoolProxy 3.8.5]
+!x  -----update[rules]: 2021-12-25 10:30
+!x  -----update[video]: 2022-01-01 23:18
+!x  -----Thanks: From lvba Rule Group
+!x  -----Thanks for help: <yiclear> <adbyby> <adm> <adblock> <adguard>
+!x  -----------------------------------------------------------------------------------------------------------------
+!x<!-----------------------------------------------------------------------------------------------------------------
+!//                       .::::.
+!//                     .::::::::.
+!//                    :::::::::::
+!//                 ..:::::::::::'
+!//              '::::::::::::'
+!//                .::::::::::
+!//           '::::::::::::::..
+!//                ..::::::::::::.
+!//              ``::::::::::::::::
+!//               ::::``:::::::::'        .:::.
+!//              ::::'   ':::::'       .::::::::.
+!//            .::::'      ::::     .:::::::'::::.
+!//           .:::'       :::::  .:::::::::' ':::::.
+!//          .::'        :::::.:::::::::'      ':::::.
+!//         .::'         ::::::::::::::'         ``::::.
+!//     ...:::           ::::::::::::'              ``::.
+!//    ```` ':.          ':::::::::'                  ::::..
+!//                       '.:::::'                    ':'````..
+!//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+!//                         美女保佑
+!x------------------------------------------------------------------------------------------------------------------>
+!x  -----------------------------------------------------------------------------------------------------------------
 !x  --------------------------------------------- white rules <https> -------------------------------------------------------
 !@@@@|https://s.youtube.com/api/
 !@@@@|https://youtubei.googleapis.com
@@ -58,3 +88,9 @@
 ||https://youtube.com##.branded-page-v2-col-container > .branded-page-v2-col-container-inner > .branded-page-v2-secondary-col:last-child > .branded-page-related-channels:first-child + .branded-page-box:last-child
 ||https://youtube.com###offer-module,#pla-shelf,#player-ads,.ytp-ad-progress,.ytp-ad-progress-list,.video-ads,#channel-subscription-promo-in-feed
 |https://m.youtube.com##a[onclick*="\"ping_url\":\"http://www.google.com/aclk?"]
+!x  --------------------------------------------- redirect rules -------------------------------------------------------
+|https://91mjw.com/$r@/https:\/\/91mjw\.com.*?\?ad.*/@https://127.0.0.1@
+|https://91mjw.com/$r@/https:\/\/91mjw\.com.*?\.php.*/@https://127.0.0.1@
+!|https://api.rr.tv$r@https://api.rr.tv/user/privilege/list@https://cdn.jsdelivr.net/gh/houzi-/CDN/5.0/renren.js@
+!|https://api.rr.tv$r@https://api.rr.tv/ad/getAll@https://cdn.jsdelivr.net/gh/houzi-/CDN/5.0/renren.js@
+!|https://api.rr.tv$r@https://api.rr.tv/rrtv-video/v4plus/season/detail@https://cdn.jsdelivr.net/gh/houzi-/CDN/5.0/renren.js@
