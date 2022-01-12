@@ -32,6 +32,14 @@
 !@@@@|https://s.youtube.com/api/
 !@@@@|https://youtubei.googleapis.com
 !x  --------------------------------------------- url rules -------------------------------------------------------
+*.googlevideo.com
+|http:/*/googlevideoads
+|http://*/googlevideoads
+|https://*.googlevideo.com/generate_204$image
+||https://googlevideo.com/ptracking?pltype=adhost
+||https://googlevideo.com/videogoodput?
+||https://googlevideoads.com
+||http://googlevideoads.com
 |https://ads.youtube.com
 |https://content.googleapis.com/youtubei/*/log_interaction?
 |https://ehg-youtube.hitbox.com
