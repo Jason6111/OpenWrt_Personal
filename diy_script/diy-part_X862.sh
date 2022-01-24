@@ -16,7 +16,13 @@
 # Modify default passwd
 sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/files/zzz-default-settings
 sed -i 's/R22.1.1/R22.1.1 Compiled by Jason/g' package/lean/default-settings/files/zzz-default-settings
+
 # 添加新主题  
 rm -rf package/lean/luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./package/lean/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config
+
+#修改设备名
+sed -i 's/(dmesg | grep .*/{a}${b}${c}${d}${e}${f}/g' package/lean/autocore/files/x86/autocore
+sed -i '32d' package/lean/autocore/files/x86/autocore
+sed -i 's/echo $h/echo $g/g' package/lean/autocore/files/x86/autocore
