@@ -5,6 +5,7 @@
 [![Actions](https://img.shields.io/badge/GithubAction-Actions-important?style=flat&logo=GitHubActions)](https://github.com/Jason6111/OpenWrt_Personal/actions)
 [![Update_Checker](https://github.com/Jason6111/OpenWrt_Personal/actions/workflows/Update_Checker.yml/badge.svg)](https://github.com/Jason6111/OpenWrt_Personal/tags)
 [![download](https://img.shields.io/github/downloads/Jason6111/OpenWrt_Personal/total)](https://github.com/Jason6111/OpenWrt_Personal/releases)
+[![TG](https://img.shields.io/badge/Contact-telegram-blue)](https://t.me/jason61)  
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Jason6111&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
@@ -22,7 +23,6 @@
 - [Tags](https://github.com/Jason6111/OpenWrt_Personal/tags)
 
 ### 感谢
-- 有什么好想法或需要帮助可以[TG联系](https://t.me/jason61)我
 - 感谢[P3TERX](https://github.com/P3TERX/Actions-OpenWrt) 脚本。  
 - 感谢[Lean](https://github.com/coolsnowwolf/lede) 源码。  
 - 感谢[jerrykuku](https://github.com/jerrykuku) argon主题。 
