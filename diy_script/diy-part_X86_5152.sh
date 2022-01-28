@@ -15,7 +15,9 @@
 
 # Modify default passwd
 sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/files/zzz-default-settings
-sed -i 's/R22.1.1/R22.1.1 Compiled by Jason/g' package/lean/default-settings/files/zzz-default-settings
+
+#ID
+sed -i 's/R.*.*.1/& Compiled by Jason/' package/lean/default-settings/files/zzz-default-settings
 
 # 添加新主题  
 rm -rf package/lean/luci-theme-argon
