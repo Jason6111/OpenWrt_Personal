@@ -20,7 +20,11 @@
   
 ### 下载
 - [Releases](https://github.com/Jason6111/OpenWrt_Personal/releases)
-- [Tags](https://github.com/Jason6111/OpenWrt_Personal/tags)
+- [Tags](https://github.com/Jason6111/OpenWrt_Personal/tags)  
+
+### 打赏 
+如果你觉得此项目对你有帮助，可以捐助，以鼓励项目能持续发展，更加完善  
+![image](other/ds.jpg)
 
 ### 感谢
 - 感谢[P3TERX](https://github.com/P3TERX/Actions-OpenWrt) 脚本。  
