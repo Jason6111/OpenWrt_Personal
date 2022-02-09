@@ -13,9 +13,9 @@
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
-#临时
-rm -rf package/utils/ucode/
-svn co https://github.com/openwrt/openwrt/trunk/package/utils/ucode package/utils/ucode
+#临时修复
+#rm -rf package/utils/ucode/
+#svn co https://github.com/openwrt/openwrt/trunk/package/utils/ucode package/utils/ucode
 
 # Modify default passwd
 sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/files/zzz-default-settings
