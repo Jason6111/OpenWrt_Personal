@@ -22,7 +22,7 @@ sed -i 's/R.*.*.1/& Compiled by Jason/' package/lean/default-settings/files/zzz-
 # 添加新主题  
 rm -rf ./feeds/luci/themes/luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./feeds/luci/themes/luci-theme-argon
-git clone https://github.com/jerrykuku/luci-app-argon-config.git ./feeds/luci/themes/luci-app-argon-config
+git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config
 
 #恢复主机型号
 sed -i 's/(dmesg | grep .*/{a}${b}${c}${d}${e}${f}/g' package/lean/autocore/files/x86/autocore
