@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Openwrt-R4S
+name: Openwrt-R4S-515
 
 on:
   repository_dispatch:
