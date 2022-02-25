@@ -15,11 +15,7 @@
 
 #临时修复
 #rm -rf package/utils/ucode/
-svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/patch/101-dts-rockchip-add-usb3-controller-node-for-RK3328-SoCs.patch target/linux/rockchip/patches-5.15/101-dts-rockchip-add-usb3-controller-node-for-RK3328-SoCs.patch
-svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/patch/203-rockchip-rk3328-Add-support-for-EmbedFire-DoorNet1.patch target/linux/rockchip/patches-5.15/203-rockchip-rk3328-Add-support-for-EmbedFire-DoorNet1.patch
-svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/patch/203-rockchip-rk3328-Add-support-for-FriendlyARM-NanoPi-R.patch target/linux/rockchip/patches-5.15/203-rockchip-rk3328-Add-support-for-FriendlyARM-NanoPi-R.patch
-svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/patch/204-rockchip-rk3328-DoorNet1-Add-dts-wifi-enable.patch target/linux/rockchip/patches-5.15/204-rockchip-rk3328-DoorNet1-Add-dts-wifi-enable.patch
-
+svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/patch target/linux/rockchip/patches-5.15
 
 # Modify default passwd
 sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/files/zzz-default-settings
