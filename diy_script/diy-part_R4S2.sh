@@ -14,7 +14,7 @@
 #sed -i 's/192.168.1.1/192.168.5.1/g' package/base-files/files/bin/config_generate
 
 #临时修复
-#rm -rf package/boot/arm-trusted-firmware-rockchip-vendor/Makefile
+rm -rf package/boot/arm-trusted-firmware-rockchip-vendor/Makefile
 
 svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/patch1 package/boot/arm-trusted-firmware-rockchip-vendor/
 
