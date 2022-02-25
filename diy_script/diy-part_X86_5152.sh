@@ -17,6 +17,9 @@
 #rm -rf package/utils/ucode/
 #svn co https://github.com/openwrt/openwrt/trunk/package/utils/ucode package/utils/ucode
 
+#关闭串口跑码
+sed -i 's/console=tty0//g'  target/linux/tegra/image/generic-bootscript
+
 # Modify default passwd
 sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/files/zzz-default-settings
 
