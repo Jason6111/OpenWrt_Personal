@@ -19,6 +19,8 @@
 
 #关闭串口跑码
 sed -i 's/console=tty0//g'  target/linux/tegra/image/generic-bootscript
+sed -i 's/%V, %C/[2022] | by Jason /g' package/base-files/files/etc/banner
+sed -i '/logins./a[2022] | by Jason' package/base-files/files/etc/profile
 
 # Modify default passwd
 sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/files/zzz-default-settings
