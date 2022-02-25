@@ -18,9 +18,9 @@
 #svn co https://github.com/openwrt/openwrt/trunk/package/utils/ucode package/utils/ucode
 
 #关闭串口跑码
-sed -i 's/console=tty0//g'  target/linux/tegra/image/generic-bootscript
+sed -i 's/console=tty0//g'  target/linux/x86/image/Makefile
 sed -i 's/%V, %C/[2022] | by Jason /g' package/base-files/files/etc/banner
-sed -i '/logins./a\                                                                       by Jason' package/base-files/files/etc/profile
+sed -i '/logins./a\                                                    by Jason' package/base-files/files/etc/profile
 
 # Modify default passwd
 sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/files/zzz-default-settings
