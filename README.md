@@ -16,7 +16,8 @@
 - 新增X86 5.15内核跟Dockerman，x86 ~~5.10内核~~，R4S内核5.15
 1. 登录地址：`192.168.1.1`
 2. 登录帐号：`root`
-3. 登录密码：`无`
+3. 登录密码：`无`  
+
 ![image](other/GM.jpg)
 ![image](other/function.png)
   
