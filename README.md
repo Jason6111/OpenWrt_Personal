@@ -18,7 +18,7 @@
 2. 登录帐号：`root`
 3. 登录密码：`无`  
 
-![image](other/GM.jpg)
+![image](other/JM.jpg)
 ![image](other/function.png)
   
 ### 下载
