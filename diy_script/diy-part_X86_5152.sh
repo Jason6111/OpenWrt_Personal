@@ -29,7 +29,7 @@ sed -i '/logins./a\                                          by Jason' package/b
 sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/files/zzz-default-settings
 
 #ID
-sed -i 's/R.*.*.2/& Compiled by Jason/' package/lean/default-settings/files/zzz-default-settings
+sed -i "s/DISTRIB_REVISION='R.*.*.[1-31]/& Compiled by Jason/" package/lean/default-settings/files/zzz-default-settings
 
 # 添加新主题  
 rm -rf ./feeds/luci/themes/luci-theme-argon
