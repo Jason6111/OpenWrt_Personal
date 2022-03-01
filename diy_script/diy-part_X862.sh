@@ -18,6 +18,8 @@ sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/fi
 
 #ID
 sed -i "s/DISTRIB_REVISION='R.*.*.[1-31]/& Compiled by Jason/" package/lean/default-settings/files/zzz-default-settings
+sed -i 's/%V, %C/[2022] | by Jason /g' package/base-files/files/etc/banner
+sed -i '/logins./a\                                          by Jason' package/base-files/files/etc/profile
 
 # 添加新主题  
 rm -rf ./feeds/luci/themes/luci-theme-argon
