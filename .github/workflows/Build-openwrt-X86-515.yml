@@ -188,6 +188,8 @@ jobs:
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"
         
+        echo "## 更新内容" >> release.txt
+        
         echo "<details> <summary>Lean Openwrt Commit Top $COMMIT_LOG_NUM </summary>" >> release.txt
         git -C openwrt log -n $COMMIT_LOG_NUM >> release.txt
 
