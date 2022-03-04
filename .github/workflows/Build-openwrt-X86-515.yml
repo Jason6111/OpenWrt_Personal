@@ -188,18 +188,18 @@ jobs:
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"
         
-        echo "## Lean Openwrt Commit Top $COMMIT_LOG_NUM" >> release.txt
-        <details> git -C openwrt log -n $COMMIT_LOG_NUM </details> >> release.txt
+        echo "<details> <summary>Lean Openwrt Commit Top $COMMIT_LOG_NUM </summary>" >> release.txt
+        git -C openwrt log -n $COMMIT_LOG_NUM >> release.txt
 
-        echo "## Lean Package Commit Top $COMMIT_LOG_NUM" >> release.txt
-        <details> git -C openwrt/feeds/packages log -n $COMMIT_LOG_NUM </details> >> release.txt
+        echo "</details> <details> <summary> Lean Package Commit Top $COMMIT_LOG_NUM </summary>" >> release.txt
+        git -C openwrt/feeds/packages log -n $COMMIT_LOG_NUM >> release.txt
 
-        echo "## Lean Luci Commit Top $COMMIT_LOG_NUM" >> release.txt
-        <details> git -C openwrt/feeds/luci log -n $COMMIT_LOG_NUM </details> >> release.txt
+        echo "</details> <details> <summary> Lean Luci Commit Top $COMMIT_LOG_NUM </summary>" >> release.txt
+        git -C openwrt/feeds/luci log -n $COMMIT_LOG_NUM >> release.txt
 
         
-        echo "## SSRP Commit Top $COMMIT_LOG_NUM" >> release.txt
-        <details> git -C openwrt/feeds/helloworld log -n $COMMIT_LOG_NUM </details> >> release.txt        
+        echo "</details> <details> <summary> SSRP Commit Top $COMMIT_LOG_NUM </summary>" >> release.txt
+        git -C openwrt/feeds/helloworld log -n $COMMIT_LOG_NUM >> release.txt        
 
     - name: 上传固件以及发布 #Upload firmware to release
       uses: softprops/action-gh-release@v1
