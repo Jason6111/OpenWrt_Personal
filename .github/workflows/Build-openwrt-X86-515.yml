@@ -198,7 +198,6 @@ jobs:
 
         echo "</details> <details> <summary> Lean Luci Commit Top $COMMIT_LOG_NUM </summary>" >> release.txt
         git -C openwrt/feeds/luci log -n $COMMIT_LOG_NUM >> release.txt
-
         
         echo "</details> <details> <summary> SSRP Commit Top $COMMIT_LOG_NUM </summary>" >> release.txt
         git -C openwrt/feeds/helloworld log -n $COMMIT_LOG_NUM >> release.txt        
