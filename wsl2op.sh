@@ -279,15 +279,15 @@ Get_luci_apps
 
 
 
-    LogMessage "\033[31m 是否拷贝编译固件到${log_folder_name}/${folder_name}下？不输入默认不拷贝，输入任意值拷贝 \033[0m" "\033[31m Do you want to copy and compile the firmware to ${log_folder_name}/${folder_name}? Don’t copy by default, input any value to copy \033[0m"
+    LogMessage "\033[31m 是否拷贝编译固件到${log_folder_name}/${folder_name}下？不输入默认拷贝，输入任意值不拷贝 \033[0m" "\033[31m Do you want to copy and compile the firmware to ${log_folder_name}/${folder_name}? Don’t copy by default, input any value to copy \033[0m"
     LogMessage "\033[31m 将会在$timer秒后自动选择默认值 \033[0m" "\033[31m The default value will be automatically selected after $timer seconds \033[0m"
     read -t $timer iscopy
     if [ ! -n "$iscopy" ]; then
-        LogMessage "\033[34m OK，不拷贝 \033[0m" "\033[34m OK, don't copy \033[0m"
-    else
         LogMessage "\033[34m 开始拷贝 \033[0m" "\033[34m Start copying \033[0m"
         cp -r /home/${userName}/${ledeDir}/bin/targets /home/${userName}/${log_folder_name}/${folder_name}
-        LogMessage "\033[34m 拷贝完成 \033[0m" "\033[34m Copy completed \033[0m"
+        LogMessage "\033[34m 拷贝完成 \033[0m" "\033[34m Copy completed \033[0m"    
+    else
+        LogMessage "\033[34m OK，不拷贝 \033[0m" "\033[34m OK, don't copy \033[0m"
     fi
 
     # 将lede还原
