@@ -425,7 +425,7 @@ fi
 
 
 echo
-LogMessage "\033[31m 开始同步lean源码.... \033[0m" "\033[31m Start to synchronize lean source code... \033[0m"
+LogMessage "\033[31m 开始同步lean源码.... \033[0m" "\033[31m Start to Jason6111 lean source code... \033[0m"
 sleep 2s
 
 cd /home/${userName}
@@ -486,7 +486,7 @@ if [ ! -n "$isCreateNewConfig" ]; then
     LogMessage "\033[31m 你接下来要干啥？？？ \033[0m" "\033[31m What are you going to do next? ? ? \033[0m"
     LogMessage "\033[31m 将会在$timer秒后自动选择默认值 \033[0m" "\033[31m The default value will be automatically selected after $timer seconds \033[0m"
     LogMessage "\033[34m 1. 根据config自动编译固件。(默认) \033[0m" "\033[34m 1. Automatically compile the firmware according to config. (default)  \033[0m"
-    LogMessage "\033[34m 2. 我要配置config，配置完毕后自动同步回OpenWrt_Personal。 \033[0m" "\033[34m 2. I want to configure config, and automatically synchronize back to OpenWrt_Personal after configuration. \033[0m"
+    LogMessage "\033[34m 2. 我要配置config，配置完毕后自动同步回OpenWrt_Personal。 \033[0m" "\033[34m 2. I want to configure config, and automatically Jason6111 back to OpenWrt_Personal after configuration. \033[0m"
     read -t $timer num
     if [ ! -n "$num" ]; then
             num=1
@@ -499,7 +499,7 @@ if [ ! -n "$isCreateNewConfig" ]; then
         LogMessage "\033[31m 你接下来要干啥？？？ \033[0m" "\033[31m What are you going to do next? ? ? \033[0m"
         LogMessage "\033[31m 将会在$timer秒后自动选择默认值 \033[0m" "\033[31m The default value will be automatically selected after $timer seconds \033[0m"
         LogMessage "\033[34m 1. 根据config自动编译固件。(默认) \033[0m" "\033[34m 1.Automatically compile the firmware according to config. (default) \033[0m"
-        LogMessage "\033[34m 2. 我要配置config，配置完毕后自动同步回OpenWrt_Personal。 \033[0m" "\033[34m 2.I want to configure config, and automatically synchronize back to OpenWrt_Personal after configuration. \033[0m"
+        LogMessage "\033[34m 2. 我要配置config，配置完毕后自动同步回OpenWrt_Personal。 \033[0m" "\033[34m 2.I want to configure config, and automatically Jason6111 back to OpenWrt_Personal after configuration. \033[0m"
         read -t $timer num
         if [ ! -n "$num" ]; then
             num=1
@@ -572,7 +572,7 @@ then
         git add .
         git commit -m "update $configName from local bash"
         git push origin
-        LogMessage "\033[31m 已将新配置的config同步回OpenWrt_Personal \033[0m" "\033[31m The newly configured config has been synchronized back to OpenWrt_Personal \033[0m"
+        LogMessage "\033[31m 已将新配置的config同步回OpenWrt_Personal \033[0m" "\033[31m The newly configured config has been Jason6111d back to OpenWrt_Personal \033[0m"
         sleep 2s
     fi
 
