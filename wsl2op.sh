@@ -5,17 +5,17 @@
 routeIP=192.168.1.1
 # 编译环境中当前账户名字
 userName=$USER
-# 默认OpenWrtAction的Config文件夹中的config文件名
+# 默认OpenWrt_Personal的Config文件夹中的config文件名
 configName=X86_515.config
 # 默认lean源码文件夹名
 ledeDir=lede_$configName
-config_list=($(ls /home/$userName/OpenWrtAction/config))
+config_list=($(ls /home/$userName/OpenWrt_Personal/config))
 # 默认输入超时时间，单位为秒
 timer=15
 # 编译环境默认值，1为WSL2，2为非WSL2的Linux环境。不要修改这里
 sysenv=1
-# OpenWrtAction Git URL
-owaUrl=https://github.com/smallprogram/OpenWrtAction.git
+# OpenWrt_Personal Git URL
+owaUrl=https://github.com/Jason6111/OpenWrt_Personal.git
 # 是否首次编译 0否，1是
 isFirstCompile=0
 # 编译openwrt的log日志文件夹名称
@@ -101,11 +101,11 @@ function DIY_Script(){
     sleep 1s
     # 注入patches
     # LogMessage "\033[31m 注入patches \033[0m" "\033[31m inject patches \033[0m"
-    # cp -r /home/${userName}/OpenWrtAction/patches/651-rt2x00-driver-compile-with-kernel-5.15.patch /home/${userName}/${ledeDir}/package/kernel/mac80211/patches/rt2x00
+    # cp -r /home/${userName}/OpenWrt_Personal/patches/651-rt2x00-driver-compile-with-kernel-5.15.patch /home/${userName}/${ledeDir}/package/kernel/mac80211/patches/rt2x00
     # sleep 1s
     # 注入dl
     # LogMessage "\033[31m 注入dl \033[0m" "\033[31m inject dl \033[0m"
-    # cp -r /home/${userName}/OpenWrtAction/library/* /home/${userName}/${ledeDir}/dl
+    # cp -r /home/${userName}/OpenWrt_Personal/library/* /home/${userName}/${ledeDir}/dl
     # sleep 1s
 
     LogMessage "\033[31m DIY脚本执行完成 \033[0m" "\033[31m DIY script execution completed \033[0m"
@@ -195,7 +195,7 @@ function Compile_Firmware() {
     LogMessage "\033[31m 开始将OpenwrtAction中的自定义feeds注入lean源码中.... \033[0m" "\033[31m Started injecting custom feeds in OpenwrtAction into lean source code... \033[0m"
     sleep 2s
     echo
-    cat /home/${userName}/OpenWrtAction/feeds_config/custom.feeds.conf.default > /home/${userName}/${ledeDir}/feeds.conf.default
+    cat /home/${userName}/OpenWrt_Personal/feeds_config/custom.feeds.conf.default > /home/${userName}/${ledeDir}/feeds.conf.default
 
 
     LogMessage "\033[31m 开始update feeds.... \033[0m" "\033[31m begin update feeds.... \033[0m"
@@ -206,10 +206,10 @@ function Compile_Firmware() {
     ./scripts/feeds install -a | tee -a /home/${userName}/${log_folder_name}/${folder_name}/${log_feeds_install_filename}
 
     echo
-    LogMessage "\033[31m 开始将OpenwrtAction中config文件夹下的${configName}注入lean源码中.... \033[0m" "\033[31m Start to inject ${configName} under the config folder in OpenwrtAction into lean source code... \033[0m"
+    LogMessage "\033[31m 开始将OpenWrt_Personal中config文件夹下的${configName}注入lean源码中.... \033[0m" "\033[31m Start to inject ${configName} under the config folder in OpenwrtAction into lean source code... \033[0m"
     sleep 2s
     echo
-    cat /home/${userName}/OpenWrtAction/config/${configName} > /home/${userName}/${ledeDir}/.config
+    cat /home/${userName}/OpenWrt_Personal/config/${configName} > /home/${userName}/${ledeDir}/.config
     cat /home/${userName}/${ledeDir}/.config > /home/${userName}/${log_folder_name}/${folder_name}/${log_before_defconfig_config}
     # if [[ $isFirstCompile == 1 ]]; then
     #     echo -e  "\033[34m 由于你是首次编译，需要make menuconfig配置，如果保持原有config不做更改，请在进入菜单后直接exit即可 \033[0m"
@@ -523,10 +523,10 @@ fi
 if [[ $num == 2 ]]
 then
     echo
-    LogMessage "\033[31m 开始将OpenwrtAction中的自定义feeds注入lean源码中.... \033[0m" "\033[31m Started injecting custom feeds in OpenwrtAction into lean source code... \033[0m"
+    LogMessage "\033[31m 开始将OpenWrt_Personal中的自定义feeds注入lean源码中.... \033[0m" "\033[31m Started injecting custom feeds in OpenwrtAction into lean source code... \033[0m"
     sleep 2s
     echo
-    cat /home/${userName}/OpenWrtAction/feeds_config/custom.feeds.conf.default > /home/${userName}/${ledeDir}/feeds.conf.default
+    cat /home/${userName}/OpenWrt_Personal/feeds_config/custom.feeds.conf.default > /home/${userName}/${ledeDir}/feeds.conf.default
 
     cd /home/${userName}/${ledeDir}
     LogMessage "\033[31m 开始update feeds.... \033[0m" "\033[31m begin update feeds.... \033[0m"
@@ -538,16 +538,16 @@ then
 
     if [ ! -n "$isCreateNewConfig" ]; then
         echo
-        LogMessage "\033[31m 开始将OpenwrtAction中config文件夹下的${configName}注入lean源码中.... \033[0m" "\033[31m Start to inject ${configName} under the config folder in OpenwrtAction into lean source code... \033[0m"
+        LogMessage "\033[31m 开始将OpenWrt_Personal中config文件夹下的${configName}注入lean源码中.... \033[0m" "\033[31m Start to inject ${configName} under the config folder in OpenwrtAction into lean source code... \033[0m"
         sleep 2s
         echo
-        cat /home/${userName}/OpenWrtAction/config/${configName} > /home/${userName}/${ledeDir}/.config
+        cat /home/${userName}/OpenWrt_Personal/config/${configName} > /home/${userName}/${ledeDir}/.config
     fi
 
     cd /home/${userName}/${ledeDir}
     make menuconfig
-    cat /home/${userName}/${ledeDir}/.config > /home/${userName}/OpenWrtAction/config/${configName}
-    cd /home/${userName}/OpenWrtAction
+    cat /home/${userName}/${ledeDir}/.config > /home/${userName}/OpenWrt_Personal/config/${configName}
+    cd /home/${userName}/OpenWrt_Personal
     
     if [ ! -n "$(git config --global user.email)" ]; then
         LogMessage "请输入git Global user.email:" "Please enter git Global user.email:"
