@@ -192,7 +192,7 @@ function Compile_Firmware() {
         make dirclean
     fi
     echo
-    LogMessage "\033[31m 开始将OpenwrtAction中的自定义feeds注入lean源码中.... \033[0m" "\033[31m Started injecting custom feeds in OpenwrtAction into lean source code... \033[0m"
+    LogMessage "\033[31m 开始将OpenWrt_Personal中的自定义feeds注入lean源码中.... \033[0m" "\033[31m Started injecting custom feeds in OpenWrt_Personal into lean source code... \033[0m"
     sleep 2s
     echo
     cat /home/${userName}/OpenWrt_Personal/feeds_config/custom.feeds.conf.default > /home/${userName}/${ledeDir}/feeds.conf.default
@@ -206,7 +206,7 @@ function Compile_Firmware() {
     ./scripts/feeds install -a | tee -a /home/${userName}/${log_folder_name}/${folder_name}/${log_feeds_install_filename}
 
     echo
-    LogMessage "\033[31m 开始将OpenWrt_Personal中config文件夹下的${configName}注入lean源码中.... \033[0m" "\033[31m Start to inject ${configName} under the config folder in OpenwrtAction into lean source code... \033[0m"
+    LogMessage "\033[31m 开始将OpenWrt_Personal中config文件夹下的${configName}注入lean源码中.... \033[0m" "\033[31m Start to inject ${configName} under the config folder in OpenWrt_Personal into lean source code... \033[0m"
     sleep 2s
     echo
     cat /home/${userName}/OpenWrt_Personal/config/${configName} > /home/${userName}/${ledeDir}/.config
@@ -399,13 +399,13 @@ fi
 
 if [ ! -n "$isCreateNewConfig" ]; then
     echo
-    LogMessage "\033[31m 请输入默认OpenwrtAction中的config文件名，默认为$configName \033[0m" "\033[31m Please enter the config file name in the default OpenwrtAction, the default is $configName \033[0m"
+    LogMessage "\033[31m 请输入默认OpenWrt_Personal中的config文件名，默认为$configName \033[0m" "\033[31m Please enter the config file name in the default OpenWrt_Personal, the default is $configName \033[0m"
     LogMessage "\033[31m 将会在$timer秒后自动选择默认值 \033[0m" "\033[31m The default value will be automatically selected after $timer seconds \033[0m"
     configList
     until [[ $configNameInp -ge 1 && $configNameInp -le $key ]]
     do
         LogMessage "\033[34m 你输入的 ${configNameInp} 是啥玩应啊，看好了序号，输入数值就行了。 \033[0m" "\033[34m What is the function of the ${configNameInp} you entered? Just take a good look at the serial number and just enter the value. \033[0m"
-        LogMessage "\033[31m 请输入默认OpenwrtAction中的config文件名，默认为$configName \033[0m" "\033[31m Please enter the config file name in the default OpenwrtAction, the default is $configName \033[0m"
+        LogMessage "\033[31m 请输入默认OpenWrt_Personal中的config文件名，默认为$configName \033[0m" "\033[31m Please enter the config file name in the default OpenWrt_Personal, the default is $configName \033[0m"
         configList
     done
 
