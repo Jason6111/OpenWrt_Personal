@@ -454,10 +454,6 @@ fi
 
 # echo $isFirstCompile "dfffffffffffffffffffffffffffff"
 
-
-Get_luci_apps
-
-
 echo 
 LogMessage "\033[31m 准备就绪，请按照导航选择操作.... \033[0m" "\033[31m Ready, please follow the navigation options... \033[0m"
 sleep 2s
@@ -535,7 +531,9 @@ then
     LogMessage "\033[31m 开始install feeds.... \033[0m" "\033[31m begin install feeds.... \033[0m"
     sleep 1s
     ./scripts/feeds install -a 
-
+    
+    Get_luci_apps
+    
     if [ ! -n "$isCreateNewConfig" ]; then
         echo
         LogMessage "\033[31m 开始将OpenWrt_Personal中config文件夹下的${configName}注入lean源码中.... \033[0m" "\033[31m Start to inject ${configName} under the config folder in OpenwrtAction into lean source code... \033[0m"
