@@ -532,7 +532,7 @@ then
     sleep 1s
     ./scripts/feeds install -a 
     
-    Get_luci_apps
+Get_luci_apps
     
     if [ ! -n "$isCreateNewConfig" ]; then
         echo
