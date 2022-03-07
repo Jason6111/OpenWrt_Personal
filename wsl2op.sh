@@ -529,9 +529,6 @@ then
     LogMessage "\033[31m 开始install feeds.... \033[0m" "\033[31m begin install feeds.... \033[0m"
     sleep 1s
     ./scripts/feeds install -a 
-    rm -rf ./feeds/luci/themes/luci-theme-argon 
-    git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./feeds/luci/themes/luci-theme-argon 
-    git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config 
 
     if [ ! -n "$isCreateNewConfig" ]; then
         echo
