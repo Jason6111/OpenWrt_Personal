@@ -15,7 +15,7 @@ timer=15
 # 编译环境默认值，1为WSL2，2为非WSL2的Linux环境。不要修改这里
 sysenv=1
 # OpenWrt_Personal Git URL
-owaUrl=https://github.com/Jason6111/OpenWrt_Personal.git
+owaUrl=https://github.com/smallprogram/OpenWrt_Personal.git
 # 是否首次编译 0否，1是
 isFirstCompile=0
 # 编译openwrt的log日志文件夹名称
@@ -99,14 +99,6 @@ function DIY_Script(){
     sed -i 's/%V, %C/[2022] | by Jason /g' /home/${userName}/${ledeDir}/package/base-files/files/etc/banner
     sed -i '/logins./a\                                          by Jason' /home/${userName}/${ledeDir}/package/base-files/files/etc/profile
     sleep 1s
-    # 注入patches
-    # LogMessage "\033[31m 注入patches \033[0m" "\033[31m inject patches \033[0m"
-    # cp -r /home/${userName}/OpenWrt_Personal/patches/651-rt2x00-driver-compile-with-kernel-5.15.patch /home/${userName}/${ledeDir}/package/kernel/mac80211/patches/rt2x00
-    # sleep 1s
-    # 注入dl
-    # LogMessage "\033[31m 注入dl \033[0m" "\033[31m inject dl \033[0m"
-    # cp -r /home/${userName}/OpenWrt_Personal/library/* /home/${userName}/${ledeDir}/dl
-    # sleep 1s
 
     LogMessage "\033[31m DIY脚本执行完成 \033[0m" "\033[31m DIY script execution completed \033[0m"
     sleep 2s
@@ -139,9 +131,9 @@ function Get_luci_apps(){
         else
             cd /home/${userName}/${ledeDir}/package/lean/$dir
             git pull
-            cd /home/${userName}
+            cd /home/${userName}/${ledeDir}/
         fi
-    done
+ done
 }
 # 编译函数
 function Compile_Firmware() {
@@ -204,8 +196,10 @@ function Compile_Firmware() {
     LogMessage "\033[31m 开始install feeds.... \033[0m" "\033[31m begin install feeds.... \033[0m"
     sleep 1s
     ./scripts/feeds install -a | tee -a /home/${userName}/${log_folder_name}/${folder_name}/${log_feeds_install_filename}
+    
 
-    Get_luci_apps
+Get_luci_apps
+
 
     echo
     LogMessage "\033[31m 开始将OpenWrt_Personal中config文件夹下的${configName}注入lean源码中.... \033[0m" "\033[31m Start to inject ${configName} under the config folder in OpenWrt_Personal into lean source code... \033[0m"
@@ -398,6 +392,7 @@ else
 fi
 
 
+
 if [ ! -n "$isCreateNewConfig" ]; then
     echo
     LogMessage "\033[31m 请输入默认OpenWrt_Personal中的config文件名，默认为$configName \033[0m" "\033[31m Please enter the config file name in the default OpenWrt_Personal, the default is $configName \033[0m"
@@ -426,6 +421,9 @@ else
 fi
 
 
+
+
+
 echo
 LogMessage "\033[31m 开始同步lean源码.... \033[0m" "\033[31m Start to synchronize lean source code... \033[0m"
 sleep 2s
@@ -451,6 +449,10 @@ fi
 # fi
 
 # echo $isFirstCompile "dfffffffffffffffffffffffffffff"
+
+
+
+
 
 echo 
 LogMessage "\033[31m 准备就绪，请按照导航选择操作.... \033[0m" "\033[31m Ready, please follow the navigation options... \033[0m"
@@ -484,7 +486,7 @@ if [ ! -n "$isCreateNewConfig" ]; then
     LogMessage "\033[31m 你接下来要干啥？？？ \033[0m" "\033[31m What are you going to do next? ? ? \033[0m"
     LogMessage "\033[31m 将会在$timer秒后自动选择默认值 \033[0m" "\033[31m The default value will be automatically selected after $timer seconds \033[0m"
     LogMessage "\033[34m 1. 根据config自动编译固件。(默认) \033[0m" "\033[34m 1. Automatically compile the firmware according to config. (default)  \033[0m"
-    LogMessage "\033[34m 2. 我要配置config，配置完毕后自动同步回OpenWrt_Personal。 \033[0m" "\033[34m 2. I want to configure config, and automatically Jason6111 back to OpenWrt_Personal after configuration. \033[0m"
+    LogMessage "\033[34m 2. 我要配置config，配置完毕后自动同步回OpenWrt_Personal。 \033[0m" "\033[34m 2. I want to configure config, and automatically synchronize back to OpenWrt_Personal after configuration. \033[0m"
     read -t $timer num
     if [ ! -n "$num" ]; then
             num=1
@@ -497,7 +499,7 @@ if [ ! -n "$isCreateNewConfig" ]; then
         LogMessage "\033[31m 你接下来要干啥？？？ \033[0m" "\033[31m What are you going to do next? ? ? \033[0m"
         LogMessage "\033[31m 将会在$timer秒后自动选择默认值 \033[0m" "\033[31m The default value will be automatically selected after $timer seconds \033[0m"
         LogMessage "\033[34m 1. 根据config自动编译固件。(默认) \033[0m" "\033[34m 1.Automatically compile the firmware according to config. (default) \033[0m"
-        LogMessage "\033[34m 2. 我要配置config，配置完毕后自动同步回OpenWrt_Personal。 \033[0m" "\033[34m 2.I want to configure config, and automatically Jason6111 back to OpenWrt_Personal after configuration. \033[0m"
+        LogMessage "\033[34m 2. 我要配置config，配置完毕后自动同步回OpenWrt_Personal。 \033[0m" "\033[34m 2.I want to configure config, and automatically synchronize back to OpenWrt_Personal after configuration. \033[0m"
         read -t $timer num
         if [ ! -n "$num" ]; then
             num=1
