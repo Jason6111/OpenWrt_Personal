@@ -2,20 +2,20 @@
 # OP编译
 
 # 路由默认IP地址
-routeIP=10.10.0.253
+routeIP=192.168.1.1
 # 编译环境中当前账户名字
 userName=$USER
-# 默认OpenWrtAction的Config文件夹中的config文件名
-configName=x64.config
+# 默认OpenWrt_Personal的Config文件夹中的config文件名
+configName=X86_515.config
 # 默认lean源码文件夹名
 ledeDir=lede_$configName
-config_list=($(ls /home/$userName/OpenWrtAction/config))
+config_list=($(ls /home/$userName/OpenWrt_Personal/config))
 # 默认输入超时时间，单位为秒
 timer=15
 # 编译环境默认值，1为WSL2，2为非WSL2的Linux环境。不要修改这里
 sysenv=1
-# OpenWrtAction Git URL
-owaUrl=https://github.com/smallprogram/OpenWrtAction.git
+# OpenWrt_Personal Git URL
+owaUrl=https://github.com/Jason6111/OpenWrt_Personal.git
 # 是否首次编译 0否，1是
 isFirstCompile=0
 # 编译openwrt的log日志文件夹名称
@@ -41,10 +41,6 @@ clean_day=3
 luci_apps=(
     https://github.com/jerrykuku/luci-theme-argon.git
     https://github.com/jerrykuku/luci-app-argon-config.git
-    # https://github.com/jerrykuku/lua-maxminddb.git
-    # https://github.com/jerrykuku/luci-app-vssr.git
-    # https://github.com/lisaac/luci-app-dockerman.git
-    https://github.com/rufengsuixing/luci-app-adguardhome.git
 )
 
 # 默认语言中文，其他英文
@@ -77,12 +73,15 @@ function DIY_Script(){
     LogMessage "\033[31m 开始执行自定义设置脚本 \033[0m" "\033[31m Start executing the custom setup script \033[0m"
     sleep 1s
     # Modify default IP
-    LogMessage "\033[31m 设置路由默认地址为10.10.0.253 \033[0m" "\033[31m Set the route default address to 10.10.0.253 \033[0m"
-    sed -i "s/192.168.1.1/${routeIP}/g" /home/${userName}/${ledeDir}/package/base-files/files/bin/config_generate
-    sleep 1s
+    # LogMessage "\033[31m 设置路由默认地址为10.10.0.253 \033[0m" "\033[31m Set the route default address to 10.10.0.253 \033[0m"
+    # sed -i "s/192.168.1.1/${routeIP}/g" /home/${userName}/${ledeDir}/package/base-files/files/bin/config_generate
+    # sleep 1s
     # Modify default passwd
     LogMessage "\033[31m 设置路由默认密码为空 \033[0m" "\033[31m Set route default password to empty \033[0m"
     sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' /home/${userName}/${ledeDir}/package/lean/default-settings/files/zzz-default-settings
+    sleep 1s
+    #LogMessage "\033[31m 日期 \033[0m" "\033[31m date \033[0m"
+    sed -i 's/os.date(/&"%Y-%m-%d %H:%M:%S"/' /home/${userName}/${ledeDir}/package/lean/autocore/files/x86/index.htm
     sleep 1s
     #恢复主机型号
     LogMessage "\033[31m 恢复主机型号 \033[0m" "\033[31m Restoring the host model \033[0m"
@@ -90,18 +89,24 @@ function DIY_Script(){
     sed -i '/h=${g}.*/d' /home/${userName}/${ledeDir}/package/lean/autocore/files/x86/autocore
     sed -i 's/echo $h/echo $g/g' /home/${userName}/${ledeDir}/package/lean/autocore/files/x86/autocore
     sleep 1s
+    #ID
+    LogMessage "\033[31m 显示固件作者 \033[0m" "\033[31m Show firmware author \033[0m"
+    sed -i "s/DISTRIB_REVISION='R.*.*.[1-31]/& Compiled by Jason/" /home/${userName}/${ledeDir}/package/lean/default-settings/files/zzz-default-settings
+    sleep 1s
     #关闭串口跑码
     LogMessage "\033[31m 关闭串口跑码 \033[0m" "\033[31m Close serial port running code \033[0m"
     sed -i 's/console=tty0//g'  /home/${userName}/${ledeDir}/target/linux/x86/image/Makefile
+    sed -i 's/%V, %C/[2022] | by Jason /g' /home/${userName}/${ledeDir}/package/base-files/files/etc/banner
+    sed -i '/logins./a\                                          by Jason' /home/${userName}/${ledeDir}/package/base-files/files/etc/profile
     sleep 1s
     # 注入patches
-    LogMessage "\033[31m 注入patches \033[0m" "\033[31m inject patches \033[0m"
-    cp -r /home/${userName}/OpenWrtAction/patches/651-rt2x00-driver-compile-with-kernel-5.15.patch /home/${userName}/${ledeDir}/package/kernel/mac80211/patches/rt2x00
-    sleep 1s
+    # LogMessage "\033[31m 注入patches \033[0m" "\033[31m inject patches \033[0m"
+    # cp -r /home/${userName}/OpenWrt_Personal/patches/651-rt2x00-driver-compile-with-kernel-5.15.patch /home/${userName}/${ledeDir}/package/kernel/mac80211/patches/rt2x00
+    # sleep 1s
     # 注入dl
-    LogMessage "\033[31m 注入dl \033[0m" "\033[31m inject dl \033[0m"
-    cp -r /home/${userName}/OpenWrtAction/library/* /home/${userName}/${ledeDir}/dl
-    sleep 1s
+    # LogMessage "\033[31m 注入dl \033[0m" "\033[31m inject dl \033[0m"
+    # cp -r /home/${userName}/OpenWrt_Personal/library/* /home/${userName}/${ledeDir}/dl
+    # sleep 1s
 
     LogMessage "\033[31m DIY脚本执行完成 \033[0m" "\033[31m DIY script execution completed \033[0m"
     sleep 2s
@@ -120,7 +125,7 @@ function Get_luci_apps(){
         sleep 2s
 
         if [[ $isFirstCompile == 1 && $dir == luci-theme-argon ]]; then
-            cd /home/${userName}/${ledeDir}/package/lean/
+            cd /home/${userName}/${ledeDir}/feeds/luci/themes/
             rm -rf $dir
             git clone -b 18.06 $luci_app
             continue
@@ -187,10 +192,10 @@ function Compile_Firmware() {
         make dirclean
     fi
     echo
-    LogMessage "\033[31m 开始将OpenwrtAction中的自定义feeds注入lean源码中.... \033[0m" "\033[31m Started injecting custom feeds in OpenwrtAction into lean source code... \033[0m"
+    LogMessage "\033[31m 开始将OpenWrt_Personal中的自定义feeds注入lean源码中.... \033[0m" "\033[31m Started injecting custom feeds in OpenWrt_Personal into lean source code... \033[0m"
     sleep 2s
     echo
-    cat /home/${userName}/OpenWrtAction/feeds_config/custom.feeds.conf.default > /home/${userName}/${ledeDir}/feeds.conf.default
+    cat /home/${userName}/OpenWrt_Personal/feeds_config/custom.feeds.conf.default > /home/${userName}/${ledeDir}/feeds.conf.default
 
 
     LogMessage "\033[31m 开始update feeds.... \033[0m" "\033[31m begin update feeds.... \033[0m"
@@ -200,11 +205,13 @@ function Compile_Firmware() {
     sleep 1s
     ./scripts/feeds install -a | tee -a /home/${userName}/${log_folder_name}/${folder_name}/${log_feeds_install_filename}
 
+    Get_luci_apps
+
     echo
-    LogMessage "\033[31m 开始将OpenwrtAction中config文件夹下的${configName}注入lean源码中.... \033[0m" "\033[31m Start to inject ${configName} under the config folder in OpenwrtAction into lean source code... \033[0m"
+    LogMessage "\033[31m 开始将OpenWrt_Personal中config文件夹下的${configName}注入lean源码中.... \033[0m" "\033[31m Start to inject ${configName} under the config folder in OpenWrt_Personal into lean source code... \033[0m"
     sleep 2s
     echo
-    cat /home/${userName}/OpenWrtAction/config/${configName} > /home/${userName}/${ledeDir}/.config
+    cat /home/${userName}/OpenWrt_Personal/config/${configName} > /home/${userName}/${ledeDir}/.config
     cat /home/${userName}/${ledeDir}/.config > /home/${userName}/${log_folder_name}/${folder_name}/${log_before_defconfig_config}
     # if [[ $isFirstCompile == 1 ]]; then
     #     echo -e  "\033[34m 由于你是首次编译，需要make menuconfig配置，如果保持原有config不做更改，请在进入菜单后直接exit即可 \033[0m"
@@ -319,7 +326,7 @@ function configList(){
     read -t $timer configNameInp
     if [ ! -n "$configNameInp" ]; then
         i=1
-        configName=x64.config
+        configName=X86_515.config
         ledeDir=lede_$configName
         # echo "135 configName的值："$configName
         for context in ${config_list[*]}; 
@@ -391,16 +398,15 @@ else
 fi
 
 
-
 if [ ! -n "$isCreateNewConfig" ]; then
     echo
-    LogMessage "\033[31m 请输入默认OpenwrtAction中的config文件名，默认为$configName \033[0m" "\033[31m Please enter the config file name in the default OpenwrtAction, the default is $configName \033[0m"
+    LogMessage "\033[31m 请输入默认OpenWrt_Personal中的config文件名，默认为$configName \033[0m" "\033[31m Please enter the config file name in the default OpenWrt_Personal, the default is $configName \033[0m"
     LogMessage "\033[31m 将会在$timer秒后自动选择默认值 \033[0m" "\033[31m The default value will be automatically selected after $timer seconds \033[0m"
     configList
     until [[ $configNameInp -ge 1 && $configNameInp -le $key ]]
     do
         LogMessage "\033[34m 你输入的 ${configNameInp} 是啥玩应啊，看好了序号，输入数值就行了。 \033[0m" "\033[34m What is the function of the ${configNameInp} you entered? Just take a good look at the serial number and just enter the value. \033[0m"
-        LogMessage "\033[31m 请输入默认OpenwrtAction中的config文件名，默认为$configName \033[0m" "\033[31m Please enter the config file name in the default OpenwrtAction, the default is $configName \033[0m"
+        LogMessage "\033[31m 请输入默认OpenWrt_Personal中的config文件名，默认为$configName \033[0m" "\033[31m Please enter the config file name in the default OpenWrt_Personal, the default is $configName \033[0m"
         configList
     done
 
@@ -418,9 +424,6 @@ if [ ! -n "$isCreateNewConfig" ]; then
 else
     configName=$newConfigName
 fi
-
-
-
 
 
 echo
@@ -448,10 +451,6 @@ fi
 # fi
 
 # echo $isFirstCompile "dfffffffffffffffffffffffffffff"
-
-
-Get_luci_apps
-
 
 echo 
 LogMessage "\033[31m 准备就绪，请按照导航选择操作.... \033[0m" "\033[31m Ready, please follow the navigation options... \033[0m"
@@ -498,7 +497,7 @@ if [ ! -n "$isCreateNewConfig" ]; then
         LogMessage "\033[31m 你接下来要干啥？？？ \033[0m" "\033[31m What are you going to do next? ? ? \033[0m"
         LogMessage "\033[31m 将会在$timer秒后自动选择默认值 \033[0m" "\033[31m The default value will be automatically selected after $timer seconds \033[0m"
         LogMessage "\033[34m 1. 根据config自动编译固件。(默认) \033[0m" "\033[34m 1.Automatically compile the firmware according to config. (default) \033[0m"
-        LogMessage "\033[34m 2. 我要配置config，配置完毕后自动同步回OpenwrtAction。 \033[0m" "\033[34m 2.I want to configure config, and automatically synchronize back to OpenwrtAction after configuration. \033[0m"
+        LogMessage "\033[34m 2. 我要配置config，配置完毕后自动同步回OpenWrt_Personal。 \033[0m" "\033[34m 2.I want to configure config, and automatically Jason6111 back to OpenWrt_Personal after configuration. \033[0m"
         read -t $timer num
         if [ ! -n "$num" ]; then
             num=1
@@ -518,10 +517,10 @@ fi
 if [[ $num == 2 ]]
 then
     echo
-    LogMessage "\033[31m 开始将OpenwrtAction中的自定义feeds注入lean源码中.... \033[0m" "\033[31m Started injecting custom feeds in OpenwrtAction into lean source code... \033[0m"
+    LogMessage "\033[31m 开始将OpenWrt_Personal中的自定义feeds注入lean源码中.... \033[0m" "\033[31m Started injecting custom feeds in OpenwrtAction into lean source code... \033[0m"
     sleep 2s
     echo
-    cat /home/${userName}/OpenWrtAction/feeds_config/custom.feeds.conf.default > /home/${userName}/${ledeDir}/feeds.conf.default
+    cat /home/${userName}/OpenWrt_Personal/feeds_config/custom.feeds.conf.default > /home/${userName}/${ledeDir}/feeds.conf.default
 
     cd /home/${userName}/${ledeDir}
     LogMessage "\033[31m 开始update feeds.... \033[0m" "\033[31m begin update feeds.... \033[0m"
@@ -530,19 +529,22 @@ then
     LogMessage "\033[31m 开始install feeds.... \033[0m" "\033[31m begin install feeds.... \033[0m"
     sleep 1s
     ./scripts/feeds install -a 
+    rm -rf ./feeds/luci/themes/luci-theme-argon 
+    git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./feeds/luci/themes/luci-theme-argon 
+    git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config 
 
     if [ ! -n "$isCreateNewConfig" ]; then
         echo
-        LogMessage "\033[31m 开始将OpenwrtAction中config文件夹下的${configName}注入lean源码中.... \033[0m" "\033[31m Start to inject ${configName} under the config folder in OpenwrtAction into lean source code... \033[0m"
+        LogMessage "\033[31m 开始将OpenWrt_Personal中config文件夹下的${configName}注入lean源码中.... \033[0m" "\033[31m Start to inject ${configName} under the config folder in OpenwrtAction into lean source code... \033[0m"
         sleep 2s
         echo
-        cat /home/${userName}/OpenWrtAction/config/${configName} > /home/${userName}/${ledeDir}/.config
+        cat /home/${userName}/OpenWrt_Personal/config/${configName} > /home/${userName}/${ledeDir}/.config
     fi
 
     cd /home/${userName}/${ledeDir}
     make menuconfig
-    cat /home/${userName}/${ledeDir}/.config > /home/${userName}/OpenWrtAction/config/${configName}
-    cd /home/${userName}/OpenWrtAction
+    cat /home/${userName}/${ledeDir}/.config > /home/${userName}/OpenWrt_Personal/config/${configName}
+    cd /home/${userName}/OpenWrt_Personal
     
     if [ ! -n "$(git config --global user.email)" ]; then
         LogMessage "请输入git Global user.email:" "Please enter git Global user.email:"
@@ -607,4 +609,3 @@ fi
 
 export GIT_SSL_NO_VERIFY=0
 echo
-
