@@ -517,7 +517,7 @@ fi
 if [[ $num == 2 ]]
 then
     echo
-    LogMessage "\033[31m 开始将OpenWrt_Personal中的自定义feeds注入lean源码中.... \033[0m" "\033[31m Started injecting custom feeds in OpenwrtAction into lean source code... \033[0m"
+    LogMessage "\033[31m 开始将OpenWrt_Personal中的自定义feeds注入lean源码中.... \033[0m" "\033[31m Started injecting custom feeds in OpenWrt_Personal into lean source code... \033[0m"
     sleep 2s
     echo
     cat /home/${userName}/OpenWrt_Personal/feeds_config/custom.feeds.conf.default > /home/${userName}/${ledeDir}/feeds.conf.default
