@@ -155,7 +155,6 @@ function Get_luci_apps(){
         else
             cd /home/${userName}/${ledeDir}/package/lean/$dir
             git pull
-            cd /home/${userName}/${ledeDir}
         fi
  done
 }
@@ -244,6 +243,7 @@ Get_luci_apps
 
     LogMessage "\033[34m 开始执行make defconfig! \033[0m" "\033[34m Start to execute make defconfig! \033[0m"
     sleep 1s
+	cd /home/${userName}/${ledeDir}
     make defconfig | tee -a /home/${userName}/${log_folder_name}/${folder_name}/${log_make_defconfig_filename}
     cat /home/${userName}/${ledeDir}/.config > /home/${userName}/${log_folder_name}/${folder_name}/${log_after_defconfig_config}
 
@@ -417,6 +417,7 @@ else
 fi
 
 
+
 if [ ! -n "$isCreateNewConfig" ]; then
     echo
     LogMessage "\033[31m 请输入默认OpenWrt_Personal中的config文件名，默认为$configName \033[0m" "\033[31m Please enter the config file name in the default OpenWrt_Personal, the default is $configName \033[0m"
@@ -444,6 +445,10 @@ else
     configName=$newConfigName
 fi
 
+
+
+
+
 echo
 LogMessage "\033[31m 开始同步lean源码.... \033[0m" "\033[31m Start to Jason6111 lean source code... \033[0m"
 sleep 2s
@@ -469,6 +474,10 @@ fi
 # fi
 
 # echo $isFirstCompile "dfffffffffffffffffffffffffffff"
+
+
+
+
 
 echo 
 LogMessage "\033[31m 准备就绪，请按照导航选择操作.... \033[0m" "\033[31m Ready, please follow the navigation options... \033[0m"
