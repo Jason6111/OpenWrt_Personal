@@ -243,7 +243,7 @@ Get_luci_apps
 
     LogMessage "\033[34m 开始执行make defconfig! \033[0m" "\033[34m Start to execute make defconfig! \033[0m"
     sleep 1s
-	cd /home/${userName}/${ledeDir}/
+    cd /home/${userName}/${ledeDir}/
     make defconfig | tee -a /home/${userName}/${log_folder_name}/${folder_name}/${log_make_defconfig_filename}
     cat /home/${userName}/${ledeDir}/.config > /home/${userName}/${log_folder_name}/${folder_name}/${log_after_defconfig_config}
 
