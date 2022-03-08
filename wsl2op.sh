@@ -57,7 +57,21 @@ function LogMessage(){
 }
 
 LogMessage "\033[34m 注意，请确保当前linux账户为非root账户，并且已经安装相关编译依赖 \033[0m" "\033[34m Note, please make sure that the current linux account is a non-root account, and the relevant compilation dependencies have been installed \033[0m"
-LogMessage "\033[34m 如果不符合上述条件，请ctrl+C退出 \033[0m" "\033[34m If the above conditions are not met, please ctrl+C to exit \033[0m"
+LogMessage "\033[34m 如果不符合上述条件，请安装依赖或ctrl+C退出 \033[0m" "\033[34m If the above conditions are not met, please Install dependencies or ctrl+C to exit \033[0m"
+LogMessage "\033[31m 是否安装编译依赖，不输入默认不安装，输入任意值安装，将会在$timer秒后自动选择默认值 \033[0m" "\033[31m Whether to install the compilation dependencies. Do not enter the default. Do not install. Enter any value to install. The default value will be automatically selected after $timer seconds \033[0m"
+    read -t $timer dependencies
+    if [ ! -n "$dependencies" ]; then
+        LogMessage "\033[34m OK，不安装 \033[0m" "\033[34m OK, don't copy \033[0m"   
+    else
+        LogMessage "\033[34m 开始安装 \033[0m" "\033[34m Start copying \033[0m"
+        sudo apt-get update
+        sleep 10s
+        sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
+        sleep 10s
+        git config --global http.sslverify false
+        git config --global https.sslverify false
+        LogMessage "\033[34m 安装完成 \033[0m" "\033[34m Copy completed \033[0m" 
+    fi
 
 # 将编译的固件提交到GitHubRelease
 # function UpdateFileToGithubRelease(){
@@ -89,21 +103,31 @@ function DIY_Script(){
     sed -i '/h=${g}.*/d' /home/${userName}/${ledeDir}/package/lean/autocore/files/x86/autocore
     sed -i 's/echo $h/echo $g/g' /home/${userName}/${ledeDir}/package/lean/autocore/files/x86/autocore
     sleep 1s
-    #ID
-    LogMessage "\033[31m 显示固件作者 \033[0m" "\033[31m Show firmware author \033[0m"
-    sed -i "s/DISTRIB_REVISION='R.*.*.[1-31]/& Compiled by Jason/" /home/${userName}/${ledeDir}/package/lean/default-settings/files/zzz-default-settings
-    sleep 1s
     #关闭串口跑码
     LogMessage "\033[31m 关闭串口跑码 \033[0m" "\033[31m Close serial port running code \033[0m"
     sed -i 's/console=tty0//g'  /home/${userName}/${ledeDir}/target/linux/x86/image/Makefile
-    sed -i 's/%V, %C/[2022] | by Jason /g' /home/${userName}/${ledeDir}/package/base-files/files/etc/banner
-    sed -i '/logins./a\                                          by Jason' /home/${userName}/${ledeDir}/package/base-files/files/etc/profile
     sleep 1s
-
     LogMessage "\033[31m DIY脚本执行完成 \033[0m" "\033[31m DIY script execution completed \033[0m"
     sleep 2s
 }
 
+function DIY_Script1(){
+    #id
+    LogMessage "\033[34m 显示固件作者，不输入默认不显示，输入任意值显示（只需一次），将会在$timer秒后自动选择默认值 \033[0m" "\033[34m Show firmware author，No input, no display by default, enter any value to display (only once).The default value will be automatically selected after $timer seconds \033[0m"
+    read -t $timer ID
+    if [ ! -n "$ID" ]; then
+	    LogMessage "\033[34m OK，不显示固件作者 \033[0m" "\033[34m OK, Do not show firmware author \033[0m"
+	else
+	    LogMessage "\033[34m 显示固件作者 \033[0m" "\033[34m show firmware author \033[0m"
+		sed -i "s/DISTRIB_REVISION='R.*.*.[1-31]/& Compiled by Jason/" /home/${userName}/${ledeDir}/package/lean/default-settings/files/zzz-default-settings
+        sed -i 's/%V, %C/[2022] | by Jason /g' /home/${userName}/${ledeDir}/package/base-files/files/etc/banner
+	    sed -i '/logins./a\                                          by Jason' /home/${userName}/${ledeDir}/package/base-files/files/etc/profile
+	    sleep 1s
+        LogMessage "\033[31m DIY脚本执行完成 \033[0m" "\033[31m DIY script execution completed \033[0m"
+        sleep 2s
+	fi
+}
+	
 # 获取自定插件函数
 function Get_luci_apps(){
     for luci_app in "${luci_apps[@]}"; do
@@ -230,6 +254,7 @@ Get_luci_apps
     make -j8 download V=s | tee -a /home/${userName}/${log_folder_name}/${folder_name}/${log_make_down_filename}
 
     DIY_Script
+	DIY_Script1
 
     LogMessage "\033[34m 开始执行make编译! \033[0m" "\033[34m Start to execute make compilation! \033[0m"
     sleep 1s
