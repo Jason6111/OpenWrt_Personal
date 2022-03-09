@@ -37,7 +37,7 @@ git clone https://github.com/Jason6111/OpenWrt_Personal  && cd OpenWrt_Personal 
 ```  
 ### 第二次起  
 ```
-cd OpenWrt_Personal && bash wsl2op.sh
+cd OpenWrt_Personal && git pull && bash wsl2op.sh
 
 ```
 
