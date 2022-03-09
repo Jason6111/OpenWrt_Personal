@@ -58,8 +58,8 @@ function LogMessage(){
 }
 
 LogMessage "\033[31m 注意，请确保当前linux账户为非root账户，并且已经安装相关编译依赖 \033[0m" "\033[31m Note, please make sure that the current linux account is a non-root account, and the relevant compilation dependencies have been installed \033[0m"
-LogMessage "\033[31m 如果不符合上述条件，请安装依赖或ctrl+C退出 \033[0m" "\033[31m If the above conditions are not met, please Install dependencies or ctrl+C to exit \033[0m"
-LogMessage "\033[37m 是否安装编译依赖，不输入默认不安装，输入任意值安装，将会在$timer秒后自动选择默认值 \033[0m" "\033[37m Whether to install the compilation dependencies. Do not enter the default. Do not install. Enter any value to install. The default value will be automatically selected after $timer seconds \033[0m"
+LogMessage "\033[31m 如果不符合上述条件，请安装依赖或ctrl+C退出 \033[0m" "\033[37m If the above conditions are not met, please Install dependencies or ctrl+C to exit \033[0m"
+LogMessage "\033[37m 是否安装编译依赖，不输入默认不安装，输入任意值安装，将会在$timer秒后自动选择默认值 \033[0m" "\033[31m Whether to install the compilation dependencies. Do not enter the default. Do not install. Enter any value to install. The default value will be automatically selected after $timer seconds \033[0m"
     read -t $timer dependencies
     if [ ! -n "$dependencies" ]; then
         LogMessage "\033[32m OK，不安装 \033[0m" "\033[32m OK, Not installed \033[0m"   
@@ -129,10 +129,8 @@ function Get_luci_apps(){
 
         temp=${luci_app##*/} # xxx.git
         dir=${temp%%.*}  # xxx
-
-        echo
-        echo -e "\033[31m 开始同步$dir.... \033[0m"
-        echo -e "\033[31m Start syncing $dir.... \033[0m"
+		
+        LogMessage "\033[31m 开始同步$dir.... \033[0m" "\033[31m Start syncing $dir.... \033[0m"       
         sleep 2s
 
         if [[ $isFirstCompile == 1 && $dir == luci-theme-argon ]]; then
@@ -161,7 +159,7 @@ function Compile_Firmware() {
 
     begin_date=开始时间$(date "+%Y-%m-%d-%H-%M-%S")
     folder_name=log_Compile_${configName}_$(date "+%Y-%m-%d-%H-%M-%S")
-    LogMessage "\033[31m 是否启用Clean编译，如果不输入任何值默认否，输入任意值启用Clean编译，Clean操作适用于大版本更新 \033[0m" "\033[37m Whether to enable Clean compilation, if you do not enter any value, the default is No, enter any value to enable Clean compilation, Clean operation is suitable for major version updates \033[0m"
+    LogMessage "\033[31m 是否启用Clean编译，如果不输入任何值默认否，输入任意值启用Clean编译，Clean操作适用于大版本更新 \033[0m" "\033[31m Whether to enable Clean compilation, if you do not enter any value, the default is No, enter any value to enable Clean compilation, Clean operation is suitable for major version updates \033[0m"
     LogMessage "\033[37m 将会在$timer秒后自动选择默认值 \033[0m" "\033[37m The default value will be automatically selected after $timer seconds \033[0m"
     read -t $timer isCleanCompile
     if [ ! -n "$isCleanCompile" ]; then
@@ -384,8 +382,8 @@ export GIT_SSL_NO_VERIFY=1
 CleanLogFolder
 sleep 2s
 
-LogMessage "\033[31m 是否创建新的编译配置，默认否，输入任意字符将创建新的配置 \033[0m" "\033[37m Whether to create a new compilation configuration, the default is no, input any character will create a new configuration \033[0m"
-LogMessage "\033[37m 将会在$timer秒后自动选择默认值 \033[0m" "\033[37m The default value will be automatically selected after $timer seconds \033[0m"
+LogMessage "\033[31m 是否创建新的编译配置，默认否，输入任意字符将创建新的配置 \033[0m" "\033[31m Whether to create a new compilation configuration, the default is no, input any character will create a new configuration \033[0m"
+LogMessage "\033[37m 将会在$timer秒后自动选择默认值 \033[0m" "\033[31m The default value will be automatically selected after $timer seconds \033[0m"
 read -t $timer isCreateNewConfig
 if [ ! -n "$isCreateNewConfig" ]; then
     LogMessage "\033[32m OK，不创建新的编译配置 \033[0m" "\033[32m OK, do not create a new compilation configuration \033[0m"
@@ -472,8 +470,8 @@ sleep 2s
 
 LogMessage "\033[31m 你的编译环境是WSL2吗？ \033[0m" "\033[31m Is your compilation environment WSL2? \033[0m"
 LogMessage "\033[37m 将会在$timer秒后自动选择默认值 \033[0m" "\033[37m The default value will be automatically selected after $timer seconds \033[0m"
-LogMessage "\033[37m 1. 是(默认) Yes (default) \033[0m" 
-LogMessage "\033[37m 2. 不是 NO \033[0m"
+LogMessage "\033[37m 1. 是(默认) \033[0m" "\033[37m 1. Yes (default) \033[0m"
+LogMessage "\033[37m 2. 不是  \033[0m" "\033[37m 2. NO \033[0m"
 read -t $timer sysenv
 if [ ! -n "$sysenv" ]; then
         sysenv=1
@@ -483,8 +481,8 @@ until [[ $sysenv -ge 1 && $sysenv -le 2 ]]
 do
     LogMessage "\033[37m 你输入的 ${sysenv} 是啥玩应啊，看好了序号，输入数值就行了。 \033[0m" "\033[37m What is the function of the ${sysenv} you entered? Just enter the value after taking a good look at the serial number. \033[0m"
     LogMessage "\033[37m 你的编译环境是WSL2吗？ \033[0m" "\033[37m Is your compilation environment WSL2? \033[0m"
-    LogMessage "\033[37m 1. 是(默认) Yes (default) \033[0m"
-    LogMessage "\033[37m 2. 不是 NO \033[0m"
+    LogMessage "\033[37m 1. 是(默认) \033[0m" "\033[37m 1. Yes (default) \033[0m"
+    LogMessage "\033[37m 2. 不是 \033[0m" "\033[37m 2. NO \033[0m"
     read -t $timer sysenv
     if [ ! -n "$sysenv" ]; then
         sysenv=1
