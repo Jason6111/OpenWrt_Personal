@@ -29,6 +29,7 @@
 ![image](other/test.png)  
 ## 食用方法  
 ## 尽量fork到自己库用  
+## 在ubuntu下非root用户执行以下操作
 ### 第一次  
 ```
 git clone https://github.com/Jason6111/OpenWrt_Personal  && cd OpenWrt_Personal && bash wsl2op.sh
