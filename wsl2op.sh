@@ -57,8 +57,8 @@ function LogMessage(){
     fi
 }
 
-LogMessage "\033[31m 注意，请确保当前linux账户为非root账户，并且已经安装相关编译依赖 \033[0m" "\033[37m Note, please make sure that the current linux account is a non-root account, and the relevant compilation dependencies have been installed \033[0m"
-LogMessage "\033[31m 如果不符合上述条件，请安装依赖或ctrl+C退出 \033[0m" "\033[37m If the above conditions are not met, please Install dependencies or ctrl+C to exit \033[0m"
+LogMessage "\033[31m 注意，请确保当前linux账户为非root账户，并且已经安装相关编译依赖 \033[0m" "\033[31m Note, please make sure that the current linux account is a non-root account, and the relevant compilation dependencies have been installed \033[0m"
+LogMessage "\033[31m 如果不符合上述条件，请安装依赖或ctrl+C退出 \033[0m" "\033[31m If the above conditions are not met, please Install dependencies or ctrl+C to exit \033[0m"
 LogMessage "\033[37m 是否安装编译依赖，不输入默认不安装，输入任意值安装，将会在$timer秒后自动选择默认值 \033[0m" "\033[37m Whether to install the compilation dependencies. Do not enter the default. Do not install. Enter any value to install. The default value will be automatically selected after $timer seconds \033[0m"
     read -t $timer dependencies
     if [ ! -n "$dependencies" ]; then
