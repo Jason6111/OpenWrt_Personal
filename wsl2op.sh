@@ -412,13 +412,13 @@ fi
 
 if [ ! -n "$isCreateNewConfig" ]; then
     echo
-    LogMessage "\033[31m 请输入默认OpenWrt_Personal中的config文件名，默认为$configName \033[0m" "\033[31m Please enter the config file name in the default OpenWrt_Personal, the default is $configName \033[0m"
+    LogMessage "\033[31m 请选择OpenWrt_Personal中的config文件，默认为$configName \033[0m" "\033[31m Please select the config file in OpenWrt_Personal, the default is $configName \033[0m"
     LogMessage "\033[37m 将会在$timer秒后自动选择默认值 \033[0m" "\033[37m The default value will be automatically selected after $timer seconds \033[0m"
     configList
     until [[ $configNameInp -ge 1 && $configNameInp -le $key ]]
     do
         LogMessage "\033[37m 你输入的 ${configNameInp} 是啥玩应啊，看好了序号，输入数值就行了。 \033[0m" "\033[37m What is the function of the ${configNameInp} you entered? Just take a good look at the serial number and just enter the value. \033[0m"
-        LogMessage "\033[31m 请输入默认OpenWrt_Personal中的config文件名，默认为$configName \033[0m" "\033[31m Please enter the config file name in the default OpenWrt_Personal, the default is $configName \033[0m"
+        LogMessage "\033[31m 请选择OpenWrt_Personal中的config文件，默认为$configName \033[0m" "\033[31m Please select the config file in OpenWrt_Personal, the default is $configName \033[0m"
         configList
     done
 
