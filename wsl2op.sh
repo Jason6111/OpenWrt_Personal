@@ -71,7 +71,7 @@ LogMessage "\033[37m 是否安装编译依赖，不输入默认不安装，输�
         sleep 10s
         git config --global http.sslverify false
         git config --global https.sslverify false
-        LogMessage "\033[32m 安装完成 \033[0m" "\033[32m Copy completed \033[0m" 
+        LogMessage "\033[32m 安装完成 \033[0m" "\033[32m Installation Completed \033[0m" 
     fi
 
 # DIY Script函数
@@ -165,7 +165,7 @@ function Compile_Firmware() {
     if [ ! -n "$isCleanCompile" ]; then
         LogMessage "\033[32m OK，不执行make clean && make dirclean  \033[0m" "\033[37m OK, do not execute make clean && make dirclean  \033[0m"
     else
-        LogMessage "\033[32m OK，配置为Clean编译。 \033[0m" "\033[37m OK, configure for Clean compilation. \033[0m"
+        LogMessage "\033[32m OK，配置为Clean编译。 \033[0m" "\033[32m OK, configure for Clean compilation. \033[0m"
         LogMessage "\033[37m 准备开始编译 \033[0m" "\033[37m Ready to compile \033[0m"
         sleep 1s
     fi
@@ -247,7 +247,7 @@ Get_luci_apps
     make -j8 download V=s | tee -a /home/${userName}/${log_folder_name}/${folder_name}/${log_make_down_filename}
 
     DIY_Script
-	DIY_Script1
+    DIY_Script1
 
     LogMessage "\033[37m 开始执行make编译! \033[0m" "\033[37m Start to execute make compilation! \033[0m"
     sleep 1s
@@ -475,12 +475,12 @@ LogMessage "\033[37m 2. 不是  \033[0m" "\033[37m 2. NO \033[0m"
 read -t $timer sysenv
 if [ ! -n "$sysenv" ]; then
         sysenv=1
-        LogMessage "\033[32m 输入超时使用默认值 \033[0m" "\033[32m Use default value for input timeout \033[0m"
+        LogMessage "\033[32m 使用默认值 \033[0m" "\033[32m Use default \033[0m"
 fi
 until [[ $sysenv -ge 1 && $sysenv -le 2 ]]
 do
     LogMessage "\033[37m 你输入的 ${sysenv} 是啥玩应啊，看好了序号，输入数值就行了。 \033[0m" "\033[37m What is the function of the ${sysenv} you entered? Just enter the value after taking a good look at the serial number. \033[0m"
-    LogMessage "\033[37m 你的编译环境是WSL2吗？ \033[0m" "\033[37m Is your compilation environment WSL2? \033[0m"
+    LogMessage "\033[31m 你的编译环境是WSL2吗？ \033[0m" "\033[31m Is your compilation environment WSL2? \033[0m"
     LogMessage "\033[37m 1. 是(默认) \033[0m" "\033[37m 1. Yes (default) \033[0m"
     LogMessage "\033[37m 2. 不是 \033[0m" "\033[37m 2. NO \033[0m"
     read -t $timer sysenv
