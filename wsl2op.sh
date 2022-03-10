@@ -351,7 +351,7 @@ function configList(){
         done
         configNameInp=$i
         # echo "145 configNameInp的值："$configNameInp
-        LogMessage "\033[32m 输入超时使用默认值$configName \033[0m" "\033[32m Use the default value $configName for input timeout \033[0m"
+        LogMessage "\033[32m 使用默认值$configName \033[0m" "\033[32m Use the default value $configName \033[0m"
     else 
         if [[ $configNameInp -ge 1 && $configNameInp -le $key ]]; then
             configName=${config_list[$(($configNameInp-1))]}
