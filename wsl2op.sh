@@ -114,9 +114,24 @@ function DIY_Script1(){
 	    LogMessage "\033[32m OK，不显示固件作者 \033[0m" "\033[32m OK, Do not show firmware author \033[0m"
 	else
 	    LogMessage "\033[31m 显示固件作者 \033[0m" "\033[31m show firmware author \033[0m"
-		sed -i "s/DISTRIB_REVISION='R.*.*.[1-31]/& Compiled by Jason/" /home/${userName}/${ledeDir}/package/lean/default-settings/files/zzz-default-settings
-        sed -i 's/%V, %C/[2022] | by Jason /g' /home/${userName}/${ledeDir}/package/base-files/files/etc/banner
+            sed -i "s/DISTRIB_REVISION='R.*.*.[1-31]/& Compiled by Jason/" /home/${userName}/${ledeDir}/package/lean/default-settings/files/zzz-default-settings
+            sed -i 's/%V, %C/[2022] | by Jason /g' /home/${userName}/${ledeDir}/package/base-files/files/etc/banner
 	    sed -i '/logins./a\                                          by Jason' /home/${userName}/${ledeDir}/package/base-files/files/etc/profile
+	    sleep 1s
+        LogMessage "\033[32m DIY脚本执行完成 \033[0m" "\033[32m DIY script execution completed \033[0m"
+        sleep 2s
+	fi
+}
+
+function DIY_Script2(){
+    #id
+    LogMessage "\033[37m 显示DIY主题背景，不输入默认不显示，输入任意值显示（只需一次），将会在$timer秒后自动选择默认值 \033[0m" "\033[37m Show firmware author，No input, no display by default, enter any value to display (only once).The default value will be automatically selected after $timer seconds \033[0m"
+    read -t $timer ID
+    if [ ! -n "$ID" ]; then
+	    LogMessage "\033[32m OK，不显示DIY主题背景 \033[0m" "\033[32m OK, Do not show firmware author \033[0m"
+	else
+	    LogMessage "\033[31m 显示DIY主题背景 \033[0m" "\033[31m show firmware author \033[0m"
+	    svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/argon/video/default  ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/
 	    sleep 1s
         LogMessage "\033[32m DIY脚本执行完成 \033[0m" "\033[32m DIY script execution completed \033[0m"
         sleep 2s
@@ -248,6 +263,7 @@ Get_luci_apps
 
     DIY_Script
     DIY_Script1
+    DIY_Script2
 
     LogMessage "\033[37m 开始执行make编译! \033[0m" "\033[37m Start to execute make compilation! \033[0m"
     sleep 1s
