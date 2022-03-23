@@ -17,7 +17,8 @@
 1. 登录地址：`192.168.1.1`
 2. 登录帐号：`root`
 3. 登录密码：`无`  
-
+##默认主题背景可以在Argon主题设置中删除或修改
+![image](other/ZT.jpg) 
 ![image](other/JM.jpg)
 ![image](other/function.png)
   
