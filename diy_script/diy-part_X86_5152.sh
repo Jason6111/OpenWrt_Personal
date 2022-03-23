@@ -35,7 +35,10 @@ sed -i "s/DISTRIB_REVISION='R.*.*.[1-31]/& Compiled by Jason/" package/lean/defa
 rm -rf ./feeds/luci/themes/luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./feeds/luci/themes/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config
+
+# 主题背景
 svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/argon/video/default  ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/
+
 #恢复主机型号
 sed -i 's/(dmesg | grep .*/{a}${b}${c}${d}${e}${f}/g' package/lean/autocore/files/x86/autocore
 sed -i '/h=${g}.*/d' package/lean/autocore/files/x86/autocore
