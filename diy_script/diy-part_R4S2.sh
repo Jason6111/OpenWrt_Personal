@@ -31,3 +31,5 @@ sed -i '/logins./a\                                          by Jason' package/b
 rm -rf ./feeds/luci/themes/luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./feeds/luci/themes/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config
+#临时
+sed -i "s/(PKG_HASH|PKG_MD5SUM|PKG_MIRROR_HASH).*/\1:=skip/" feeds/packages/utils/containerd/Makefile
