@@ -44,4 +44,4 @@ sed -i 's/(dmesg | grep .*/{a}${b}${c}${d}${e}${f}/g' package/lean/autocore/file
 sed -i '/h=${g}.*/d' package/lean/autocore/files/x86/autocore
 sed -i 's/echo $h/echo $g/g' package/lean/autocore/files/x86/autocore
 #临时
-sed -i 's/(PKG_HASH|PKG_MD5SUM|PKG_MIRROR_HASH).*/\1:=skip/' feeds/packages/utils/containerd/Makefile
+sed -i 's/(PKG_HASH|PKG_MD5SUM|PKG_MIRROR_HASH).*/1:=skip/' feeds/packages/utils/containerd/Makefile
