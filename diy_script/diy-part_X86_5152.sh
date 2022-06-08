@@ -17,8 +17,6 @@
 #rm -rf package/utils/ucode/
 #svn co https://github.com/openwrt/openwrt/trunk/package/utils/ucode package/utils/ucode
 
-sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-ssr-plus/Makefile
-
 #日期
 sed -i 's/os.date(/&"%Y-%m-%d %H:%M:%S"/' package/lean/autocore/files/x86/index.htm
 
