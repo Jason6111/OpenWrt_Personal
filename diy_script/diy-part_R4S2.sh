@@ -15,6 +15,7 @@
 
 #临时修复
 #rm -rf package/boot/arm-trusted-firmware-rockchip-vendor/Makefile
+sed -i s/5.10/5.15/g  target/linux/rockchip/Makefile
 #svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/patch1 package/boot/arm-trusted-firmware-rockchip-vendor/
 
 #svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/patch target/linux/rockchip/patches-5.15/
