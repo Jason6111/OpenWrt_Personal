@@ -17,8 +17,13 @@
 #rm -rf package/boot/arm-trusted-firmware-rockchip-vendor/Makefile
 sed -i s/5.10/5.15/g  target/linux/rockchip/Makefile
 #svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/patch1 package/boot/arm-trusted-firmware-rockchip-vendor/
-
 #svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/patch target/linux/rockchip/patches-5.15/
+
+#v2ray_server
+sed -i s/"cp -a"/"ln -s"/g feeds/luci/applications/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/api/app.lua
+sed -i s/"-config"/"run -config"/g feeds/luci/applications/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/api/app.lua
+sed -i s/"xray -version"/"xray version"/g feeds/luci/applications/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/api/v2ray.lua
+sed -i s/"xray -version"/"xray version"/g feeds/luci/applications/luci-app-v2ray-server/luasrc/view/v2ray_server/v2ray.htm
 
 # Modify default passwd
 sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/files/zzz-default-settings
