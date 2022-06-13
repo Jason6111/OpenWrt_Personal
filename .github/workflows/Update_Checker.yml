@@ -67,7 +67,7 @@ on:
 #        required: false
 #        default: 'false'
   schedule:
-    - cron: 0 */6 * * *
+    - cron: 0 */3 * * *
 
 jobs:
   check:
