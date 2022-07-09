@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Openwrt-R4S-515
+name: Openwrt-R4S-518
 
 on:
   repository_dispatch:
@@ -26,11 +26,11 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/R4S_515.config
+  CONFIG_FILE: config/R4S_518.config
   DIY_P1_SH: diy_script/diy-part_R4S1.sh
   DIY_P2_SH: diy_script/diy-part_R4S2.sh
   COMMIT_LOG_NUM: 1
-  RELEASE_TAG: R4S_515
+  RELEASE_TAG: R4S_518
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
