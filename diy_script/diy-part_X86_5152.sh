@@ -53,3 +53,4 @@ sed -i 's/echo $h/echo $g/g' package/lean/autocore/files/x86/autocore
 #sed -i 's/PKG_HASH.*/PKG_HASH:=skip/' feeds/packages/utils/containerd/Makefile
 #tr
 #sed -i "s/&& LINUX_VERSION_CODE < KERNEL_VERSION(5, 18, 0)//g" package/lean/shortcut-fe/fast-classifier/src/fast-classifier.c
+sed -i s/5.18/5.19/g  target/linux/x86/Makefile
