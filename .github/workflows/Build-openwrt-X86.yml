@@ -27,8 +27,8 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config/X86.config
-  DIY_P1_SH: diy_script/diy-part_X861.sh
-  DIY_P2_SH: diy_script/diy-part_X862.sh
+  DIY_P1_SH: diy_script/diy-part1.sh
+  DIY_P2_SH: diy_script/diy-part2.sh
   COMMIT_LOG_NUM: 1
   RELEASE_TAG: X86_519
   UPLOAD_BIN_DIR: false
