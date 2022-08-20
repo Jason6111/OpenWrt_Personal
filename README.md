@@ -1,5 +1,5 @@
 [![LICENSE](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square&label=LICENSE)](https://github.com/Jason6111/OpenWrt_Personal/blob/main/LICENSE)
-[![Releases](https://img.shields.io/badge/support-X86|R4S-blue?style=flat&logo=rss)](https://github.com/Jason6111/OpenWrt_Personal/releases)
+[![Releases](https://img.shields.io/badge/support-X86-blue?style=flat&logo=rss)](https://github.com/Jason6111/OpenWrt_Personal/releases)
 [![Lean](https://img.shields.io/badge/SourceCode-Lean-green?style=flat&logo=GitHub)](https://github.com/coolsnowwolf/lede)
 [![UpdateCheck](https://img.shields.io/badge/Automatic-UpdateCheck-blueviolet?style=flat&logo=apacheflink)](https://github.com/Jason6111/OpenWrt_Personal/actions)
 [![Actions](https://img.shields.io/badge/GithubAction-Actions-important?style=flat&logo=GitHubActions)](https://github.com/Jason6111/OpenWrt_Personal/actions)
