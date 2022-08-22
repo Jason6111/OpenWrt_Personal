@@ -6,7 +6,7 @@ routeIP=192.168.1.1
 # 编译环境中当前账户名字
 userName=$USER
 # 默认OpenWrt_Personal的Config文件夹中的config文件名
-configName=X86_515.config
+configName=X86.config
 # 默认lean源码文件夹名
 ledeDir=lede_$configName
 config_list=($(ls /home/$userName/OpenWrt_Personal/config))
