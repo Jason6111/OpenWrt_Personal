@@ -74,7 +74,7 @@ LogMessage "\033[37m 是否安装编译依赖，不输入默认不安装，输�
         LogMessage "\033[32m 安装完成 \033[0m" "\033[32m Installation Completed \033[0m" 
     fi
 
-# DIY Script函数
+   # DIY Script函数
 function DIY_Script(){
     LogMessage "\033[37m 开始执行自定义设置脚本 \033[0m" "\033[37m Start executing the custom setup script \033[0m"
     sleep 1s
@@ -88,7 +88,7 @@ function DIY_Script(){
     sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' /home/${userName}/${ledeDir}/package/lean/default-settings/files/zzz-default-settings
     sleep 1s
 	
-	# 日期格式
+    # 日期格式
     LogMessage "\033[31m 日期格式 \033[0m" "\033[31m Date format \033[0m"
     sed -i 's/os.date(/&"%Y-%m-%d %H:%M:%S"/' /home/${userName}/${ledeDir}/package/lean/autocore/files/x86/index.htm
     sleep 1s
@@ -97,6 +97,13 @@ function DIY_Script(){
     sed -i 's/(dmesg | grep .*/{a}${b}${c}${d}${e}${f}/g' /home/${userName}/${ledeDir}/package/lean/autocore/files/x86/autocore
     sed -i '/h=${g}.*/d' /home/${userName}/${ledeDir}/package/lean/autocore/files/x86/autocore
     sed -i 's/echo $h/echo $g/g' /home/${userName}/${ledeDir}/package/lean/autocore/files/x86/autocore
+    sleep 1s
+    #v2ray_server
+    LogMessage "\033[31m 修复v2ray服务 \033[0m" "\033[31m Repair v2ray service \033[0m"
+    sed -i s/"cp -a"/"ln -s"/g /home/${userName}/${ledeDir}/feeds/luci/applications/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/api/app.lua
+    sed -i s/"-config"/"run -config"/g /home/${userName}/${ledeDir}/feeds/luci/applications/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/api/app.lua
+    sed -i s/"xray -version"/"xray version"/g /home/${userName}/${ledeDir}/feeds/luci/applications/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/api/v2ray.lua
+    sed -i s/"xray -version"/"xray version"/g /home/${userName}/${ledeDir}/feeds/luci/applications/luci-app-v2ray-server/luasrc/view/v2ray_server/v2ray.htm
     sleep 1s
     #关闭串口跑码
     LogMessage "\033[31m 关闭串口跑码 \033[0m" "\033[31m Close serial port running code \033[0m"
@@ -114,7 +121,7 @@ function DIY_Script1(){
 	LogMessage "\033[32m OK，不显示固件作者 \033[0m" "\033[32m OK, Do not show firmware author \033[0m"
     else
 	LogMessage "\033[31m 显示固件作者 \033[0m" "\033[31m show firmware author \033[0m"
-        sed -i "s/DISTRIB_REVISION='R.*.*.[1-31]/& Compiled by Jason/" /home/${userName}/${ledeDir}/package/lean/default-settings/files/zzz-default-settings
+        sed -i "s/DISTRIB_REVISION='R.*.*.[0-9]/& Compiled by Jason/" /home/${userName}/${ledeDir}/package/lean/default-settings/files/zzz-default-settings
         sed -i 's/%V, %C/[2022] | by Jason /g' /home/${userName}/${ledeDir}/package/base-files/files/etc/banner
 	sed -i '/logins./a\                                          by Jason' /home/${userName}/${ledeDir}/package/base-files/files/etc/profile
 	sleep 1s
