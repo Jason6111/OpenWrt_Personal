@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Openwrt-X86-519
+name: Openwrt-X86
 
 on:
   repository_dispatch:
@@ -30,7 +30,7 @@ env:
   DIY_P1_SH: diy_script/diy-part1.sh
   DIY_P2_SH: diy_script/diy-part2.sh
   COMMIT_LOG_NUM: 1
-  RELEASE_TAG: X86_519
+  RELEASE_TAG: X86
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
