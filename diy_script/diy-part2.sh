@@ -34,12 +34,13 @@ sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./ d' package/lean/default-settings/fi
 sed -i "s/DISTRIB_REVISION='R.*.*.[0-9]/& Compiled by Jason/" package/lean/default-settings/files/zzz-default-settings
 
 # 添加新主题  
-rm -rf ./feeds/luci/themes/luci-theme-argon
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./feeds/luci/themes/luci-theme-argon
+# rm -rf ./feeds/luci/themes/luci-theme-argon
+# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./feeds/luci/themes/luci-theme-argon
 # git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config
 
 # 主题背景
-svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/argon/video/default  ./feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/background/
+svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/argon/video/default  ./feeds/luci/themes/luci-theme-argon-mod/htdocs/luci-static/argon/background/
+rm -rf ./feeds/luci/themes/luci-theme-argon-mod/htdocs/luci-static/argon/background/.svn/
 
 # 恢复主机型号
 sed -i 's/(dmesg | grep .*/{a}${b}${c}${d}${e}${f}/g' package/lean/autocore/files/x86/autocore
