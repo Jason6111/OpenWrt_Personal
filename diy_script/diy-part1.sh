@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-# Copyright (c) 2019-2020 Jason6111
+# Copyright (c) 2019-2022 Jason6111
 #
 # This is free software, licensed under the MIT License.
 # See /LICENSE for more information.
 #
-# https://github.com/Jason6111/OpenWrt-Personal
+# https://github.com/Jason6111/OpenWrt_Personal
 # File name: diy-part1.sh
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 
