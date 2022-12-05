@@ -173,14 +173,6 @@ jobs:
         echo ${{ steps.getHash.outputs.commitHash_ThemeArgon }} | tee .commitHash_ThemeArgon
         echo ${{ steps.getHash.outputs.commitHash_ArgonConfig }} | tee .commitHash_ArgonConfig
         echo ${{ steps.combHeader.outputs.commitHash_All }} | tee .commitHash_All
-        
-        
-    - name: 触发器构建 #Trigger build
-      if: steps.cacheHash.outputs.cache-hit != 'true'
-      uses: Jason6111/repository-dispatch@v1
-      with:
-        token: ${{ secrets. ACTIONS_TRIGGER_OPENWRT }}
-        event-type: OpenWrt相关代码更新 #OpenWrt Related Code Updates
 
     - name: 删除工作流程运行 #Delete workflow runs
       uses: Jason6111/delete-workflow-runs@main
@@ -189,3 +181,10 @@ jobs:
         repository: ${{ github.repository }}
         retain_days: 1
         keep_minimum_runs: 2
+        
+    - name: 触发器构建 #Trigger build
+      if: steps.cacheHash.outputs.cache-hit != 'true'
+      uses: Jason6111/repository-dispatch@v1
+      with:
+        token: ${{ secrets. ACTIONS_TRIGGER_OPENWRT }}
+        event-type: OpenWrt相关代码更新 #OpenWrt Related Code Updates
