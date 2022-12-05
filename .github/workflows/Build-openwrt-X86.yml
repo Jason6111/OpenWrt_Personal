@@ -219,7 +219,7 @@ jobs:
         keep_minimum_runs: 2
 
     - name: 删除旧版本 #Remove old Releases
-      uses: Jason6111/delete-older-releases@v0.2.1
+      uses: Jason6111/delete-older-releases@v0.2.2
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
         keep_latest: 2
