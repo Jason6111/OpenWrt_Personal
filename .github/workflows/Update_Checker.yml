@@ -183,7 +183,7 @@ jobs:
         event-type: OpenWrt相关代码更新 #OpenWrt Related Code Updates
 
     - name: 删除工作流程运行 #Delete workflow runs
-      uses: GitRML/delete-workflow-runs@main
+      uses: Jason6111/delete-workflow-runs@main
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.repository }}
