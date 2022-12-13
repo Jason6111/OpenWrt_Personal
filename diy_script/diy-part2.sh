@@ -49,4 +49,7 @@ sed -i '/h=${g}.*/d' package/lean/autocore/files/x86/autocore
 sed -i 's/echo $h/echo $g/g' package/lean/autocore/files/x86/autocore
 
 # 临时
-
+#6.1
+rm -rf ./package/kernel/linux/modules/lib.mk
+rm -rf ./package/kernel/linux/modules/video.mk
+svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/patch ./package/kernel/linux/modules/
