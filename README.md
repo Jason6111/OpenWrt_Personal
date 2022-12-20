@@ -26,22 +26,6 @@
 - [Releases](https://github.com/Jason6111/OpenWrt_Personal/releases)
 - [Tags](https://github.com/Jason6111/OpenWrt_Personal/tags)  
 
-### 测试板块  
-![image](other/test.png)  
-## 食用方法  
-## 尽量fork到自己库用  
-## 在ubuntu下非root用户执行以下操作
-### 第一次  
-```
-git clone https://github.com/Jason6111/OpenWrt_Personal  && cd OpenWrt_Personal && bash wsl2op.sh
-
-```  
-### 第二次起  
-```
-cd OpenWrt_Personal && git pull && bash wsl2op.sh
-
-```
-
 ### 打赏 
 如果你觉得此项目对你有帮助，可以捐助，以鼓励项目能持续发展，更加完善  
 ![image](other/ds.jpg)  
