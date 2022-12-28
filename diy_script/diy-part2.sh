@@ -24,7 +24,7 @@ sed -i 's/os.date(/&"%Y-%m-%d %H:%M:%S"/' package/lean/autocore/files/x86/index.
 
 # 关闭串口跑码
 sed -i 's/console=tty0//g'  target/linux/x86/image/Makefile
-sed -i 's/%V, %C/[$(date +"%Y")] | by Jason /g' package/base-files/files/etc/banner
+sed -i 's/%V, %C/[2022] | by Jason /g' package/base-files/files/etc/banner
 sed -i '/logins./a\                                          by Jason' package/base-files/files/etc/profile
 
 # Modify default passwd
