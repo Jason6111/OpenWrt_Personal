@@ -23,7 +23,7 @@
 sed -i 's/os.date(/&"%Y-%m-%d %H:%M:%S"/' package/lean/autocore/files/x86/index.htm
 
 # 关闭串口跑码
-sed -i 's/console=tty0//g'  target/linux/x86/image/Makefile
+#sed -i 's/console=tty0//g'  target/linux/x86/image/Makefile
 sed -i 's/%V, %C/[Year] | by Jason /g' package/base-files/files/etc/banner
 sed -i "s/Year/$(TZ=':Asia/Shanghai' date '+%Y')/g" package/base-files/files/etc/banner
 sed -i '/logins./a\                                          by Jason' package/base-files/files/etc/profile
