@@ -50,3 +50,4 @@ sed -i '/h=${g}.*/d' package/lean/autocore/files/x86/autocore
 sed -i 's/echo $h/echo $g/g' package/lean/autocore/files/x86/autocore
 
 # 临时
+sed -i s/5.15/6.1/g  target/linux/x86/Makefile
