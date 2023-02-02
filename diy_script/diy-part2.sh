@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2019-2020 Jason6111
+# Copyright (c) 2019-2023 Jason6111
 #
 # This is free software, licensed under the MIT License.
 # See /LICENSE for more information.
