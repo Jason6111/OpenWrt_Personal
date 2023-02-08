@@ -3,6 +3,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Last-Translator: Hsing-Wang Liao <kuoruan@gmail.com>\n"
 
+msgid "Mon"
+msgstr "星期一"
+
+msgid "Tues"
+msgstr "星期二"
+
+msgid "Wed"
+msgstr "星期三"
+
+msgid "Thur"
+msgstr "星期四"
+
+msgid "Fri"
+msgstr "星期五"
+
+msgid "Sat"
+msgstr "星期六"
+
+msgid "Sun"
+msgstr "星期日"
+
 msgid "%.1f dB"
 msgstr ""
 
