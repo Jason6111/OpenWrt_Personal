@@ -49,14 +49,14 @@ env:
   REPO_PATH_HelloWorld : "helloworld"
 
   # jerrykuku/luci-theme-argon主题源码
-  REPO_URL_ThemeArgon: -b 18.06 https://github.com/jerrykuku/luci-theme-argon
-  REPO_BRANCH_ThemeArgon: master
-  REPO_PATH_ThemeArgon : "luci-theme-argon"
+  # REPO_URL_ThemeArgon: -b 18.06 https://github.com/jerrykuku/luci-theme-argon
+  # REPO_BRANCH_ThemeArgon: master
+  # REPO_PATH_ThemeArgon : "luci-theme-argon"
 
   # luci-app-argon-config主题配置源码
-  REPO_URL_ArgonConfig: https://github.com/jerrykuku/luci-app-argon-config
-  REPO_BRANCH_ArgonConfig: master
-  REPO_PATH_ArgonConfig : "luci-app-argon-config"
+  # REPO_URL_ArgonConfig: https://github.com/jerrykuku/luci-app-argon-config
+  # REPO_BRANCH_ArgonConfig: master
+  # REPO_PATH_ArgonConfig : "luci-app-argon-config"
 
 on:
   repository_dispatch:
@@ -120,15 +120,15 @@ jobs:
         echo "commitHash_HelloWorld=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
         cd
 
-        git clone --depth 1 $REPO_URL_ThemeArgon -b $REPO_BRANCH_ThemeArgon $REPO_PATH_ThemeArgon
-        cd $REPO_PATH_ThemeArgon
-        echo "commitHash_ThemeArgon=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
-        cd
+        # git clone --depth 1 $REPO_URL_ThemeArgon -b $REPO_BRANCH_ThemeArgon $REPO_PATH_ThemeArgon
+        # cd $REPO_PATH_ThemeArgon
+        # echo "commitHash_ThemeArgon=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+        # cd
 
-        git clone --depth 1 $REPO_URL_ArgonConfig -b $REPO_BRANCH_ArgonConfig $REPO_PATH_ArgonConfig 
-        cd $REPO_PATH_ArgonConfig 
-        echo "commitHash_ArgonConfig=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
-        cd
+        # git clone --depth 1 $REPO_URL_ArgonConfig -b $REPO_BRANCH_ArgonConfig $REPO_PATH_ArgonConfig 
+        # cd $REPO_PATH_ArgonConfig 
+        # echo "commitHash_ArgonConfig=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+        # cd
 
     - name: 显示提交头和组合头 #Show Commit Head and Combination Heads
       id: combHeader
@@ -140,8 +140,8 @@ jobs:
         echo "commitHash_OPENWRT_ROUTING: ${{ steps.getHash.outputs.commitHash_OPENWRT_ROUTING }}"
         echo "commitHash_OPENWRT_TELEPHONY: ${{ steps.getHash.outputs.commitHash_OPENWRT_TELEPHONY }}"
         echo "commitHash_HelloWorld: ${{ steps.getHash.outputs.commitHash_HelloWorld }}"
-        echo "commitHash_ThemeArgon: ${{ steps.getHash.outputs.commitHash_ThemeArgon }}"
-        echo "commitHash_ArgonConfig: ${{ steps.getHash.outputs.commitHash_ArgonConfig }}"
+        # echo "commitHash_ThemeArgon: ${{ steps.getHash.outputs.commitHash_ThemeArgon }}"
+        # echo "commitHash_ArgonConfig: ${{ steps.getHash.outputs.commitHash_ArgonConfig }}"
         echo "commitHash_All=\
           ${{steps.getHash.outputs.commitHash_Jason6111OpenWrt_Personal}}\
           ${{steps.getHash.outputs.commitHash_Lede}}\
@@ -149,8 +149,7 @@ jobs:
           ${{steps.getHash.outputs.commitHash_Lede_Luci}}\
           ${{steps.getHash.outputs.commitHash_OPENWRT_ROUTING}}\
           ${{steps.getHash.outputs.commitHash_OPENWRT_TELEPHONY}}\
-          ${{steps.getHash.outputs.commitHash_HelloWorld}}\
-          ${{steps.getHash.outputs.commitHash_ArgonConfig}}" >> $GITHUB_OUTPUT
+          ${{steps.getHash.outputs.commitHash_HelloWorld}}" >> $GITHUB_OUTPUT
           
     - name: 比较提交散列 #Compare Commit Hash
       id: cacheHash
@@ -170,8 +169,6 @@ jobs:
         echo ${{ steps.getHash.outputs.commitHash_OPENWRT_ROUTING }} | tee .commitHash_OPENWRT_ROUTING
         echo ${{ steps.getHash.outputs.commitHash_OPENWRT_TELEPHONY }} | tee .commitHash_OPENWRT_TELEPHONY
         echo ${{ steps.getHash.outputs.commitHash_HelloWorld }} | tee .commitHash_HelloWorld
-        echo ${{ steps.getHash.outputs.commitHash_ThemeArgon }} | tee .commitHash_ThemeArgon
-        echo ${{ steps.getHash.outputs.commitHash_ArgonConfig }} | tee .commitHash_ArgonConfig
         echo ${{ steps.combHeader.outputs.commitHash_All }} | tee .commitHash_All
 
     - name: 删除工作流程运行 #Delete workflow runs
