@@ -182,7 +182,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$RELEASE_TAG-${{ env.DEVICE_NAME }}-$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+        echo "release_tag=$RELEASE_TAG-${{ steps.generate.outputs.kernel_version }}-$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
@@ -230,11 +230,11 @@ jobs:
     - name: TG信息通知
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
-        curl -k --data chat_id=${{ secrets.TGID }} --data "text=我亲爱的主人您要编译的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件编译成功！https://github.com/Jason6111/OpenWrt_Personal/releases/tag/${{ steps.tag.outputs.release_tag }} " "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
+        curl -k --data chat_id=${{ secrets.TGID }} --data "text=我亲爱的主人您要编译的$RELEASE_TAG-${{ steps.generate.outputs.kernel_version }}-$(date +"%Y.%m.%d-%H%M")固件编译成功！https://github.com/Jason6111/OpenWrt_Personal/releases/tag/${{ steps.tag.outputs.release_tag }} " "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
         
         
     - name: PUSHPLUS信息通知
       if: env.SERVERCHAN_SCKEY == 'false'
       run: |
-        curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="恭喜主人$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件编译成功！" --data "content=我亲爱的主人您要编译的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件成功完成了！https://github.com/Jason6111/OpenWrt_Personal/releases/tag/${{ steps.tag.outputs.release_tag }} " "http://www.pushplus.plus/send"
+        curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="恭喜主人$RELEASE_TAG-${{ steps.generate.outputs.kernel_version }}-$(date +"%Y.%m.%d-%H%M")固件编译成功！" --data "content=我亲爱的主人您要编译的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件成功完成了！https://github.com/Jason6111/OpenWrt_Personal/releases/tag/${{ steps.tag.outputs.release_tag }} " "http://www.pushplus.plus/send"
         
