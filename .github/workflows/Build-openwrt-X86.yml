@@ -248,8 +248,7 @@ jobs:
       if: ${{ failure() }}
       run: |
         curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人:很遗憾通知您,编译$RELEASE_TAG长时间无响应,我在3小时后进行了超时处理,真的很抱歉。" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
-  
-# 增加编译失败TG通知  
+
     - name: 编译失败TG通知
       if: ${{ failure() }}
       run: | 
