@@ -244,3 +244,13 @@ jobs:
       run: |
         curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="恭喜主人$RELEASE_TAG-$KERNEL_VERSION-$(date +"%Y.%m.%d-%H%M")固件编译成功！" --data "content=我亲爱的主人您要编译的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件成功完成了！https://github.com/Jason6111/OpenWrt_Personal/releases/tag/${{ steps.tag.outputs.release_tag }} " "http://www.pushplus.plus/send"
         
+    - name: TG超时通知
+      if: ${{ failure() }}
+      run: |
+        curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人:很遗憾通知您,编译$RELEASE_TAG长时间无响应,我在3小时后进行了超时处理,真的很抱歉。" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
+  
+# 增加编译失败TG通知  
+    - name: 编译失败TG通知
+      if: ${{ failure() }}
+      run: | 
+        curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人:很遗憾地通知您,编译$RELEASE_TAG失败,请您及时处理。错误日志如下:$(cat openwrt/link/log/compile.log | tail -n 500)" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage" 
