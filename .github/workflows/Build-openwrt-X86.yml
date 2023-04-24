@@ -253,7 +253,7 @@ jobs:
    
     - name: 编译失败TG通知
       if: ${{ failure() }}
-      runs: |
+      run: |
         cat openwrt/tmp/log/compile.log | grep 'error:' | tail -n 10 > errors.txt
         curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人:很遗憾地通知您,编译$RELEASE_TAG失败,最后10条错误日志如下:
         $(cat errors.txt)"  "<https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"  
