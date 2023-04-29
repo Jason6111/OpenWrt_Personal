@@ -37,6 +37,7 @@ env:
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
   SERVERCHAN_SCKEY: true
+  TIMEOUT: 21600
   TZ: Asia/Shanghai
 
 jobs:
@@ -241,8 +242,13 @@ jobs:
       if: ${{ failure() }}
       run: |
         cat openwrt/tmp/log/compile.log | grep 'error:' | tail -n 10 > errors.txt
-        curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人:很遗憾地通知您,编译$RELEASE_TAG失败,最后10条错误日志如下:$(cat errors.txt)"  "<https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
-        
+        curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人:很遗憾地通知您,编译$RELEASE_TAG失败,最后10条错误日志如下:$(cat errors.txt)" "<https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
+     
+    - name: 超时TG通知
+      timeout-minutes: ${{ env.TIMEOUT }}
+      if: ${{ always() }}
+      run: |
+        curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人:很遗憾地通知您,编译$RELEASE_TAG超时" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
     #- name: PUSHPLUS信息通知
     #  if: ${{ success() }}
     #  run: |
