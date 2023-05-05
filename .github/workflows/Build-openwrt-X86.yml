@@ -237,18 +237,7 @@ jobs:
       run: |
         curl -k --data chat_id=${{ secrets.TGID }} --data "text=我亲爱的主人您要编译的$RELEASE_TAG-$KERNEL_VERSION-$(date +"%Y.%m.%d-%H%M")固件编译成功！https://github.com/Jason6111/OpenWrt_Personal/releases/tag/${{ steps.tag.outputs.release_tag }} " "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
    
-    - name: 编译失败TG通知
-      if: ${{ failure() }}
-      run: |
-        cat openwrt/tmp/log/compile.log | grep 'error:' | tail -n 10 > errors.txt
-        curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人:很遗憾地通知您,编译$RELEASE_TAG失败,最后10条错误日志如下:$(cat errors.txt)" "<https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
-   
     #- name: PUSHPLUS信息通知
     #  if: ${{ success() }}
     #  run: |
     #    curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="恭喜主人$RELEASE_TAG-$KERNEL_VERSION-$(date +"%Y.%m.%d-%H%M")固件编译成功！" --data "content=我亲爱的主人您要编译的$RELEASE_TAG-$(date +"%Y.%m.%d-%H%M")固件成功完成了！https://github.com/Jason6111/OpenWrt_Personal/releases/tag/${{ steps.tag.outputs.release_tag }} " "http://www.pushplus.plus/send"
-    
-    #- name: 编译失败PUSHPLUS信息通知
-    #  if: ${{ failure() }}
-    #  run: |
-    #    curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="主人:很遗憾地通知您" --data "content=编译$RELEASE_TAG失败,最后10条错误日志如下:$(cat errors.txt) " "http://www.pushplus.plus/send"
