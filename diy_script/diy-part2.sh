@@ -38,7 +38,7 @@ sed -i "s/DISTRIB_REVISION='R.*.*.[0-9]/& Compiled by Jason/" package/lean/defau
 # rm -rf ./feeds/luci/themes/luci-theme-argon
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git ./feeds/luci/themes/luci-theme-argon
 # git clone https://github.com/jerrykuku/luci-app-argon-config.git ./package/lean/luci-app-argon-config
-git clone https://github.com/Jason6111/luci-app-autoupdate ./package
+
 # 主题背景
 svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/argon/video/default  ./feeds/luci/themes/luci-theme-argon-mod/htdocs/luci-static/argon/background/
 rm -rf ./feeds/luci/themes/luci-theme-argon-mod/htdocs/luci-static/argon/background/.svn/
