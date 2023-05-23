@@ -70,15 +70,6 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        if [[ "$CPU_SELECTION" == "弃用E5系列" ]]; then
-      # 执行与弃用E5系列CPU相关的操作
-        elif [[ "$CPU_SELECTION" == "选择8370C" ]]; then
-      # 执行与选择8370C CPU相关的操作
-        elif [[ "$CPU_SELECTION" == "选择8272CL" ]]; then
-      # 执行与选择8272CL CPU相关的操作
-        elif [[ "$CPU_SELECTION" == "选择8171M" ]]; then
-      # 执行与选择8171M CPU相关的操作
-        fi
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
         sudo -E apt-get -qq install $(curl -fsSL https://github.com/Jason6111/OpenWrt_Personal/raw/main/depends-ubuntu-2004)
