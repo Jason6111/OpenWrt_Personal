@@ -22,15 +22,15 @@ on:
 #  schedule:
 #    - cron: 0 22 * * 0
   CPU_SELECTION:
-          description: 'CPU优选,增加编译速度'
-          required: true
-          default: '弃用E5系列'
-          type: choice
-          options:
-            - '弃用E5系列'
-            - '选择8370C'
-            - '选择8272CL'
-            - '选择8171M'
+    description: 'CPU优选,增加编译速度'
+    required: true
+    default: '弃用E5系列'
+    type: choice
+    options:
+      - '弃用E5系列'
+      - '选择8370C'
+      - '选择8272CL'
+      - '选择8171M'
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
