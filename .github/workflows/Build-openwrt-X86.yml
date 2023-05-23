@@ -71,9 +71,13 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         if [[ "$CPU_SELECTION" == "弃用E5系列" ]]; then
+        export INPUTS_CPU_SELECTION="E5"
         elif [[ "$CPU_SELECTION" == "选择8370C" ]]; then
+        export INPUTS_CPU_SELECTION="8370"
         elif [[ "$CPU_SELECTION" == "选择8272CL" ]]; then
+        export INPUTS_CPU_SELECTION="8272"
         elif [[ "$CPU_SELECTION" == "选择8171M" ]]; then
+        export INPUTS_CPU_SELECTION="8171"
         fi
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
