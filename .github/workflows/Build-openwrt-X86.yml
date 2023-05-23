@@ -13,7 +13,7 @@ name: Openwrt-X86
 on:
   repository_dispatch:
   workflow_dispatch:
-     inputs:
+#    inputs:
 #      ssh:
 #        description: 'SSH connection to Actions'
 #        required: false
@@ -21,16 +21,7 @@ on:
 #周日22时 CN周一6时
 #  schedule:
 #    - cron: 0 22 * * 0
-      CPU_SELECTION:
-        description: 'CPU优选,增加编译速度'
-        required: true
-        default: '弃用E5系列'
-        type: choice
-        options:
-          - '弃用E5系列'
-          - '选择8370C'
-          - '选择8272CL'
-          - '选择8171M'
+
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
@@ -47,7 +38,7 @@ env:
   UPLOAD_RELEASE: true
   SERVERCHAN_SCKEY: true
   TZ: Asia/Shanghai
-  CPU_SELECTION: ${{ github.event.inputs.CPU_SELECTION }}
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -70,15 +61,6 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        if [[ "$CPU_SELECTION" == "弃用E5系列" ]]; then
-        export INPUTS_CPU_SELECTION="E5"
-        elif [[ "$CPU_SELECTION" == "选择8370C" ]]; then
-        export INPUTS_CPU_SELECTION="8370"
-        elif [[ "$CPU_SELECTION" == "选择8272CL" ]]; then
-        export INPUTS_CPU_SELECTION="8272"
-        elif [[ "$CPU_SELECTION" == "选择8171M" ]]; then
-        export INPUTS_CPU_SELECTION="8171"
-        fi
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
         sudo -E apt-get -qq install $(curl -fsSL https://github.com/Jason6111/OpenWrt_Personal/raw/main/depends-ubuntu-2004)
@@ -87,7 +69,7 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-        
+
     - name: 下载固件源码 #Clone source code
       working-directory: /workdir
       run: |
