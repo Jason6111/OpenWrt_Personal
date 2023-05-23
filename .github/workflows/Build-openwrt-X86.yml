@@ -78,7 +78,7 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-
+        export INPUTS_CPU_SELECTION="${{ github.event.inputs.CPU_SELECTION }}"
     - name: 下载固件源码 #Clone source code
       working-directory: /workdir
       run: |
