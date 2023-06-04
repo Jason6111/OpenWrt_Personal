@@ -104,6 +104,16 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
         
+        cd ..
+        platforms=("X86")
+        for i in "${platforms[@]}"; do
+        [ -e config/$i.config ] && cp -r config/$i.config openwrt/.config
+        cd openwrt
+        make defconfig
+        cd ..
+        cp -f openwrt/.config config/$i.config
+        done
+        
     - name: Git auto update config
       uses: stefanzweifel/git-auto-commit-action@v4.16.0
       id: commit
