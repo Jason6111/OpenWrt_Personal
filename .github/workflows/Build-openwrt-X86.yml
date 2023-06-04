@@ -109,10 +109,10 @@ jobs:
       id: commit
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          commit_message: auto update config
-          branch: main
-          commit_author: Jason6111
+      with:
+        commit_message: auto update config
+        branch: main
+        commit_author: Jason6111
         
 #    - name: SSH connection to Actions
 #      uses: P3TERX/ssh2actions@v1.0.0
