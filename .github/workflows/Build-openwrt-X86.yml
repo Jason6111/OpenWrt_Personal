@@ -103,9 +103,6 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-        make defconfig
-        cd ..
-        cp -f openwrt/.config config/${{ matrix.platforms }}.config
         
     - name: Git auto update config
       uses: stefanzweifel/git-auto-commit-action@v4.16.0
