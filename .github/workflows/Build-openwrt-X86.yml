@@ -114,13 +114,13 @@ jobs:
           cp -f openwrt/.config config/$i.config
         done
         
-    - name: Git auto update config
+    - name: 自动更新config #Git auto update config
       uses: stefanzweifel/git-auto-commit-action@v4.16.0
       id: commit
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        commit_message: auto update config
+        commit_message: 自动更新config
         branch: main
         commit_author: Jason6111
         
