@@ -42,7 +42,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-22.04
-    timeout-minutes: 480
 
     steps:
     - name: 检查准备 #Checkout
