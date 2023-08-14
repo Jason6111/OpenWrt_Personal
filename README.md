@@ -14,6 +14,7 @@
 - [脚本新增TG跟Wechat推送说明](other/bot.md)
 - 借助 GitHub Actions 的 OpenWrt 在线集成自动编译.
 - 新增X86内核6.1
+- 新增ipv6以及v6转发
 1. 登录地址：`192.168.1.1`
 2. 登录帐号：`root`
 3. 登录密码：`无`  
