@@ -56,3 +56,5 @@ sed -i s/5.15/6.1/g  target/linux/x86/Makefile
 # zh netdata
 rm -rf ./feeds/luci/applications/luci-app-netdata/
 git clone https://github.com/Jason6111/luci-app-netdata ./feeds/luci/applications/luci-app-netdata/
+sed -i 's/charts\.d = no/charts\.d = yes/g' ./feeds/luci/applications/luci-app-netdata/root/etc/netdata/netdata.conf
+
