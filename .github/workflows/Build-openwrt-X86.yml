@@ -141,7 +141,7 @@ jobs:
 
     - name: netdata温控检测
       run: |
-        cd lede/dl
+        cd openwrt/dl
         mkdir temp_netdata-v1.33.1
         tar -xzvf netdata-v1.33.1.tar.gz -C temp_netdata-v1.33.1
         rm -rf netdata-v1.33.1.tar.gz
