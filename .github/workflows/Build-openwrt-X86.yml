@@ -142,12 +142,10 @@ jobs:
     - name: netdata温控检测
       run: |
         cd openwrt/dl
-        mkdir temp_netdata-v1.33.1
-        tar -xzvf netdata-v1.33.1.tar.gz -C temp_netdata-v1.33.1
-        rm -rf netdata-v1.33.1.tar.gz
-        sed -i 's/# sensors=force/sensors=force/' temp_netdata-v1.33.1/netdata-v1.33.1/collectors/charts.d.plugin/charts.d.conf
-        tar -czvf netdata-v1.33.1.tar.gz -C temp_netdata-v1.33.1 .
-        rm -rf temp_netdata-v1.33.1
+        tar -xzvf netdata-v1.33.1.tar.gz netdata-v1.33.1
+        sed -i 's/# sensors=force/sensors=force/' netdata-v1.33.1/collectors/charts.d.plugin/charts.d.conf
+        tar -czvf netdata-v1.33.1.tar.gz netdata-v1.33.1
+        rm -rf netdata-v1.33.1
 
     - name: 开始编译固件 #Compile the firmware
       id: compile
