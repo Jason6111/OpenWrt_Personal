@@ -139,6 +139,11 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
+   # - name: netdata温控检测
+   #   run: |
+   #     cd openwrt
+   #     sed -i 's/# sensors=force/sensors=force/' 
+
     - name: 开始编译固件 #Compile the firmware
       id: compile
       run: |
