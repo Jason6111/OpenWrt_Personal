@@ -44,6 +44,13 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+    - name: Free Disk Space (Ubuntu)
+      uses: jlumbroso/free-disk-space@main
+      with:
+        # this might remove tools that are actually needed,
+        # if set to "true" but frees about 6 GB
+        tool-cache: true
+        
     - name: 检查准备 #Checkout
       uses: actions/checkout@main
    
