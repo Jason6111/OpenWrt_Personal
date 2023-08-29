@@ -52,6 +52,7 @@ sed -i 's/echo $h/echo $g/g' package/lean/autocore/files/x86/autocore
 # 临时
 sed -i s/5.15/6.1/g  target/linux/x86/Makefile
 #sed -i "s/73a2498dc95934c225d358707e7f7d060b5ce81aa45260ada09cbd15207d27d1/5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df26a6a1cfa59d88b7/g" ./feeds/helloworld/ipt2socks/Makefile
+rm -rf ./feeds/packages/multimedia/aliyundrive-webdav/Makefile
 svn co https://github.com/Jason6111/OpenWrt_Personal/trunk/other/ali  ./feeds/packages/multimedia/aliyundrive-webdav
 rm -rf https://github.com/Jason6111/OpenWrt_Personal/trunk/other/ali  ./feeds/packages/multimedia/aliyundrive-webdav
 # zh netdata
