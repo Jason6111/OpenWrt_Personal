@@ -57,4 +57,6 @@ curl -o ./feeds/packages/multimedia/aliyundrive-webdav/Makefile https://raw.gith
 rm -rf ./feeds/luci/applications/luci-app-netdata/
 git clone https://github.com/Jason6111/luci-app-netdata ./feeds/luci/applications/luci-app-netdata/
 sed -i 's/charts\.d = no/charts\.d = yes/g' ./feeds/luci/applications/luci-app-netdata/root/etc/netdata/netdata.conf
+#sed -i 's/netdata\/netdata/Jason6111\/netdata/g ./feeds/packages/admin/netdata/Makefile
+#sed -i 's/20ba8695d87187787b27128ac3aab9b09aa29ca6b508c48542e0f7d50ec9322b/4845f08e39f2f2f27f07fc4676dcc69734d79e7373cb0210267227bba6cb72e0/g ./feeds/packages/admin/netdata/Makefile
 
