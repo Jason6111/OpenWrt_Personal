@@ -37,6 +37,17 @@ Subject: [PATCH] Update xz2 and use it static
   "cc",
   "libc",
 @@ -899,9 +899,9 @@ dependencies = [
+
+ [[package]]
+ name = "xz2"
+-version = "0.1.6"
++version = "0.1.7"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "c179869f34fc7c01830d3ce7ea2086bc3a07e0d35289b667d0a8bf910258926c"
++checksum = "388c44dc09d76f1536602ead6d325eb532f5c122f17782bd57fb47baeeb767e2"
+ dependencies = [
+  "lzma-sys",
+ ]
  
  [[package]]
  name = "xz2"
