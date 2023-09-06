@@ -44,12 +44,12 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - name: 精简系统释放磁盘空间 (Ubuntu)
-      uses: jlumbroso/free-disk-space@main
-      with:
+    #- name: 精简系统释放磁盘空间 (Ubuntu)
+    #  uses: jlumbroso/free-disk-space@main
+    #  with:
         # this might remove tools that are actually needed,
         # if set to "true" but frees about 6 GB
-        tool-cache: true
+    #    tool-cache: true
         
     - name: 检查准备 #Checkout
       uses: actions/checkout@main
@@ -68,6 +68,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        docker rmi `docker images -q`
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
         sudo -E apt-get -qq install $(curl -fsSL https://github.com/Jason6111/OpenWrt_Personal/raw/main/depends-ubuntu-2004)
