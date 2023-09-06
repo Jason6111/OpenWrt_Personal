@@ -69,7 +69,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         docker rmi `docker images -q`
-        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo rm -rf /etc/apt/sources.list.d* /usr/local/lib/android* /etc/docker* /etc/firefox* /etc/mysql* /etc/php* /opt/google* /usr/share/dotnet* /usr/share/google* /usr/share/mysql* /usr/share/php* /opt/ghc /usr/lib/jvm /swapfile
         sudo -E apt-get -qq update
         sudo -E apt-get -qq install $(curl -fsSL https://github.com/Jason6111/OpenWrt_Personal/raw/main/depends-ubuntu-2004)
         sudo -E apt-get -qq autoremove --purge
