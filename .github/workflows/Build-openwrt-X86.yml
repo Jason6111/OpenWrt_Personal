@@ -71,11 +71,6 @@ jobs:
     #  if: ${{ success() }}
     #  run: |
     #    curl -k --data token="${{ secrets.PUSH_PLUS_TOKEN }}" --data title="开始编译$RELEASE_TAG" --data "content=🎉 主人：正在为您编译新的$RELEASE_TAG,请耐心等待...... 😋💐" "http://www.pushplus.plus/send"
-    - name: 缓存 #Cache
-      uses: stupidloud/cachewrtbuild@main
-      with:
-        ccache: 'true'
-        prefix: ${{ github.workspace }}/openwrt 
         
     - name: 开始安装编译所需系统 #Initialization environment
       env:
@@ -97,6 +92,12 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
+    - name: 缓存 #Cache
+      uses: stupidloud/cachewrtbuild@main
+      with:
+        ccache: 'true'
+        prefix: ${{ github.workspace }}/openwrt
+        
     - name: patch1补丁和自定义设置 #Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
