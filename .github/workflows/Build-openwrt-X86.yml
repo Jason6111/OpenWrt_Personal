@@ -154,15 +154,15 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    #- name: netdata温控检测
-    #  run: |
-    #    cd openwrt
-    #    tar -xzvf dl/netdata-v1.33.1.tar.gz
-    #    sed -i 's/# sensors=force/sensors=force/' ./netdata-v1.33.1/collectors/charts.d.plugin/charts.d.conf
-    #    tar -czvf dl/netdata-v1.33.1.tar.gz netdata-v1.33.1
-    #    rm -rf netdata-v1.33.1
-    #    sha256sum dl/netdata-v1.33.1.tar.gz | awk '{print $1}' > checksum.txt
-    #    sed -i "s/20ba8695d87187787b27128ac3aab9b09aa29ca6b508c48542e0f7d50ec9322b/$(cat checksum.txt)/" ./feeds/packages/admin/netdata/Makefile
+    - name: netdata温控检测
+      run: |
+        cd openwrt
+        tar -xzvf dl/netdata-v1.33.1.tar.gz
+        sed -i 's/# sensors=force/sensors=force/' ./netdata-v1.33.1/collectors/charts.d.plugin/charts.d.conf
+        tar -czvf dl/netdata-v1.33.1.tar.gz netdata-v1.33.1
+        rm -rf netdata-v1.33.1
+        sha256sum dl/netdata-v1.33.1.tar.gz | awk '{print $1}' > checksum.txt
+        sed -i "s/20ba8695d87187787b27128ac3aab9b09aa29ca6b508c48542e0f7d50ec9322b/$(cat checksum.txt)/" ./feeds/packages/admin/netdata/Makefile
         
     - name: 开始编译固件 #Compile the firmware
       id: compile
