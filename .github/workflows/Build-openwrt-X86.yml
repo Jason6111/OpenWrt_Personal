@@ -61,7 +61,10 @@ jobs:
         
     - name: 检查准备 #Checkout
       uses: actions/checkout@main
-   
+      with:
+        ref: master
+        fetch-depth: 0
+      
     - name: TG信息通知
       if: ${{ success() }}
       run: |
@@ -92,11 +95,11 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
-    #- name: 缓存 #Cache
-    #  uses: Jason6111/cachewrtbuild@main
-    #  with:
-    #    ccache: 'true'
-    #    prefix: ${{ github.workspace }}/openwrt
+    - name: 缓存 #Cache
+      uses: Jason6111/cachewrtbuild@main
+      with:
+        ccache: 'true'
+        prefix: ${{ github.workspace }}/openwrt
         
     - name: patch1补丁和自定义设置 #Load custom feeds
       run: |
