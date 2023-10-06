@@ -54,6 +54,7 @@ sed -i 's/5.15/6.1/g'  target/linux/x86/Makefile
 #curl -o ./feeds/packages/multimedia/aliyundrive-webdav/Makefile https://raw.githubusercontent.com/coolsnowwolf/packages/aea60b5432fad984c0a4013bad0f0c5e00dcd115/multimedia/aliyundrive-webdav/Makefile
 sed -i 's/PKG_USE_MIPS16:=0/PKG_BUILD_FLAGS:=no-mips16/g' ./feeds/helloworld/hysteria/Makefile
 #sed -i 's/main.VersionString/$(GO_PKG)\/internal\/version.version/g' ./feeds/helloworld/hysteria/Makefile
+mkdir -p ./feeds/helloworld/hysteria/patches/ && curl -o ./feeds/helloworld/hysteria/patches/0001-go-get-github.com-quic-go-quic-go-v0.37.6.patch https://raw.githubusercontent.com/coolsnowwolf/packages/master/net/adguardhome/patches/0001-go-get-github.com-quic-go-quic-go-v0.37.6.patch
 
 #dockerman
 sed -i 's/+cgroupfs-mount //g' feeds/luci/applications/luci-app-dockerman/Makefile
