@@ -52,9 +52,7 @@ sed -i 's/echo $h/echo $g/g' package/lean/autocore/files/x86/autocore
 sed -i 's/5.15/6.1/g'  target/linux/x86/Makefile
 #sed -i 's/73a2498dc95934c225d358707e7f7d060b5ce81aa45260ada09cbd15207d27d1/5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df26a6a1cfa59d88b7/g' ./feeds/helloworld/ipt2socks/Makefile
 #curl -o ./feeds/packages/multimedia/aliyundrive-webdav/Makefile https://raw.githubusercontent.com/coolsnowwolf/packages/aea60b5432fad984c0a4013bad0f0c5e00dcd115/multimedia/aliyundrive-webdav/Makefile
-sed -i 's/PKG_USE_MIPS16:=0/PKG_BUILD_FLAGS:=no-mips16/g' ./feeds/helloworld/hysteria/Makefile
 #sed -i 's/main.VersionString/$(GO_PKG)\/internal\/version.version/g' ./feeds/helloworld/hysteria/Makefile
-mkdir -p ./feeds/helloworld/hysteria/patches/ && curl -o ./feeds/helloworld/hysteria/patches/0001-go-get-github.com-quic-go-quic-go-v0.37.6.patch https://raw.githubusercontent.com/coolsnowwolf/packages/master/net/adguardhome/patches/0001-go-get-github.com-quic-go-quic-go-v0.37.6.patch
 
 #dockerman
 sed -i 's/+cgroupfs-mount //g' feeds/luci/applications/luci-app-dockerman/Makefile
