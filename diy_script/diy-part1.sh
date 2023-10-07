@@ -11,7 +11,7 @@
 
 # Uncomment a feed source
 sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
-sed -i 's/fw876/AmberisMyShiba/g' feeds.conf.default
+sed -i 's/fw876/Jason6111/g' feeds.conf.default
 # LINUX_VERSION
 sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(LINUX_VERSION)-/g' include/image.mk
 
