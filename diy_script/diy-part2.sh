@@ -53,7 +53,7 @@ sed -i 's/5.15/6.1/g'  target/linux/x86/Makefile
 #sed -i 's/73a2498dc95934c225d358707e7f7d060b5ce81aa45260ada09cbd15207d27d1/5279eb1cb7555cf9292423cc9f672dc43e6e214b3411a6df26a6a1cfa59d88b7/g' ./feeds/helloworld/ipt2socks/Makefile
 #curl -o ./feeds/packages/multimedia/aliyundrive-webdav/Makefile https://raw.githubusercontent.com/coolsnowwolf/packages/aea60b5432fad984c0a4013bad0f0c5e00dcd115/multimedia/aliyundrive-webdav/Makefile
 #sed -i 's/main.VersionString/$(GO_PKG)\/internal\/version.version/g' ./feeds/helloworld/hysteria/Makefile
-
+rm -rf packages/lang/golang/* && curl -o packages/lang/golang https://github.com/coolsnowwolf/packages/tree/4e3636ca10ec05070de48dd04f36ef06ad2212e1/lang/golang
 #dockerman
 sed -i 's/+cgroupfs-mount //g' feeds/luci/applications/luci-app-dockerman/Makefile
 # zh netdata
