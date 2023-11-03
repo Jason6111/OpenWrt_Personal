@@ -10,7 +10,7 @@
 
 name: Openwrt-X86
 
-#on:
+on:
   repository_dispatch:
   workflow_dispatch:
 #    inputs:
