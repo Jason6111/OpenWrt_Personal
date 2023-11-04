@@ -45,7 +45,7 @@ env:
   
    # SSRP源码
   REPO_URL_HelloWorld: https://github.com/fw876/helloworld
-  REPO_BRANCH_HelloWorld: master
+  REPO_BRANCH_HelloWorld: main
   REPO_PATH_HelloWorld : "helloworld"
 
   # jerrykuku/luci-theme-argon主题源码
