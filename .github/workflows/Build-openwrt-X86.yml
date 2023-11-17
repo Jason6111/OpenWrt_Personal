@@ -43,7 +43,7 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-    - name: Check Server Performance
+    - name: 检查服务器性能 #Check Server Performance
       run: |
         echo "警告⚠"
         echo "分配的服务器性能有限，若选择的插件过多，务必注意CPU性能！"
