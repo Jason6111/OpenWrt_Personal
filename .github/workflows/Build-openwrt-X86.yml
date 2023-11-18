@@ -81,7 +81,7 @@ jobs:
     - name: TG信息通知
       if: ${{ success() }}
       run: |
-        curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人：正在使用$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c | awk '{print $2}' | awk -F ' ' '{print $1, $2}')为您编译新的$RELEASE_TAG,请耐心等待...... 😋💐" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
+        curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人：正在使用$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c)为您编译新的$RELEASE_TAG,请耐心等待...... 😋💐" "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
         
     #- name: PUSHPLUS信息通知
     #  if: ${{ success() }}
