@@ -268,7 +268,7 @@ jobs:
         git -C openwrt/feeds/helloworld log -n $COMMIT_LOG_NUM >> release.txt        
 
     - name: 上传固件以及发布 #Upload firmware to release
-      uses: softprops/action-gh-release@v1
+      uses: Jason6111/action-gh-release@v1.1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
