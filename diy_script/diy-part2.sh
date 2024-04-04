@@ -48,4 +48,5 @@ git clone https://github.com/Jason6111/luci-app-netdata ./feeds/luci/application
 sed -i 's/charts\.d = no/charts\.d = yes/g' ./feeds/luci/applications/luci-app-netdata/root/etc/netdata/netdata.conf
 
 #刷新固件docker无法启用
-sed -i '/bash \/root\/resize\.sh/i /etc/init.d/docker restart' package/base-files/files/etc/rc.local
+sed -i '/exit 0/i \/etc\/init.d\/docker restart' package/base-files/files/etc/rc.local
+
