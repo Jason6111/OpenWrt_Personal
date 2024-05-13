@@ -11,6 +11,8 @@
 
 # Uncomment a feed source
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+sed -i 's/#src-git luci https:\/\/github\.com\/coolsnowwolf\/luci\.git;openwrt-23\.05/src-git luci https:\/\/github\.com\/coolsnowwolf\/luci\.git;openwrt-23.05/g' feeds.conf.default
+sed -i 's/src-git luci https:\/\/github\.com\/coolsnowwolf\/luci/#src-git luci https:\/\/github\.com\/coolsnowwolf\/luci/g' feeds.conf.default
 
 # LINUX_VERSION
 sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(LINUX_VERSION)-/g' include/image.mk
