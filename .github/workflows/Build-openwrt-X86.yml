@@ -174,6 +174,7 @@ jobs:
     - name: netdata温控检测
       run: |
         cd openwrt
+        ls dl
         tar -xzvf dl/netdata-v1.33.1.tar.gz
         sed -i 's/# sensors=force/sensors=force/' ./netdata-v1.33.1/collectors/charts.d.plugin/charts.d.conf
         tar -czvf dl/netdata-v1.33.1.tar.gz netdata-v1.33.1
