@@ -86,7 +86,8 @@ jobs:
     - name: PushDeer信息通知
       if: ${{ success() }}
       run: |
-       curl -k --data pushkey="${{ secrets.pushkey }}" --data "text=🎉 主人：正在为您编译新的$RELEASE_TAG,请耐心等待...... 😋💐" "https://push.jason888.eu.org/message/push?"
+       curl -k --data pushkey="${{ secrets.pushkey }}" --data "text=主人：正在使用$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c | sed 's/^\s*//')为您编译新的$RELEASE_TAG,请耐心等待...... 😋💐" "https://"${{ secrets.pushserve }}"/message/push?"
+    
     #- name: PUSHPLUS信息通知
     #  if: ${{ success() }}
     #  run: |
@@ -301,7 +302,12 @@ jobs:
       if: ${{ success() }}
       run: |
         curl -k --data chat_id=${{ secrets.TGID }} --data "text=我亲爱的主人您要编译的$RELEASE_TAG-$KERNEL_VERSION-$(date +"%Y.%m.%d-%H%M")固件编译成功！https://github.com/Jason6111/OpenWrt_Personal/releases/tag/${{ steps.tag.outputs.release_tag }} " "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
-   
+    
+    - name: PushDeer信息通知
+      if: ${{ success() }}
+      run: |
+       curl -k --data pushkey="${{ secrets.pushkey }}" --data "text=我亲爱的主人您要编译的$RELEASE_TAG-$KERNEL_VERSION-$(date +"%Y.%m.%d-%H%M")固件编译成功！https://github.com/Jason6111/OpenWrt_Personal/releases/tag/${{ steps.tag.outputs.release_tag }} " "https://"${{ secrets.pushserve }}"/message/push?"
+    
     #- name: PUSHPLUS信息通知
     #  if: ${{ success() }}
     #  run: |
