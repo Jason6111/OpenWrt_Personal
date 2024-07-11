@@ -86,7 +86,7 @@ jobs:
     - name: PushDeer信息通知
       if: ${{ success() }}
       run: |
-       curl -k --data pushkey="${{ secrets.pushkey }}" --data "text=🎉 主人：正在为您编译新的$RELEASE_TAG,请耐心等待...... 😋💐" "https://push.jason888.eu.org//message/push"
+       curl -k https://push.jason888.eu.org//message/push?pushkey=${{ secrets.pushkey }}&text=🎉 主人：正在为您编译新的$RELEASE_TAG,请耐心等待...... 😋💐
 
     #- name: PUSHPLUS信息通知
     #  if: ${{ success() }}
