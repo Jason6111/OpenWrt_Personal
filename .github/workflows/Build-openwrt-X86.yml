@@ -306,7 +306,7 @@ jobs:
     - name: PushDeer信息通知
       if: ${{ success() }}
       run: |
-       curl -k --data pushkey="${{ secrets.pushkey }}" --data "text=我亲爱的主人您要编译的$RELEASE_TAG-$KERNEL_VERSION-$(date +"%Y.%m.%d-%H%M")固件编译成功！https://github.com/Jason6111/OpenWrt_Personal/releases/tag/${{ steps.tag.outputs.release_tag }} " "https://"${{ secrets.pushserve }}"/message/push?"
+       curl -k --data pushkey="${{ secrets.pushkey }}" --data "text=我亲爱的主人您要编译的$RELEASE_TAG-$KERNEL_VERSION-$(date +"%Y.%m.%d-%H%M")固件编译成功！" --data "desp=https://github.com/Jason6111/OpenWrt_Personal/releases/tag/${{ steps.tag.outputs.release_tag }}" --data type=markdown "https://"${{ secrets.pushserve }}"/message/push?"
     
     #- name: PUSHPLUS信息通知
     #  if: ${{ success() }}
