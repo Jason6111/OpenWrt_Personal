@@ -82,7 +82,12 @@ jobs:
       if: ${{ success() }}
       run: |
         curl -k --data chat_id=${{ secrets.TGID }} --data "text=主人：正在使用$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c | sed 's/^\s*//')为您编译新的$RELEASE_TAG,请耐心等待...... 😋💐,务必注意CPU性能！已知CPU型号（降序）：7763，8370C，8272CL，8171M，E5-2673." "https://api.telegram.org/bot${{ secrets.TG_TOKEN }}/sendMessage"
-        
+
+    - name: PushDeer信息通知
+      if: ${{ success() }}
+      run: |
+        https://push.jason888.eu.org//message/push?pushkey=${{ secrets.pushkey }}&text=🎉 主人：正在为您编译新的$RELEASE_TAG,请耐心等待...... 😋💐
+
     #- name: PUSHPLUS信息通知
     #  if: ${{ success() }}
     #  run: |
