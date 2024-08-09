@@ -15,6 +15,9 @@
 # LINUX_VERSION
 sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(LINUX_VERSION)-/g' include/image.mk
 
+# docker
+sed -i 's/ +cgroupfs-mount//g' luci/applications/luci-app-dockerman/Makefile
+
 # Add a feed source
 #echo 'src-git helloworld https://github.com/Jason6111/helloworld' >>feeds.conf.default
 echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
