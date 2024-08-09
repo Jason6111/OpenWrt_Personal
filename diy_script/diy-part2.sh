@@ -37,6 +37,9 @@ sed -i 's/(dmesg | grep .*/{a}${b}${c}${d}${e}${f}/g' ./package/lean/autocore/fi
 sed -i '/h=${g}.*/d' ./package/lean/autocore/files/x86/autocore
 sed -i 's/echo $h/echo $g/g' ./package/lean/autocore/files/x86/autocore
 
+# dockerman
+sed -i 's/+cgroupfs-mount //g' feeds/luci/applications/luci-app-dockerman/Makefile
+
 # 临时
 sed -i 's/6.1/6.6/g'  ./target/linux/x86/Makefile
 
