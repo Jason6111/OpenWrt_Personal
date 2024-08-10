@@ -38,9 +38,9 @@ sed -i '/h=${g}.*/d' ./package/lean/autocore/files/x86/autocore
 sed -i 's/echo $h/echo $g/g' ./package/lean/autocore/files/x86/autocore
 
 # dockerman
-sed -i 's/+cgroupfs-mount //g' feeds/luci/applications/luci-app-dockerman/Makefile
-sed -i 's/default y/default n/g' feeds/packages/utils/cgroupfs-mount/Makefile
-sed -i 's/select PACKAGE_cgroupfs-mount//g' feeds/packages/utils/dockerd/Config.in
+#sed -i 's/+cgroupfs-mount //g' feeds/luci/applications/luci-app-dockerman/Makefile
+#sed -i 's/default y/default n/g' feeds/packages/utils/cgroupfs-mount/Makefile
+#sed -i 's/select PACKAGE_cgroupfs-mount//g' feeds/packages/utils/dockerd/Config.in
 
 # 临时
 sed -i 's/6.1/6.6/g'  ./target/linux/x86/Makefile
