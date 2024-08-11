@@ -10,8 +10,6 @@
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Jason6111&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 ### 介绍 
-- 修复固件升级后docker无法自动启动
-- 修复docker无法读取设备cpu跟内存
 - HDMI静默开机回车进入BusyBox指令
 - [脚本新增TG跟Wechat推送说明](other/bot.md)
 - 借助 GitHub Actions 的 OpenWrt 在线集成自动编译.
