@@ -38,7 +38,7 @@ sed -i '/h=${g}.*/d' ./package/lean/autocore/files/x86/autocore
 sed -i 's/echo $h/echo $g/g' ./package/lean/autocore/files/x86/autocore
 
 # dockerman
-sed -i 's/+cgroupfs-mount //g' feeds/luci/applications/luci-app-dockerman/Makefile
+#sed -i 's/+cgroupfs-mount //g' feeds/luci/applications/luci-app-dockerman/Makefile
 sed -i '42i sed -i "/^# the system init finished. By default this file does nothing./a \/etc\/init.d\/cgroupfs-mount disable" \/etc\/rc.local' package/lean/default-settings/files/zzz-default-settings
 
 # 临时
