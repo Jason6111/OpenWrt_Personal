@@ -43,7 +43,7 @@ sed -i 's/echo $h/echo $g/g' ./package/lean/autocore/files/x86/autocore
 
 # 临时
 sed -i 's/6.1/6.6/g'  ./target/linux/x86/Makefile
-wget https://raw.githubusercontent.com/zxlhhyccc/packages/refs/heads/patch-5/utils/tini/patches/002-Support-POSIX-basename-from-musl-libc.patch feeds/packages/utils/tini/patches/
+
 # zh netdata
 rm -rf ./feeds/luci/applications/luci-app-netdata/
 git clone https://github.com/Jason6111/luci-app-netdata ./feeds/luci/applications/luci-app-netdata/
