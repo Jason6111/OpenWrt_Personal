@@ -43,6 +43,8 @@ sed -i 's/echo $h/echo $g/g' ./package/lean/autocore/files/x86/autocore
 
 # 临时
 sed -i 's/6.1/6.6/g'  ./target/linux/x86/Makefile
+sed -i 's/1.78.0/1.81.0/g' ./feeds/packages/lang/rust/Makefile
+sed -i 's/9b00956e56009bab2aa15d7bff10916599e3d6d6/eeb90cda1969383f56a2637cbd3037bdf598841c/g' ./feeds/packages/lang/rust/Makefile
 
 # zh netdata
 rm -rf ./feeds/luci/applications/luci-app-netdata/
