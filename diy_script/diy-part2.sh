@@ -43,7 +43,7 @@ sed -i 's/echo $h/echo $g/g' ./package/lean/autocore/files/x86/autocore
 
 # 临时
 sed -i 's/6.1/6.6/g'  ./target/linux/x86/Makefile
-sed -i 's/1.78.0/1.81.0/g' ./feeds/packages/lang/rust/Makefile
+sed -i 's/1.78.0/1.82.0/g' ./feeds/packages/lang/rust/Makefile
 sed -i 's/36217ef7e32f40a180e3d79bd666b4dfdaed49dd381023a5fb765fd12d0092ce/1276a0bb8fa12288ba6fa96597d28b40e74c44257c051d3bc02c2b049bb38210/g' ./feeds/packages/lang/rust/Makefile
 
 # zh netdata
