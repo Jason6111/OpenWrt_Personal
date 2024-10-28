@@ -212,7 +212,7 @@ jobs:
       run: |
          cd openwrt/bin/targets/x86/64
          KERNEL_VERSION=$(ls -l *openwrt-x86-64-generic-kernel.bin | awk '{print $9}' | cut -d '-' -f1)
-         echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
+         echo "KERNEL_VERSION=18.06-$KERNEL_VERSION" >> $GITHUB_ENV
          
     - name: 整理固件文件夹 #Organize files
       id: organize
