@@ -158,7 +158,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         commit_message: 自动更新config
-        branch: main
+        branch: temp-branch
         commit_author: Jason6111
         
 #    - name: SSH connection to Actions
