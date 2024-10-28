@@ -26,7 +26,7 @@ env:
   # Lean Package源码
   REPO_URL_Lede_Package: https://github.com/coolsnowwolf/packages
   REPO_BRANCH_Lede_Package: master
-  REPO_PATH_Lede_Package : "ledepackage"
+  REPO_PATH_Lede_Package : "package"
 
   # Lean luci源码
   REPO_URL_Lede_Luci: https://github.com/coolsnowwolf/luci
